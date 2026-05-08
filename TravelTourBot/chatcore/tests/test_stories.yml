@@ -1,0 +1,22 @@
+version: "3.1"
+
+stories:
+  - story: gợi ý tour chung
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+
+  - story: gợi ý tour cá nhân hóa và đặt chỗ
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+

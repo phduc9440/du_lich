@@ -1,0 +1,147 @@
+version: "3.1"
+
+intents:
+  - greet
+  - ask_tour_general
+  - ask_tour_personalized
+  - ask_tour_by_budget
+  - ask_agency_info
+  - ask_promotion
+  - provide_destination
+  - provide_budget
+  - provide_travel_time
+  - provide_contact_info
+  - provide_group_size
+  - ask_place_address
+  - ask_top_places_city
+  - ask_tour_for_place
+  - ask_place_by_theme
+  - ask_food_specialty
+  - ask_more_food_specialty
+  - ask_food_specialty_of_current_tour
+  - ask_food_address
+  - affirm
+  - deny
+  - change_mind
+  - ask_more_tours
+  - ask_list_tours
+  - goodbye
+
+entities:
+  - traveler_name
+  - phone_number
+  - destination
+  - specialty
+  - group_size
+  - province
+  - travel_theme
+
+slots:
+  traveler_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: traveler_name
+      - type: from_trigger_intent
+        value: "bạn"
+        intent: greet
+  phone_number:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: phone_number
+  destination:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: destination
+  specialty:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: specialty
+  province:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: province
+  travel_theme:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: travel_theme
+  group_size:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: group_size
+  budget_range:
+    type: text
+    influence_conversation: false
+    mappings: []
+  travel_month:
+    type: text
+    influence_conversation: false
+    mappings: []
+  last_destinations:
+    type: text
+    influence_conversation: false
+    mappings: []
+  shown_tours:
+    type: text
+    influence_conversation: false
+    mappings: []
+  displayed_specialty_count:
+    type: float
+    influence_conversation: false
+    mappings: []
+
+responses:
+  utter_greet:
+    - text: "TravelTour xin chào! Bạn đang muốn tìm tour ở đâu hoặc đi vào thời gian nào vậy?"
+  utter_goodbye:
+    - text: "Hẹn gặp lại bạn ở những hành trình tiếp theo!"
+  utter_ask_traveler_name:
+    - text: "Bạn vui lòng cho TravelTour biết tên để tiện liên hệ nhé?"
+  utter_ask_phone_number:
+    - text: "Số điện thoại bạn đang dùng là gì để tư vấn viên gọi lại ạ?"
+  utter_ask_group_size:
+    - text: "Đoàn của bạn có bao nhiêu người để mình chuẩn bị ưu đãi phù hợp?"
+  utter_agency_info:
+    - text: "TravelTour là đại lý du lịch chuyên tour biển đảo, nghỉ dưỡng và quốc tế. Tổng đài hỗ trợ 24/7 qua 1900 0099."
+  utter_promotion:
+    - text: "Tháng này TravelTour giảm đến 2.000.000đ cho tour biển và tặng combo vé tham quan khi đặt sớm trước 30 ngày."
+  utter_default:
+    - text: "TravelTour chưa hiểu ý bạn, có thể nói rõ điểm đến hoặc ngân sách mong muốn nhé?"
+
+forms:
+  booking_info_form:
+    required_slots:
+      - traveler_name
+      - phone_number
+      - group_size
+
+actions:
+  - action_recommend_general_tour
+  - action_recommend_personalized_tour
+  - action_recommend_tour_by_budget
+  - action_save_traveler_name
+  - action_confirm_booking
+  - validate_booking_info_form
+  - action_get_place_address
+  - action_recommend_places_by_province
+  - action_suggest_tour_for_place
+  - action_suggest_places_by_theme
+  - action_get_specialty_address
+  - action_recommend_specialties_by_province
+  - action_log_unknown_question
+  - action_reset_context
+  - action_recommend_specialties_for_tour
+  - action_get_specialty_location
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

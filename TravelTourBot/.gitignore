@@ -1,0 +1,15 @@
+__pycache__/
+*.log
+
+# Rasa models & cache
+chatcore/.rasa/
+
+# Python virtual envs
+.venv/
+venv/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

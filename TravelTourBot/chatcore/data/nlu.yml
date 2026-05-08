@@ -1,0 +1,3749 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - xin chào
+      - chào traveltour
+      - hello bạn ơi
+      - alo shop
+      - mình cần hỏi tour
+      - cho mình hỏi chút được không
+      - chào buổi sáng
+      - chào bạn
+      - chào anh chị
+      - hi traveltour
+      - chào
+      - chao
+      - xin chao
+      - chao ban
+      - chao traveltour
+      - chao bot
+      - này br
+      - hey
+      - này bot
+      - này chatbot
+      - này bạn
+      - này bot du lịch
+      - này bot tour
+      - này bot traveltour
+      - này bot travel
+
+  - intent: goodbye
+    examples: |
+      - tạm biệt nhé
+      - bye shop
+      - cảm ơn, mình liên hệ sau
+      - hẹn gặp lại
+      - tôi out đây
+      - thế nha
+      - tạm biệt
+      - goodbye
+      - cảm ơn
+      - cảm ơn bạn
+      - cảm ơn bạn bot
+      - cảm ơn bạn chatbot
+      - cảm ơn bạn bot du lịch
+      - cảm ơn bạn bot tour
+      - cảm ơn bạn bot traveltour
+      - cảm ơn bạn bot travel
+
+  - intent: affirm
+    examples: |
+      - ok
+      - được đó
+      - chuẩn luôn
+      - đồng ý
+      - chính xác
+      - nghe ổn đấy
+      - có nhé
+      - vâng ạ
+      - đúng rồi đó
+      - đồng ý
+      - đồng ý làm ơn
+      - hãy làm đi
+      - cứ vậy đi
+      - đúng là vậy đấy
+      - oke chính xác rồi
+
+  - intent: deny
+    examples: |
+      - chưa cần đâu
+      - không phải
+      - không ưng lắm
+      - thôi khỏi nhé
+      - chưa đâu
+      - không cần tư vấn nữa
+      - không đồng ý
+
+  - intent: change_mind
+    examples: |
+      - đổi ý rồi
+      - đổi điểm đến
+      - đổi chỗ khác
+      - mình muốn đổi sang nơi khác
+      - cho mình nhập lại thông tin
+      - huỷ thông tin vừa rồi
+      - mình muốn đổi ngân sách
+      - chuyển sang tour khác
+      - mình muốn nhập lại từ đầu
+      - cho mình thay đổi kế hoạch
+
+  - intent: ask_more_tours
+    examples: |
+      - còn tour khác không
+      - còn tour nào nữa không
+      - tour khác nhé
+      - gợi thêm tour nữa
+      - cho thêm vài tour
+      - có tour nào khác không
+      - list giúp mình các tour đang có
+      - còn gợi ý nào khác không
+      - cho xem thêm tour
+      - thêm tour đi
+
+  - intent: ask_list_tours
+    examples: |
+      - bạn đang có những tour nào
+      - các tour hiện có là gì
+      - liệt kê giúp các tour đang mở
+      - cho mình xem vài tour đang có
+      - bạn đang có những tour nào đến [Hà Nội](province) không
+      - bạn đang có những tour nào đến [Đà Nẵng](province) không
+      - bạn đang có những tour nào đến [Phú Quốc](province) không
+      - bạn đang có những tour nào đến [Nha Trang](province) không
+      - bạn đang có những tour nào đến [Huế](province) không
+      - bạn đang có những tour nào đến [Thanh Hóa](province) không
+      - bạn đang có những tour nào đến [Nghệ An](province) không
+      - bạn đang có những tour nào đến [Cao Bằng](province) không
+      - bạn đang có những tour nào đến [Hải Phòng](province) không
+      - bạn đang có những tour nào đến [Lào Cai](province) không
+      - bạn đang có những tour nào đến [Cao Bằng](province) không
+      - bạn đang có những tour nào đến [Lạng Sơn](province) không
+      - bạn đang có những tour nào đến [Bắc Giang](province) không
+      - bạn đang có những tour nào đến [Hải Dương](province) không
+      - bạn đang có những tour nào đến [Hưng Yên](province) không
+      - bạn đang có những tour nào đến [Hà Nam](province) không
+      - bạn đang có những tour nào đến [Nam Định](province) không
+      - bạn đang có những tour nào đến [Thái Bình](province) không
+      - bạn đang có những tour nào đến [Vĩnh Phúc](province) không
+      - bạn đang có những tour nào đến [Phú Thọ](province) không
+      - bạn đang có những tour nào đến [Yên Bái](province) không
+      - bạn đang có những tour nào đến [Tuyên Quang](province) không
+      - bạn đang có những tour nào đến [Bắc Kạn](province) không
+      - bạn đang có những tour nào đến [Lai Châu](province) không
+      - bạn đang có những tour nào đến [Điện Biên](province) không
+      - bạn đang có những tour nào đến [Sơn La](province) không
+      - bạn đang có những tour nào đến [Hòa Bình](province) không
+      - bạn đang có những tour nào đến [Quảng Ngãi](province) không
+      - bạn đang có những tour nào đến [Bình Thuận](province) không
+      - bạn đang có những tour nào đến [Phan Thiết](province) không
+      - bạn đang có những tour nào đến [Ninh Thuận](province) không
+      - bạn đang có những tour nào đến [Đắk Nông](province) không
+      - bạn đang có những tour nào đến [Gia Lai](province) không
+      - bạn đang có những tour nào đến [Kon Tum](province) không
+      - bạn đang có những tour nào đến [Đồng Nai](province) không
+      - bạn đang có những tour nào đến [Bình Dương](province) không
+      - bạn đang có những tour nào đến [Bình Phước](province) không
+      - bạn đang có những tour nào đến [Tây Ninh](province) không
+      - bạn đang có những tour nào đến [Bà Rịa - Vũng Tàu](province) không
+      - bạn đang có những tour nào đến [Vũng Tàu](province) không
+      - bạn đang có những tour nào đến [Long An](province) không
+      - bạn đang có những tour nào đến [Tiền Giang](province) không
+      - bạn đang có những tour nào đến [Bến Tre](province) không
+      - bạn đang có những tour nào đến [Trà Vinh](province) không
+      - bạn đang có những tour nào đến [Vĩnh Long](province) không
+      - bạn đang có những tour nào đến [Đồng Tháp](province) không
+      - bạn đang có những tour nào đến [Hậu Giang](province) không
+      - có tour nào đến [Hà Nội](province) không
+      - có tour nào đến [Đà Lạt](province) không
+      - có tour nào đến [Đà Nẵng](province) không
+      - có tour nào đến [Huế](province) không
+      - có tour nào đến [Hội An](province) không
+      - có tour nào đến [Hà Giang](province) không
+      - có tour nào đến [Cao Bằng](province) không
+      - có tour nào đến [Lào Cai](province) không
+      - có tour nào đến [Lạng Sơn](province) không
+      - có tour nào đến [Bắc Giang](province) không
+      - có tour nào đến [Hải Dương](province) không
+      - có tour nào đến [Hưng Yên](province) không
+      - có tour nào đến [Hà Nam](province) không
+      - có tour nào đến [Nam Định](province) không
+      - có tour nào đến [Thái Bình](province) không
+      - có tour nào đến [Vĩnh Phúc](province) không
+      - có tour nào đến [Phú Thọ](province) không
+      - có tour nào đến [Yên Bái](province) không
+      - có tour nào đến [Tuyên Quang](province) không
+      - có tour nào đến [Bắc Kạn](province) không
+      - có tour nào đến [Lai Châu](province) không
+      - có tour nào đến [Điện Biên](province) không
+      - có tour nào đến [Sơn La](province) không
+      - có tour nào đến [Hòa Bình](province) không
+      - có tour nào đến [Quảng Ngãi](province) không
+      - có tour nào đến [Bình Thuận](province) không
+      - có tour nào đến [Phan Thiết](province) không
+      - có tour nào đến [Ninh Thuận](province) không
+      - có tour nào đến [Đắk Nông](province) không
+      - có tour nào đến [Gia Lai](province) không
+      - có tour nào đến [Kon Tum](province) không
+      - có tour nào đến [Đồng Nai](province) không
+      - có tour nào đến [Bình Dương](province) không
+      - có tour nào đến [Bình Phước](province) không
+      - có tour nào đến [Tây Ninh](province) không
+      - có tour nào đến [Bà Rịa - Vũng Tàu](province) không
+      - có tour nào đến [Vũng Tàu](province) không
+      - có tour nào đến [Long An](province) không
+      - có tour nào đến [Tiền Giang](province) không
+      - có tour nào đến [Bến Tre](province) không
+      - có tour nào đến [Trà Vinh](province) không
+      - có tour nào đến [Vĩnh Long](province) không
+      - có tour nào đến [Đồng Tháp](province) không
+      - có tour nào đến [Hậu Giang](province) không
+      - có tour nào đến [Sóc Trăng](province) không
+      - có tour nào đến [Bạc Liêu](province) không
+      - có tour nào đến [Cà Mau](province) không
+      - có tour nào đến [Phú Quốc](province) không
+      - đang có tour nào đi [Đà Nẵng](province) không
+      - đang có tour nào đi [Nghệ An](province) không
+      - đang có tour nào đi [Thanh Hóa](province) không
+      - đang có tour nào đi [Huế](province) không
+      - đang có tour nào đi [Hội An](province) không
+      - các tour đi [Phú Quốc](province) còn không
+      - các tour đi [Nha Trang](province) còn không
+      - các tour đi [Hà Nội](province) còn không
+      - các tour đi [Hồ Chí Minh](province) còn không
+      - các tour đi [Đà Nẵng](province) còn không
+      - các tour đi [Huế](province) còn không
+      - các tour đi [Hội An](province) còn không
+      - các tour đi [Lào Cai](province) còn không
+      - các tour đi [Quảng Ninh](province) còn không
+      - các tour đi [Khánh Hòa](province) còn không
+      - các tour đi [Ninh Bình](province) còn không
+      - các tour đi [Bắc Ninh](province) còn không
+      - các tour đi [Hải Phòng](province) còn không
+      - các tour đi [Nghệ An](province) còn không
+      - các tour đi [Thanh Hóa](province) còn không
+      - các tour đi [Quảng Bình](province) còn không
+      - các tour đi [Hà Giang](province) còn không
+      - các tour đi [Cao Bằng](province) còn không
+      - các tour đi [Lạng Sơn](province) còn không
+      - các tour đi [Bắc Giang](province) còn không
+      - các tour đi [Hải Dương](province) còn không
+      - các tour đi [Hưng Yên](province) còn không
+      - các tour đi [Hà Nam](province) còn không
+      - các tour đi [Nam Định](province) còn không
+      - các tour đi [Thái Bình](province) còn không
+      - các tour đi [Vĩnh Phúc](province) còn không
+      - các tour đi [Phú Thọ](province) còn không
+      - các tour đi [Yên Bái](province) còn không
+      - các tour đi [Tuyên Quang](province) còn không
+      - các tour đi [Bắc Kạn](province) còn không
+      - các tour đi [Lai Châu](province) còn không
+      - các tour đi [Điện Biên](province) còn không
+      - các tour đi [Sơn La](province) còn không
+      - các tour đi [Hòa Bình](province) còn không
+      - các tour đi [Quảng Ngãi](province) còn không
+      - các tour đi [Bình Thuận](province) còn không
+      - các tour đi [Phan Thiết](province) còn không
+      - các tour đi [Ninh Thuận](province) còn không
+      - các tour đi [Đắk Nông](province) còn không
+      - các tour đi [Gia Lai](province) còn không
+      - các tour đi [Kon Tum](province) còn không
+      - các tour đi [Đồng Nai](province) còn không
+      - các tour đi [Bình Dương](province) còn không
+      - các tour đi [Bình Phước](province) còn không
+      - các tour đi [Tây Ninh](province) còn không
+      - các tour đi [Bà Rịa - Vũng Tàu](province) còn không
+      - các tour đi [Vũng Tàu](province) còn không
+      - các tour đi [Long An](province) còn không
+      - các tour đi [Tiền Giang](province) còn không
+      - các tour đi [Bến Tre](province) còn không
+      - các tour đi [Trà Vinh](province) còn không
+      - các tour đi [Vĩnh Long](province) còn không
+      - các tour đi [Đồng Tháp](province) còn không
+      - các tour đi [Hậu Giang](province) còn không
+      - các tour đi [Sóc Trăng](province) còn không
+      - các tour đi [Bạc Liêu](province) còn không
+      - các tour đi [Cà Mau](province) còn không
+      - các tour đi [Nghệ An](province) còn không
+      - các tour đi [Thanh Hóa](province) còn không
+      - các tour đi [Huế](province) còn không
+      - các tour đi [Hội An](province) còn không
+      - cho danh sách tour đi [Nha Trang](province)
+      - cho danh sách tour đi [Thanh Hóa](province)
+      - cho danh sách tour đi [Hà Nội](province)
+      - cho danh sách tour đi [Hồ Chí Minh](province)
+      - cho danh sách tour đi [Đà Nẵng](province)
+      - cho danh sách tour đi [Huế](province)
+      - cho danh sách tour đi [Hội An](province)
+      - cho danh sách tour đi [Phú Quốc](province)
+      - cho danh sách tour đi [Lào Cai](province)
+      - cho danh sách tour đi [Quảng Ninh](province)
+      - cho danh sách tour đi [Khánh Hòa](province)
+      - cho danh sách tour đi [Ninh Bình](province)
+      - cho danh sách tour đi [Bắc Ninh](province)
+      - cho danh sách tour đi [Hải Phòng](province)
+      - cho danh sách tour đi [Nghệ An](province)
+      - cho danh sách tour đi [Quảng Bình](province)
+      - cho danh sách tour đi [Hà Giang](province)
+      - cho danh sách tour đi [Cao Bằng](province)
+      - cho danh sách tour đi [Lạng Sơn](province)
+      - cho danh sách tour đi [Bắc Giang](province)
+      - cho danh sách tour đi [Hải Dương](province)
+      - cho danh sách tour đi [Hưng Yên](province)
+      - cho danh sách tour đi [Hà Nam](province)
+      - cho danh sách tour đi [Nam Định](province)
+      - cho danh sách tour đi [Thái Bình](province)
+      - cho danh sách tour đi [Vĩnh Phúc](province)
+      - cho danh sách tour đi [Phú Thọ](province)
+      - cho danh sách tour đi [Yên Bái](province)
+      - cho danh sách tour đi [Tuyên Quang](province)
+      - cho danh sách tour đi [Bắc Kạn](province)
+      - cho danh sách tour đi [Lai Châu](province)
+      - cho danh sách tour đi [Điện Biên](province)
+      - cho danh sách tour đi [Sơn La](province)
+      - cho danh sách tour đi [Hòa Bình](province)
+      - cho danh sách tour đi [Quảng Ngãi](province)
+      - cho danh sách tour đi [Bình Thuận](province)
+      - cho danh sách tour đi [Phan Thiết](province)
+      - cho danh sách tour đi [Ninh Thuận](province)
+      - cho danh sách tour đi [Đắk Nông](province)
+      - cho danh sách tour đi [Gia Lai](province)
+      - cho danh sách tour đi [Kon Tum](province)
+      - cho danh sách tour đi [Đồng Nai](province)
+      - cho danh sách tour đi [Bình Dương](province)
+      - cho danh sách tour đi [Bình Phước](province)
+      - cho danh sách tour đi [Tây Ninh](province)
+      - cho danh sách tour đi [Bà Rịa - Vũng Tàu](province)
+      - cho danh sách tour đi [Vũng Tàu](province)
+      - cho danh sách tour đi [Long An](province)
+      - cho danh sách tour đi [Tiền Giang](province)
+      - cho danh sách tour đi [Bến Tre](province)
+      - cho danh sách tour đi [Trà Vinh](province)
+      - cho danh sách tour đi [Vĩnh Long](province)
+      - cho danh sách tour đi [Đồng Tháp](province)
+      - cho danh sách tour đi [Hậu Giang](province)
+      - cho danh sách tour đi [Sóc Trăng](province)
+      - cho danh sách tour đi [Bạc Liêu](province)
+      - cho danh sách tour đi [Cà Mau](province)
+      - có tour du lịch nào tại [Huế](province) không
+      - có tour du lịch nào tại [Thanh Hóa](province) không
+      - có tour du lịch nào tại [Hà Nội](province) không
+      - có tour du lịch nào tại [Hồ Chí Minh](province) không
+      - có tour du lịch nào tại [Đà Nẵng](province) không
+      - có tour du lịch nào tại [Huế](province) không
+      - có tour du lịch nào tại [Hội An](province) không
+      - có tour du lịch nào tại [Lào Cai](province) không
+      - có tour du lịch nào tại [Quảng Ninh](province) không
+      - có tour du lịch nào tại [Khánh Hòa](province) không
+      - có tour du lịch nào tại [Ninh Bình](province) không
+      - có tour du lịch nào tại [Bắc Ninh](province) không
+      - có tour du lịch nào tại [Hải Phòng](province) không
+      - có tour du lịch nào tại [Nghệ An](province) không
+      - có tour du lịch nào tại [Quảng Bình](province) không
+      - có tour du lịch nào tại [Hà Giang](province) không
+      - có tour du lịch nào tại [Cao Bằng](province) không
+      - có tour du lịch nào tại [Lạng Sơn](province) không
+      - có tour du lịch nào tại [Bắc Giang](province) không
+      - có tour du lịch nào tại [Hải Dương](province) không
+      - có tour du lịch nào tại [Hưng Yên](province) không
+      - có tour du lịch nào tại [Hà Nam](province) không
+      - có tour du lịch nào tại [Nam Định](province) không
+      - có tour du lịch nào tại [Thái Bình](province) không
+      - có tour du lịch nào tại [Vĩnh Phúc](province) không
+      - có tour du lịch nào tại [Phú Thọ](province) không
+      - có tour du lịch nào tại [Yên Bái](province) không
+      - có tour du lịch nào tại [Tuyên Quang](province) không
+      - có tour du lịch nào tại [Bắc Kạn](province) không
+      - có tour du lịch nào tại [Lai Châu](province) không
+      - có tour du lịch nào tại [Điện Biên](province) không
+      - có tour du lịch nào tại [Sơn La](province) không
+      - có tour du lịch nào tại [Hòa Bình](province) không
+      - có tour du lịch nào tại [Quảng Ngãi](province) không
+      - có tour du lịch nào tại [Bình Thuận](province) không
+      - có tour du lịch nào tại [Phan Thiết](province) không
+      - có tour du lịch nào tại [Ninh Thuận](province) không
+      - có tour du lịch nào tại [Đắk Nông](province) không
+      - có tour du lịch nào tại [Gia Lai](province) không
+      - có tour du lịch nào tại [Kon Tum](province) không
+      - có tour du lịch nào tại [Đồng Nai](province) không
+      - có tour du lịch nào tại [Bình Dương](province) không
+      - có tour du lịch nào tại [Bình Phước](province) không
+      - có tour du lịch nào tại [Tây Ninh](province) không
+      - có tour du lịch nào tại [Bà Rịa - Vũng Tàu](province) không
+      - có tour du lịch nào tại [Vũng Tàu](province) không
+      - có tour du lịch nào tại [Long An](province) không
+      - có tour du lịch nào tại [Tiền Giang](province) không
+      - có tour du lịch nào tại [Bến Tre](province) không
+      - có tour du lịch nào tại [Trà Vinh](province) không
+      - có tour du lịch nào tại [Vĩnh Long](province) không
+      - có tour du lịch nào tại [Đồng Tháp](province) không
+      - có tour du lịch nào tại [Hậu Giang](province) không
+      - có tour du lịch nào tại [Sóc Trăng](province) không
+      - có tour du lịch nào tại [Bạc Liêu](province) không
+      - có tour du lịch nào tại [Cà Mau](province) không
+      - có tour đề xuất tại [Huế](province) không
+      - có tour đề xuất tại [Thanh Hóa](province) không
+      - có tour đề xuất tại [Hà Nội](province) không
+      - có tour đề xuất tại [Hồ Chí Minh](province) không
+      - có tour đề xuất tại [Đà Nẵng](province) không
+      - có tour đề xuất tại [Huế](province) không
+      - có tour đề xuất tại [Hội An](province) không
+      - có tour đề xuất tại [Lào Cai](province) không
+      - có tour đề xuất tại [Quảng Ninh](province) không
+      - có tour đề xuất tại [Khánh Hòa](province) không
+      - có tour đề xuất tại [Ninh Bình](province) không
+      - có tour đề xuất tại [Bắc Ninh](province) không
+      - có tour đề xuất tại [Hải Phòng](province) không
+      - có tour đề xuất tại [Nghệ An](province) không
+      - có tour đề xuất tại [Quảng Bình](province) không
+      - có tour đề xuất tại [Hà Giang](province) không
+      - có tour đề xuất tại [Cao Bằng](province) không
+      - có tour đề xuất tại [Lạng Sơn](province) không
+      - có tour đề xuất tại [Bắc Giang](province) không
+      - có tour đề xuất tại [Hải Dương](province) không
+      - có tour đề xuất tại [Hưng Yên](province) không
+      - có tour đề xuất tại [Hà Nam](province) không
+      - có tour đề xuất tại [Nam Định](province) không
+      - có tour đề xuất tại [Thái Bình](province) không
+      - có tour đề xuất tại [Vĩnh Phúc](province) không
+      - có tour đề xuất tại [Phú Thọ](province) không
+      - có tour đề xuất tại [Yên Bái](province) không
+      - có tour đề xuất tại [Tuyên Quang](province) không
+      - có tour đề xuất tại [Bắc Kạn](province) không
+      - có tour đề xuất tại [Lai Châu](province) không
+      - có tour đề xuất tại [Điện Biên](province) không
+      - có tour đề xuất tại [Sơn La](province) không
+      - có tour đề xuất tại [Hòa Bình](province) không
+      - có tour đề xuất tại [Quảng Ngãi](province) không
+      - có tour đề xuất tại [Bình Thuận](province) không
+      - có tour đề xuất tại [Phan Thiết](province) không
+      - có tour đề xuất tại [Ninh Thuận](province) không
+      - có tour đề xuất tại [Đắk Nông](province) không
+      - có tour đề xuất tại [Gia Lai](province) không
+      - có tour đề xuất tại [Kon Tum](province) không
+      - có tour đề xuất tại [Đồng Nai](province) không
+      - có tour đề xuất tại [Bình Dương](province) không
+      - có tour đề xuất tại [Bình Phước](province) không
+      - có tour đề xuất tại [Tây Ninh](province) không
+      - có tour đề xuất tại [Bà Rịa - Vũng Tàu](province) không
+      - có tour đề xuất tại [Vũng Tàu](province) không
+      - có tour đề xuất tại [Long An](province) không
+      - có tour đề xuất tại [Tiền Giang](province) không
+      - có tour đề xuất tại [Bến Tre](province) không
+      - có tour đề xuất tại [Trà Vinh](province) không
+      - có tour đề xuất tại [Vĩnh Long](province) không
+      - có tour đề xuất tại [Đồng Tháp](province) không
+      - có tour đề xuất tại [Hậu Giang](province) không
+      - có tour đề xuất tại [Sóc Trăng](province) không
+      - có tour đề xuất tại [Bạc Liêu](province) không
+      - có tour đề xuất tại [Cà Mau](province) không
+      - có tour nào đến [Thanh Hóa](province) không
+      - có tour nào đến [Hà Nội](province) không
+      - có tour nào đến [Hồ Chí Minh](province) không
+      - có tour nào đến [Đà Nẵng](province) không
+      - có tour nào đến [Huế](province) không
+      - có tour nào đến [Hội An](province) không
+      - có tour nào đến [Lào Cai](province) không
+      - có tour nào đến [Quảng Ninh](province) không
+      - có tour nào đến [Khánh Hòa](province) không
+      - có tour nào đến [Ninh Bình](province) không
+      - có tour nào đến [Bắc Ninh](province) không
+      - có tour nào đến [Hải Phòng](province) không
+      - có tour nào đến [Nghệ An](province) không
+      - có tour nào đến [Quảng Bình](province) không
+      - có tour nào đến [Hà Giang](province) không
+      - có tour nào đến [Cao Bằng](province) không
+      - có tour nào đến [Lạng Sơn](province) không
+      - có tour nào đến [Bắc Giang](province) không
+      - có tour nào đến [Hải Dương](province) không
+      - có tour nào đến [Hưng Yên](province) không
+      - có tour nào đến [Hà Nam](province) không
+      - có tour nào đến [Nam Định](province) không
+      - có tour nào đến [Thái Bình](province) không
+      - có tour nào đến [Vĩnh Phúc](province) không
+      - có tour nào đến [Phú Thọ](province) không
+      - có tour nào đến [Yên Bái](province) không
+      - có tour nào đến [Tuyên Quang](province) không
+      - có tour nào đến [Bắc Kạn](province) không
+      - có tour nào đến [Lai Châu](province) không
+      - có tour nào đến [Điện Biên](province) không
+      - có tour nào đến [Sơn La](province) không
+      - có tour nào đến [Hòa Bình](province) không
+      - có tour nào đến [Quảng Ngãi](province) không
+      - có tour nào đến [Bình Thuận](province) không
+      - có tour nào đến [Phan Thiết](province) không
+      - có tour nào đến [Ninh Thuận](province) không
+      - có tour nào đến [Đắk Nông](province) không
+      - có tour nào đến [Gia Lai](province) không
+      - có tour nào đến [Kon Tum](province) không
+      - có tour nào đến [Đồng Nai](province) không
+      - có tour nào đến [Bình Dương](province) không
+      - có tour nào đến [Bình Phước](province) không
+      - có tour nào đến [Tây Ninh](province) không
+      - có tour nào đến [Bà Rịa - Vũng Tàu](province) không
+      - có tour nào đến [Vũng Tàu](province) không
+      - có tour nào đến [Long An](province) không
+      - có tour nào đến [Tiền Giang](province) không
+      - có tour nào đến [Bến Tre](province) không
+      - có tour nào đến [Trà Vinh](province) không
+      - có tour nào đến [Vĩnh Long](province) không
+      - có tour nào đến [Đồng Tháp](province) không
+      - có tour nào đến [Hậu Giang](province) không
+      - có tour nào đến [Sóc Trăng](province) không
+      - có tour nào ở [Hà Nội](province) không
+      - có tour nào ở [Hồ Chí Minh](province) không
+      - có tour nào ở [Đà Nẵng](province) không
+      - có tour nào ở [Huế](province) không
+      - có tour nào ở [Hội An](province) không
+      - có tour nào ở [Lào Cai](province) không
+      - có tour nào ở [Quảng Ninh](province) không
+      - có tour nào ở [Khánh Hòa](province) không
+      - có tour nào ở [Ninh Bình](province) không
+      - có tour nào ở [Bắc Ninh](province) không
+      - có tour nào ở [Hải Phòng](province) không
+      - có tour nào ở [Nghệ An](province) không
+      - có tour nào ở [Quảng Bình](province) không
+      - có tour nào ở [Hà Giang](province) không
+      - có tour nào ở [Cao Bằng](province) không
+      - có tour nào ở [Lạng Sơn](province) không
+      - có tour nào ở [Bắc Giang](province) không
+      - có tour nào ở [Hải Dương](province) không
+      - có tour nào ở [Hưng Yên](province) không
+      - có tour nào ở [Hà Nam](province) không
+      - có tour nào ở [Nam Định](province) không
+      - có tour nào ở [Thái Bình](province) không
+      - có tour nào ở [Vĩnh Phúc](province) không
+      - có tour nào ở [Phú Thọ](province) không
+      - có tour nào ở [Yên Bái](province) không
+      - có tour nào ở [Tuyên Quang](province) không
+      - có tour nào ở [Bắc Kạn](province) không
+      - có tour nào ở [Lai Châu](province) không
+      - có tour nào ở [Điện Biên](province) không
+      - có tour nào ở [Sơn La](province) không
+      - có tour nào ở [Hòa Bình](province) không
+      - có tour nào ở [Quảng Ngãi](province) không
+      - có tour nào ở [Bình Thuận](province) không
+      - có tour nào ở [Phan Thiết](province) không
+      - có tour nào ở [Ninh Thuận](province) không
+      - có tour nào ở [Đắk Nông](province) không
+      - có tour nào ở [Gia Lai](province) không
+      - có tour nào ở [Kon Tum](province) không
+      - có tour nào ở [Đồng Nai](province) không
+      - có tour nào ở [Bình Dương](province) không
+      - có tour nào ở [Bình Phước](province) không
+      - có tour nào ở [Tây Ninh](province) không
+      - có tour nào ở [Bà Rịa - Vũng Tàu](province) không
+      - có tour nào ở [Vũng Tàu](province) không
+      - có tour nào ở [Long An](province) không
+      - có tour nào ở [Tiền Giang](province) không
+      - có tour nào ở [Bến Tre](province) không
+      - có tour nào ở [Trà Vinh](province) không
+      - có tour nào ở [Vĩnh Long](province) không
+      - có tour nào ở [Đồng Tháp](province) không
+      - có tour nào ở [Hậu Giang](province) không
+      - có tour nào ở [Sóc Trăng](province) không
+      - có tour nào ở [Bạc Liêu](province) không
+      - có tour nào ở [Cà Mau](province) không
+
+  - intent: ask_tour_general
+    examples: |
+      - gợi ý giúp mình tour hot nhất hiện nay
+      - traveltour có tour nội địa nào hay không
+      - cho mình xin vài tour đi biển đi
+      - có tour nghỉ dưỡng nào phù hợp gia đình không
+      - mình muốn xem tour khởi hành trong tháng tới
+      - có tour nào giá tốt khoảng cuối tuần không
+      - cho hỏi tour trọn gói của bên bạn
+      - mình cần tour 2 đến 3 ngày thôi
+      - bạn giới thiệu giúp tour miền Trung được chứ
+      - có tour nào đi bằng máy bay không
+      - có tour nào ở [Đà Lạt](province) không
+      - tour đi [Phú Quốc](province) còn chỗ không
+      - tour đi [Nghệ An](province) còn chỗ không
+      - tour đi [Huế](province) còn chỗ không
+      - tour đi [Hội An](province) còn chỗ không
+      - tour đi [Thanh Hóa](province) còn chỗ không
+      - tour đi [Hà Nội](province) còn chỗ không
+      - tour đi [Hải Phòng](province) còn chỗ không
+      - tour đi [Lào Cai](province) còn chỗ không
+      - tour đi [Lạng Sơn](province) còn chỗ không
+      - tour đi [Bắc Giang](province) còn chỗ không
+      - tour đi [Hải Dương](province) còn chỗ không
+      - tour đi [Hưng Yên](province) còn chỗ không
+      - tour đi [Hà Nam](province) còn chỗ không
+      - tour đi [Nam Định](province) còn chỗ không
+      - tour đi [Thái Bình](province) còn chỗ không
+      - tour đi [Vĩnh Phúc](province) còn chỗ không
+      - tour đi [Phú Thọ](province) còn chỗ không
+      - tour đi [Yên Bái](province) còn chỗ không
+      - tour đi [Tuyên Quang](province) còn chỗ không
+      - tour đi [Bắc Kạn](province) còn chỗ không
+      - tour đi [Lai Châu](province) còn chỗ không
+      - tour đi [Điện Biên](province) còn chỗ không
+      - tour đi [Sơn La](province) còn chỗ không
+      - tour đi [Hòa Bình](province) còn chỗ không
+      - tour đi [Quảng Ngãi](province) còn chỗ không
+      - tour đi [Bình Thuận](province) còn chỗ không
+      - tour đi [Phan Thiết](province) còn chỗ không
+      - tour đi [Ninh Thuận](province) còn chỗ không
+      - tour đi [Đắk Nông](province) còn chỗ không
+      - tour đi [Gia Lai](province) còn chỗ không
+      - tour đi [Kon Tum](province) còn chỗ không
+      - tour đi [Đồng Nai](province) còn chỗ không
+      - tour đi [Bình Dương](province) còn chỗ không
+      - tour đi [Bình Phước](province) còn chỗ không
+      - tour đi [Tây Ninh](province) còn chỗ không
+      - tour đi [Bà Rịa - Vũng Tàu](province) còn chỗ không
+      - tour đi [Vũng Tàu](province) còn chỗ không
+      - tour đi [Long An](province) còn chỗ không
+      - tour đi [Tiền Giang](province) còn chỗ không
+      - tour đi [Bến Tre](province) còn chỗ không
+      - tour đi [Trà Vinh](province) còn chỗ không
+      - tour đi [Vĩnh Long](province) còn chỗ không
+      - tour đi [Đồng Tháp](province) còn chỗ không
+      - tour đi [Hậu Giang](province) còn chỗ không
+      - tour đi [Sóc Trăng](province) còn chỗ không
+      - tour đi [Bạc Liêu](province) còn chỗ không
+      - tour đi [Cà Mau](province) còn chỗ không
+      - tour đi [Phú Quốc](province) còn chỗ không
+      - tour đi [Đà Nẵng](province) còn chỗ không
+      - tour đi [Hà Nội](province) còn chỗ không
+      - tour đi [Hải Phòng](province) còn chỗ không
+      - tour đi [Hội An](province) còn chỗ không
+      - tour đi [Huế](province) còn chỗ không
+      - tour đi [Nghệ An](province) còn chỗ không
+      - tour đi [Thanh Hóa](province) còn chỗ không
+      - tour đi [Hà Giang](province) còn chỗ không
+      - tour đi [Cao Bằng](province) còn chỗ không
+      - tour đi [Lào Cai](province) còn chỗ không
+      - tour đi [Lạng Sơn](province) còn chỗ không
+      - tour đi [Bắc Giang](province) còn chỗ không
+      - tour đi [Hải Dương](province) còn chỗ không
+      - tour đi [Hưng Yên](province) còn chỗ không
+      - tour đi [Hà Nam](province) còn chỗ không
+      - tour đi [Nam Định](province) còn chỗ không
+      - tour đi [Thái Bình](province) còn chỗ không
+      - tour đi [Vĩnh Phúc](province) còn chỗ không
+      - tour đi [Phú Thọ](province) còn chỗ không
+      - tour đi [Yên Bái](province) còn chỗ không
+      - tour đi [Tuyên Quang](province) còn chỗ không
+      - tour đi [Bắc Kạn](province) còn chỗ không
+      - tour đi [Lai Châu](province) còn chỗ không
+      - tour đi [Điện Biên](province) còn chỗ không
+      - tour đi [Sơn La](province) còn chỗ không
+      - tour đi [Hòa Bình](province) còn chỗ không
+      - tour đi [Quảng Ngãi](province) còn chỗ không
+      - tour đi [Bình Thuận](province) còn chỗ không
+      - tour đi [Phan Thiết](province) còn chỗ không
+      - cho mình tour tham quan [Hạ Long](province)
+      - cho mình tour tham quan [Hội An](province)
+      - cho mình tour tham quan [Huế](province)
+      - cho mình tour tham quan [Nghệ An](province)
+      - cho mình tour tham quan [Thanh Hóa](province)
+      - cho mình tour tham quan [Hà Nội](province)
+      - cho mình tour tham quan [Hải Phòng](province)
+      - cho mình tour tham quan [Lào Cai](province)
+      - cho mình tour tham quan [Lạng Sơn](province)
+      - cho mình tour tham quan [Bắc Giang](province)
+      - cho mình tour tham quan [Hải Dương](province)
+      - cho mình tour tham quan [Hưng Yên](province)
+      - cho mình tour tham quan [Hà Nam](province)
+      - cho mình tour tham quan [Nam Định](province)
+      - cho mình tour tham quan [Thái Bình](province)
+      - cho mình tour tham quan [Vĩnh Phúc](province)
+      - cho mình tour tham quan [Phú Thọ](province)
+      - cho mình tour tham quan [Yên Bái](province)
+      - cho mình tour tham quan [Tuyên Quang](province)
+      - cho mình tour tham quan [Bắc Kạn](province)
+      - cho mình tour tham quan [Lai Châu](province)
+      - cho mình tour tham quan [Điện Biên](province)
+      - cho mình tour tham quan [Sơn La](province)
+      - cho mình tour tham quan [Hòa Bình](province)
+      - cho mình tour tham quan [Quảng Ngãi](province)
+      - cho mình tour tham quan [Bình Thuận](province)
+      - cho mình tour tham quan [Phan Thiết](province)
+      - cho mình tour tham quan [Ninh Thuận](province)
+      - cho mình tour tham quan [Đắk Nông](province)
+      - cho mình tour tham quan [Gia Lai](province)
+      - cho mình tour tham quan [Kon Tum](province)
+      - cho mình tour tham quan [Đồng Nai](province)
+      - cho mình tour tham quan [Bình Dương](province)
+      - cho mình tour tham quan [Bình Phước](province)
+      - cho mình tour tham quan [Tây Ninh](province)
+      - cho mình tour tham quan [Bà Rịa - Vũng Tàu](province)
+      - cho mình tour tham quan [Vũng Tàu](province)
+      - cho mình tour tham quan [Long An](province)
+      - cho mình tour tham quan [Tiền Giang](province)
+      - cho mình tour tham quan [Bến Tre](province)
+      - cho mình tour tham quan [Trà Vinh](province)
+      - cho mình tour tham quan [Vĩnh Long](province)
+      - cho mình tour tham quan [Đồng Tháp](province)
+      - cho mình tour tham quan [Hậu Giang](province)
+      - cho mình tour tham quan [Sóc Trăng](province)
+      - cho mình tour tham quan [Bạc Liêu](province)
+      - cho mình tour tham quan [Cà Mau](province)
+      - cho mình tour tham quan [Phú Quốc](province)
+      - cho mình tour tham quan [Đà Nẵng](province)
+      - cho mình tour tham quan [Hà Nội](province)
+      - cho mình tour tham quan [Hải Phòng](province)
+      - cho mình tour tham quan [Hội An](province)
+      - cho mình tour tham quan [Huế](province)
+      - cho mình tour tham quan [Nghệ An](province)
+      - cho mình tour tham quan [Thanh Hóa](province)
+      - cho mình tour tham quan [Hà Giang](province)
+      - cho mình tour tham quan [Cao Bằng](province)
+      - cho mình tour tham quan [Lào Cai](province)
+      - cho mình tour tham quan [Lạng Sơn](province)
+      - cho mình tour tham quan [Bắc Giang](province)
+      - cho mình tour tham quan [Hải Dương](province)
+      - cho mình tour tham quan [Hưng Yên](province)
+      - cho mình tour tham quan [Hà Nam](province)
+      - cho mình tour tham quan [Nam Định](province)
+      - cho mình tour tham quan [Thái Bình](province)
+      - cho mình tour tham quan [Vĩnh Phúc](province)
+      - cho mình tour tham quan [Phú Thọ](province)
+      - cho mình tour tham quan [Yên Bái](province)
+      - cho mình tour tham quan [Tuyên Quang](province)
+      - cho mình tour tham quan [Bắc Kạn](province)
+      - cho mình tour tham quan [Lai Châu](province)
+      - cho mình tour tham quan [Điện Biên](province)
+      - cho mình tour tham quan [Sơn La](province)
+      - cho mình tour tham quan [Hòa Bình](province)
+      - cho mình tour tham quan [Quảng Ngãi](province)
+      - cho mình tour tham quan [Bình Thuận](province)
+      - cho mình tour tham quan [Phan Thiết](province)
+
+  - intent: ask_tour_personalized
+    examples: |
+      - đầu tháng 2 mình muốn đi [Đà Nẵng](province) tầm 5 triệu
+      - tư vấn tour [Hà Giang](province) cho nhóm 4 người đi tháng 3
+      - có tour biển nào khởi hành từ [Hồ Chí Minh](province) trong tháng 1 không
+      - mình muốn đi [Phú Quốc](province) dịp tết ngân sách 8 triệu
+      - có tour quốc tế nào tầm 30 triệu cho 2 người không
+      - có tour nào ngân sách tầm 5 triệu cho 2 người không
+      - có tour nào ngân sách tầm 3 triệu cho 2 người không
+      - có tour nào ngân sách tầm 4 triệu cho 2 người không
+      - có tour nào ngân sách tầm 6 triệu cho 2 người không
+      - có tour nào ngân sách tầm 7 triệu cho 2 người không
+      - có tour nào ngân sách tầm 8 triệu cho 2 người không
+      - có tour nào ngân sách tầm 9 triệu cho 2 người không
+      - có tour nào ngân sách tầm 10 triệu cho 2 người không
+      - có tour nào ngân sách tầm 11 triệu cho 2 người không
+      - có tour nào ngân sách tầm 12 triệu cho 2 người không
+      - có tour nào ngân sách tầm 13 triệu cho 2 người không
+      - có tour nào ngân sách tầm 14 triệu cho 2 người không
+      - có tour nào ngân sách tầm 15 triệu cho 2 người không
+      - có tour nào ngân sách tầm 16 triệu cho 2 người không
+      - có tour nào ngân sách tầm 17 triệu cho 2 người không
+      - có tour nào ngân sách tầm 18 triệu cho 2 người không
+      - có tour nào ngân sách tầm 19 triệu cho 2 người không
+      - có tour nào ngân sách tầm 20 triệu cho 2 người không
+      - có tour nào ngân sách tầm 21 triệu cho 2 người không
+      - có tour nào ngân sách tầm 22 triệu cho 2 người không
+      - có tour nào ngân sách tầm 23 triệu cho 2 người không
+      - có tour nào ngân sách tầm 24 triệu cho 2 người không
+      - có tour nào ngân sách tầm 25 triệu cho 2 người không
+      - có tour nào ngân sách tầm 26 triệu cho 2 người không
+      - có tour nào ngân sách tầm 27 triệu cho 2 người không
+      - có tour nào ngân sách tầm 28 triệu cho 2 người không
+      - có tour nào ngân sách tầm 29 triệu cho 2 người không
+      - có tour nào ngân sách tầm 30 triệu cho 2 người không
+      - có tour nào ngân sách tầm 1 triệu cho 1 người không
+      - có tour nào ngân sách tầm 2 triệu cho 1 người không
+      - có tour nào ngân sách tầm 3 triệu cho 1 người không
+      - có tour nào ngân sách tầm 4 triệu cho 1 người không
+      - có tour nào ngân sách tầm 5 triệu cho 1 người không
+      - có tour nào ngân sách tầm 6 triệu cho 1 người không
+      - có tour nào ngân sách tầm 7 triệu cho 1 người không
+      - có tour nào ngân sách tầm 8 triệu cho 1 người không
+      - có tour nào ngân sách tầm 9 triệu cho 1 người không
+      - có tour nào ngân sách tầm 2 triệu cho 3 người không
+      - có tour nào ngân sách tầm 3 triệu cho 3 người không
+      - có tour nào ngân sách tầm 4 triệu cho 3 người không
+      - có tour nào ngân sách tầm 5 triệu cho 3 người không
+      - có tour nào ngân sách tầm 6 triệu cho 3 người không
+      - có tour nào ngân sách tầm 7 triệu cho 3 người không
+      - có tour nào ngân sách tầm 8 triệu cho 3 người không
+      - có tour nào ngân sách tầm 9 triệu cho 3 người không
+      - có tour nào ngân sách tầm 10 triệu cho 3 người không
+      - có tour nào ngân sách tầm 11 triệu cho 3 người không
+      - có tour nào ngân sách tầm 12 triệu cho 3 người không
+      - có tour nào ngân sách tầm 13 triệu cho 3 người không
+      - có tour nào ngân sách tầm 14 triệu cho 3 người không
+      - có tour nào ngân sách tầm 15 triệu cho 3 người không
+      - có tour nào ngân sách tầm 16 triệu cho 3 người không
+      - có tour nào ngân sách tầm 17 triệu cho 3 người không
+      - có tour nào ngân sách tầm 2 triệu cho 4 người không
+      - có tour nào ngân sách tầm 3 triệu cho 4 người không
+      - có tour nào ngân sách tầm 4 triệu cho 4 người không
+      - có tour nào ngân sách tầm 5 triệu cho 4 người không
+      - có tour nào ngân sách tầm 6 triệu cho 4 người không
+      - có tour nào ngân sách tầm 7 triệu cho 4 người không
+      - có tour nào ngân sách tầm 8 triệu cho 4 người không
+      - có tour nào ngân sách tầm 9 triệu cho 4 người không
+      - có tour nào ngân sách tầm 10 triệu cho 4 người không
+      - nhóm mình 6 người muốn đi miền Bắc tháng 9
+      - có tour nào đi cáp treo Hòn Thơm không
+      - muốn đi Nhật mùa thu thì bên bạn có tour không
+      - gợi ý tour nghỉ dưỡng 4 ngày khởi hành Hà Nội
+      - gọi ý tour nghỉ dưỡng 3 ngày khởi hành Hà Nội
+      - mình thích tour thiên nhiên nhẹ nhàng khoảng 3 triệu
+      - mình thích tour thiên nhiên nhẹ nhàng khoảng 2 triệu
+      - mình thích tour thiên nhiên nhẹ nhàng khoảng 1 triệu
+      - cho mình tour tới [Đà Lạt](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [An Giang](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [An Giang](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [An Giang](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [An Giang](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [An Giang](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [An Giang](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [An Giang](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [An Giang](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Bà Rịa - Vũng Tàu](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Bà Rịa - Vũng Tàu](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Bà Rịa - Vũng Tàu](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Bà Rịa - Vũng Tàu](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Bà Rịa - Vũng Tàu](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Bà Rịa - Vũng Tàu](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Bà Rịa - Vũng Tàu](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Bà Rịa - Vũng Tàu](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Bình Dương](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Bình Dương](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Bình Dương](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Bình Dương](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Bình Dương](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Bình Dương](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Bình Dương](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Bình Dương](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Bình Phước](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Bình Phước](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Bình Phước](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Bình Phước](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Bình Phước](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Bình Phước](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Bình Phước](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Bình Phước](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Bình Thuận](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Bình Thuận](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Bình Thuận](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Bình Thuận](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Bình Thuận](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Bình Thuận](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Bình Thuận](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Bình Thuận](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Bình Định](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Bình Định](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Bình Định](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Bình Định](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Bình Định](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Bình Định](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Bình Định](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Bình Định](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Bạc Liêu](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Bạc Liêu](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Bạc Liêu](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Bạc Liêu](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Bạc Liêu](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Bạc Liêu](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Bạc Liêu](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Bạc Liêu](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Bắc Giang](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Bắc Giang](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Bắc Giang](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Bắc Giang](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Bắc Giang](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Bắc Giang](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Bắc Giang](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Bắc Giang](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Bắc Kạn](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Bắc Kạn](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Bắc Kạn](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Bắc Kạn](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Bắc Kạn](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Bắc Kạn](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Bắc Kạn](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Bắc Kạn](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Bắc Ninh](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Bắc Ninh](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Bắc Ninh](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Bắc Ninh](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Bắc Ninh](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Bắc Ninh](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Bắc Ninh](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Bắc Ninh](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Bến Tre](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Bến Tre](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Bến Tre](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Bến Tre](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Bến Tre](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Bến Tre](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Bến Tre](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Bến Tre](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Cà Mau](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Cà Mau](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Cà Mau](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Cà Mau](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Cà Mau](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Cà Mau](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Cà Mau](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Cà Mau](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Cao Bằng](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Cao Bằng](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Cao Bằng](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Cao Bằng](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Cao Bằng](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Cao Bằng](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Cao Bằng](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Cao Bằng](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Cần Thơ](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Cần Thơ](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Cần Thơ](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Cần Thơ](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Cần Thơ](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Cần Thơ](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Cần Thơ](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Cần Thơ](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Đà Nẵng](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Đà Nẵng](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Đà Nẵng](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Đà Nẵng](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Đà Nẵng](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Đà Nẵng](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Đà Nẵng](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Đà Nẵng](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Đắk Lắk](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Đắk Lắk](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Đắk Lắk](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Đắk Lắk](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Đắk Lắk](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Đắk Lắk](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Đắk Lắk](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Đắk Lắk](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Đắk Nông](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Đắk Nông](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Đắk Nông](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Đắk Nông](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Đắk Nông](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Đắk Nông](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Đắk Nông](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Đắk Nông](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Điện Biên](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Điện Biên](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Điện Biên](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Điện Biên](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Điện Biên](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Điện Biên](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Điện Biên](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Điện Biên](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Đồng Nai](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Đồng Nai](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Đồng Nai](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Đồng Nai](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Đồng Nai](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Đồng Nai](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Đồng Nai](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Đồng Nai](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Đồng Tháp](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Đồng Tháp](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Đồng Tháp](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Đồng Tháp](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Đồng Tháp](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Đồng Tháp](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Đồng Tháp](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Đồng Tháp](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Gia Lai](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Gia Lai](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Gia Lai](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Gia Lai](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Gia Lai](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Gia Lai](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Gia Lai](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Gia Lai](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Hà Giang](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Hà Giang](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Hà Giang](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Hà Giang](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Hà Giang](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Hà Giang](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Hà Giang](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Hà Giang](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Hà Nam](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Hà Nam](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Hà Nam](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Hà Nam](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Hà Nam](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Hà Nam](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Hà Nam](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Hà Nam](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Hà Nội](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Hà Nội](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Hà Nội](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Hà Nội](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Hà Nội](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Hà Nội](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Hà Nội](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Hà Nội](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Hà Tĩnh](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Hà Tĩnh](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Hà Tĩnh](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Hà Tĩnh](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Hà Tĩnh](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Hà Tĩnh](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Hà Tĩnh](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Hà Tĩnh](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Hải Dương](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Hải Dương](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Hải Dương](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Hải Dương](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Hải Dương](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Hải Dương](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Hải Dương](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Hải Dương](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Hải Phòng](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Hải Phòng](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Hải Phòng](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Hải Phòng](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Hải Phòng](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Hải Phòng](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Hải Phòng](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Hải Phòng](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Hậu Giang](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Hậu Giang](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Hậu Giang](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Hậu Giang](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Hậu Giang](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Hậu Giang](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Hậu Giang](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Hậu Giang](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Hòa Bình](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Hòa Bình](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Hòa Bình](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Hòa Bình](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Hòa Bình](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Hòa Bình](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Hòa Bình](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Hòa Bình](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Huế](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Huế](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Huế](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Huế](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Huế](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Huế](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Huế](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Huế](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Hưng Yên](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Hưng Yên](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Hưng Yên](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Hưng Yên](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Hưng Yên](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Hưng Yên](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Hưng Yên](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Hưng Yên](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Khánh Hòa](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Khánh Hòa](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Khánh Hòa](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Khánh Hòa](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Khánh Hòa](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Khánh Hòa](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Khánh Hòa](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Khánh Hòa](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Kiên Giang](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Kiên Giang](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Kiên Giang](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Kiên Giang](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Kiên Giang](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Kiên Giang](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Kiên Giang](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Kiên Giang](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Kon Tum](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Kon Tum](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Kon Tum](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Kon Tum](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Kon Tum](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Kon Tum](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Kon Tum](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Kon Tum](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Lai Châu](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Lai Châu](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Lai Châu](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Lai Châu](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Lai Châu](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Lai Châu](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Lai Châu](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Lai Châu](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Lâm Đồng](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Lâm Đồng](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Lâm Đồng](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Lâm Đồng](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Lâm Đồng](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Lâm Đồng](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Lâm Đồng](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Lâm Đồng](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Lạng Sơn](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Lạng Sơn](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Lạng Sơn](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Lạng Sơn](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Lạng Sơn](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Lạng Sơn](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Lạng Sơn](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Lạng Sơn](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Lào Cai](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Lào Cai](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Lào Cai](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Lào Cai](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Lào Cai](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Lào Cai](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Lào Cai](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Lào Cai](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Long An](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Long An](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Long An](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Long An](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Long An](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Long An](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Long An](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Long An](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Nam Định](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Nam Định](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Nam Định](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Nam Định](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Nam Định](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Nam Định](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Nam Định](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Nam Định](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Nghệ An](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Nghệ An](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Nghệ An](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Nghệ An](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Nghệ An](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Nghệ An](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Nghệ An](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Nghệ An](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Ninh Bình](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Ninh Bình](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Ninh Bình](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Ninh Bình](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Ninh Bình](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Ninh Bình](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Ninh Bình](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Ninh Bình](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Ninh Thuận](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Ninh Thuận](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Ninh Thuận](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Ninh Thuận](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Ninh Thuận](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Ninh Thuận](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Ninh Thuận](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Ninh Thuận](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Phú Thọ](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Phú Thọ](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Phú Thọ](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Phú Thọ](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Phú Thọ](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Phú Thọ](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Phú Thọ](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Phú Thọ](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Phú Yên](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Phú Yên](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Phú Yên](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Phú Yên](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Phú Yên](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Phú Yên](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Phú Yên](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Phú Yên](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Quảng Bình](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Quảng Bình](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Quảng Bình](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Quảng Bình](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Quảng Bình](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Quảng Bình](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Quảng Bình](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Quảng Bình](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Quảng Nam](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Quảng Nam](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Quảng Nam](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Quảng Nam](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Quảng Nam](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Quảng Nam](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Quảng Nam](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Quảng Nam](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Quảng Ngãi](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Quảng Ngãi](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Quảng Ngãi](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Quảng Ngãi](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Quảng Ngãi](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Quảng Ngãi](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Quảng Ngãi](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Quảng Ngãi](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Quảng Ninh](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Quảng Ninh](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Quảng Ninh](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Quảng Ninh](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Quảng Ninh](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Quảng Ninh](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Quảng Ninh](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Quảng Ninh](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Quảng Trị](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Quảng Trị](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Quảng Trị](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Quảng Trị](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Quảng Trị](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Quảng Trị](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Quảng Trị](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Quảng Trị](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Sóc Trăng](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Sóc Trăng](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Sóc Trăng](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Sóc Trăng](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Sóc Trăng](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Sóc Trăng](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Sóc Trăng](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Sóc Trăng](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Sơn La](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Sơn La](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Sơn La](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Sơn La](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Sơn La](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Sơn La](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Sơn La](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Sơn La](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Tây Ninh](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Tây Ninh](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Tây Ninh](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Tây Ninh](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Tây Ninh](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Tây Ninh](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Tây Ninh](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Tây Ninh](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Thái Bình](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Thái Bình](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Thái Bình](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Thái Bình](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Thái Bình](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Thái Bình](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Thái Bình](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Thái Bình](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Thái Nguyên](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Thái Nguyên](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Thái Nguyên](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Thái Nguyên](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Thái Nguyên](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Thái Nguyên](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Thái Nguyên](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Thái Nguyên](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Thanh Hóa](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Thanh Hóa](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Thanh Hóa](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Thanh Hóa](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Thanh Hóa](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Thanh Hóa](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Thanh Hóa](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Thanh Hóa](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Thành phố Hồ Chí Minh](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Thành phố Hồ Chí Minh](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Thành phố Hồ Chí Minh](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Thành phố Hồ Chí Minh](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Thành phố Hồ Chí Minh](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Thành phố Hồ Chí Minh](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Thành phố Hồ Chí Minh](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Thành phố Hồ Chí Minh](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Tiền Giang](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Tiền Giang](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Tiền Giang](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Tiền Giang](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Tiền Giang](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Tiền Giang](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Tiền Giang](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Tiền Giang](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Trà Vinh](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Trà Vinh](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Trà Vinh](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Trà Vinh](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Trà Vinh](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Trà Vinh](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Trà Vinh](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Trà Vinh](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Tuyên Quang](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Tuyên Quang](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Tuyên Quang](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Tuyên Quang](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Tuyên Quang](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Tuyên Quang](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Tuyên Quang](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Tuyên Quang](province) ngân sách khoảng 3 triệu
+      - cho mình tour tới [Vĩnh Long](province) ngân sách khoảng 10 triệu
+      - cho tôi tour tới [Vĩnh Long](province) ngân sách khoảng 10 triệu
+      - tư vấn tour tới [Vĩnh Long](province) ngân sách khoảng 10 triệu
+      - mình muốn tour tới [Vĩnh Long](province) ngân sách khoảng 10 triệu
+      - có tour nào tới [Vĩnh Long](province) ngân sách khoảng 10 triệu không
+      - gợi ý tour tới [Vĩnh Long](province) ngân sách khoảng 10 triệu
+      - bạn có tour tới [Vĩnh Long](province) ngân sách khoảng 10 triệu không
+      - muốn đi tour [Vĩnh Long](province) ngân sách khoảng 10 triệu
+      - cho mình tour tới [Vĩnh Phúc](province) ngân sách khoảng 5 triệu
+      - cho tôi tour tới [Vĩnh Phúc](province) ngân sách khoảng 5 triệu
+      - tư vấn tour tới [Vĩnh Phúc](province) ngân sách khoảng 5 triệu
+      - mình muốn tour tới [Vĩnh Phúc](province) ngân sách khoảng 5 triệu
+      - có tour nào tới [Vĩnh Phúc](province) ngân sách khoảng 5 triệu không
+      - gợi ý tour tới [Vĩnh Phúc](province) ngân sách khoảng 5 triệu
+      - bạn có tour tới [Vĩnh Phúc](province) ngân sách khoảng 5 triệu không
+      - muốn đi tour [Vĩnh Phúc](province) ngân sách khoảng 5 triệu
+      - cho mình tour tới [Yên Bái](province) ngân sách khoảng 3 triệu
+      - cho tôi tour tới [Yên Bái](province) ngân sách khoảng 3 triệu
+      - tư vấn tour tới [Yên Bái](province) ngân sách khoảng 3 triệu
+      - mình muốn tour tới [Yên Bái](province) ngân sách khoảng 3 triệu
+      - có tour nào tới [Yên Bái](province) ngân sách khoảng 3 triệu không
+      - gợi ý tour tới [Yên Bái](province) ngân sách khoảng 3 triệu
+      - bạn có tour tới [Yên Bái](province) ngân sách khoảng 3 triệu không
+      - muốn đi tour [Yên Bái](province) ngân sách khoảng 3 triệu
+      - ngân sách của tôi là 3 triệu, bạn có tour nào không
+      - tôi muốn đi [Hà Nội](province)
+      - tôi muốn đi [Thành phố Hồ Chí Minh](province)
+      - tôi muốn đi [Đà Nẵng](province)
+      - tôi muốn đi [Huế](province)
+      - tôi muốn đi [Hải Phòng](province)
+      - tôi muốn đi [Quảng Ninh](province)
+      - tôi muốn đi [Lào Cai](province)
+      - tôi muốn đi [Hà Giang](province)
+      - tôi muốn đi [Cao Bằng](province)
+      - tôi muốn đi [Lạng Sơn](province)
+      - tôi muốn đi [Bắc Kạn](province)
+      - tôi muốn đi [Tuyên Quang](province)
+      - tôi muốn đi [Thái Nguyên](province)
+      - tôi muốn đi [Phú Thọ](province)
+      - tôi muốn đi [Vĩnh Phúc](province)
+      - tôi muốn đi [Bắc Giang](province)
+      - tôi muốn đi [Bắc Ninh](province)
+      - tôi muốn đi [Hải Dương](province)
+      - tôi muốn đi [Hưng Yên](province)
+      - tôi muốn đi [Hà Nam](province)
+      - tôi muốn đi [Nam Định](province)
+      - tôi muốn đi [Thái Bình](province)
+      - tôi muốn đi [Ninh Bình](province)
+      - tôi muốn đi [Thanh Hóa](province)
+      - tôi muốn đi [Nghệ An](province)
+      - tôi muốn đi [Hà Tĩnh](province)
+      - tôi muốn đi [Quảng Bình](province)
+      - tôi muốn đi [Quảng Trị](province)
+      - tôi muốn đi [Quảng Nam](province)
+      - tôi muốn đi [Quảng Ngãi](province)
+      - tôi muốn đi [Bình Định](province)
+      - tôi muốn đi [Phú Yên](province)
+      - tôi muốn đi [Khánh Hòa](province)
+      - tôi muốn đi [Ninh Thuận](province)
+      - tôi muốn đi [Bình Thuận](province)
+      - tôi muốn đi [Kon Tum](province)
+      - tôi muốn đi [Gia Lai](province)
+      - tôi muốn đi [Đắk Lắk](province)
+      - tôi muốn đi [Đắk Nông](province)
+      - tôi muốn đi [Lâm Đồng](province)
+      - tôi muốn đi [Bình Phước](province)
+      - tôi muốn đi [Bình Dương](province)
+      - tôi muốn đi [Đồng Nai](province)
+      - tôi muốn đi [Tây Ninh](province)
+      - tôi muốn đi [Bà Rịa - Vũng Tàu](province)
+      - tôi muốn đi [Long An](province)
+      - tôi muốn đi [Tiền Giang](province)
+      - tôi muốn đi [Bến Tre](province)
+      - tôi muốn đi [Trà Vinh](province)
+      - tôi muốn đi [Vĩnh Long](province)
+      - tôi muốn đi [Đồng Tháp](province)
+      - tôi muốn đi [An Giang](province)
+      - tôi muốn đi [Kiên Giang](province)
+      - tôi muốn đi [Cần Thơ](province)
+      - tôi muốn đi [Hậu Giang](province)
+      - tôi muốn đi [Sóc Trăng](province)
+      - tôi muốn đi [Bạc Liêu](province)
+      - tôi muốn đi [Cà Mau](province)
+      - tôi muốn đi [Sơn La](province)
+      - tôi muốn đi [Điện Biên](province)
+      - tôi muốn đi [Lai Châu](province)
+      - tôi muốn đi [Yên Bái](province)
+      - tôi muốn đi [Phú Quốc](province)
+      - tôi muốn đi [Nha Trang](province)
+      - có tour [Phú Quốc](province) tầm 5 triệu vào tháng 2 không
+      - có tour [Hà Nội](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Hải Phòng](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Hội An](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Huế](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Nghệ An](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Thanh Hóa](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Hà Nội](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Hải Phòng](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Hội An](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Đà Nẵng](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Hà Nội](province) tầm 4 triệu vào tháng 3 không
+      - có tour [Thành phố Hồ Chí Minh](province) tầm 6 triệu vào tháng 4 không
+      - có tour [Đà Nẵng](province) tầm 5 triệu vào tháng 2 không
+      - có tour [Huế](province) tầm 3 triệu vào tháng 5 không
+      - có tour [Lào Cai](province) tầm 4 triệu vào tháng 10 không
+      - có tour [Quảng Ninh](province) tầm 5 triệu vào tháng 7 không
+      - có tour [Khánh Hòa](province) tầm 6 triệu vào tháng 6 không
+      - có tour [Ninh Bình](province) tầm 3 triệu vào tháng 11 không
+      - có tour [Bắc Ninh](province) tầm 3 triệu vào tháng 8 không
+      - có tour [Hải Phòng](province) tầm 4 triệu vào tháng 9 không
+      - có tour [Thanh Hóa](province) tầm 4 triệu vào tháng 2 không
+      - có tour [Nghệ An](province) tầm 3 triệu vào tháng 2 không
+      - có tour [Phú Yên](province) tầm 5 triệu vào tháng 6 không
+      - có tour [Bình Định](province) tầm 5 triệu vào tháng 7 không
+      - có tour [Đắk Lắk](province) tầm 4 triệu vào tháng 9 không
+      - có tour [Lâm Đồng](province) tầm 4 triệu vào tháng 12 không
+      - có tour [Cần Thơ](province) tầm 3 triệu vào tháng 8 không
+      - có tour [An Giang](province) tầm 3 triệu vào tháng 5 không
+      - có tour [Kiên Giang](province) tầm 4 triệu vào tháng 6 không
+      - có tour [Quảng Nam](province) tầm 4 triệu vào tháng 4 không
+      - có tour [Quảng Bình](province) tầm 3 triệu vào tháng 3 không
+      - có tour [Quảng Trị](province) tầm 3 triệu vào tháng 4 không
+      - có tour [Thái Nguyên](province) tầm 3 triệu vào tháng 10 không
+      - có tour [Hà Giang](province) tầm 5 triệu vào tháng 9 không
+      - có tour [Cao Bằng](province) tầm 4 triệu vào tháng 11 không
+      - có tour [Lạng Sơn](province) tầm 3 triệu vào tháng 3 không
+      - có tour [Bắc Giang](province) tầm 3 triệu vào tháng 5 không
+      - có tour [Hải Dương](province) tầm 3 triệu vào tháng 6 không
+      - có tour [Hưng Yên](province) tầm 3 triệu vào tháng 7 không
+      - có tour [Hà Nam](province) tầm 3 triệu vào tháng 8 không
+      - có tour [Nam Định](province) tầm 3 triệu vào tháng 9 không
+      - có tour [Thái Bình](province) tầm 3 triệu vào tháng 10 không
+      - có tour [Vĩnh Phúc](province) tầm 3 triệu vào tháng 11 không
+      - có tour [Phú Thọ](province) tầm 3 triệu vào tháng 12 không
+      - có tour [Yên Bái](province) tầm 4 triệu vào tháng 1 không
+      - có tour [Tuyên Quang](province) tầm 3 triệu vào tháng 2 không
+      - có tour [Bắc Kạn](province) tầm 3 triệu vào tháng 3 không
+      - có tour [Lai Châu](province) tầm 5 triệu vào tháng 4 không
+      - có tour [Điện Biên](province) tầm 4 triệu vào tháng 5 không
+      - có tour [Sơn La](province) tầm 4 triệu vào tháng 6 không
+      - có tour [Hòa Bình](province) tầm 3 triệu vào tháng 7 không
+      - có tour [Quảng Ngãi](province) tầm 4 triệu vào tháng 8 không
+      - có tour [Bình Thuận](province) tầm 4 triệu vào tháng 9 không
+      - có tour [Ninh Thuận](province) tầm 4 triệu vào tháng 10 không
+      - có tour [Đắk Nông](province) tầm 4 triệu vào tháng 11 không
+      - có tour [Gia Lai](province) tầm 4 triệu vào tháng 12 không
+      - có tour [Kon Tum](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Đồng Nai](province) tầm 3 triệu vào tháng 2 không
+      - có tour [Bình Dương](province) tầm 3 triệu vào tháng 3 không
+      - có tour [Bình Phước](province) tầm 3 triệu vào tháng 4 không
+      - có tour [Tây Ninh](province) tầm 3 triệu vào tháng 5 không
+      - có tour [Bà Rịa - Vũng Tàu](province) tầm 4 triệu vào tháng 6 không
+      - có tour [Long An](province) tầm 3 triệu vào tháng 7 không
+      - có tour [Tiền Giang](province) tầm 3 triệu vào tháng 8 không
+      - có tour [Bến Tre](province) tầm 3 triệu vào tháng 9 không
+      - có tour [Trà Vinh](province) tầm 3 triệu vào tháng 10 không
+      - có tour [Vĩnh Long](province) tầm 3 triệu vào tháng 11 không
+      - có tour [Đồng Tháp](province) tầm 3 triệu vào tháng 12 không
+      - có tour [Hậu Giang](province) tầm 3 triệu vào tháng 1 không
+      - có tour [Sóc Trăng](province) tầm 3 triệu vào tháng 2 không
+      - có tour [Bạc Liêu](province) tầm 3 triệu vào tháng 3 không
+      - có tour [Cà Mau](province) tầm 4 triệu vào tháng 4 không
+      - có tour [Phú Quốc](province) tầm 5 triệu vào tháng 2 không
+
+  - intent: ask_tour_by_budget
+    examples: |
+      - có tour nào ngân sách khoảng 3 triệu không
+      - có tour nào ngân sách khoảng 5 triệu không
+      - có tour nào ngân sách khoảng 8 triệu không
+      - có tour nào ngân sách khoảng 10 triệu không
+      - có tour nào ngân sách khoảng 15 triệu không
+      - có tour nào ngân sách khoảng 20 triệu không
+      - có tour nào ngân sách tầm 3 triệu không
+      - có tour nào ngân sách tầm 5 triệu không
+      - có tour nào ngân sách tầm 8 triệu không
+      - có tour nào ngân sách tầm 10 triệu không
+      - có tour nào ngân sách tầm 15 triệu không
+      - có tour nào ngân sách tầm 20 triệu không
+      - có tour nào ngân sách khoảng 2 triệu không
+      - có tour nào ngân sách khoảng 4 triệu không
+      - có tour nào ngân sách khoảng 6 triệu không
+      - có tour nào ngân sách khoảng 7 triệu không
+      - có tour nào ngân sách khoảng 9 triệu không
+      - có tour nào ngân sách khoảng 12 triệu không
+      - có tour nào ngân sách khoảng 25 triệu không
+      - có tour nào ngân sách khoảng 30 triệu không
+      - cho mình tour ngân sách khoảng 3 triệu
+      - cho mình tour ngân sách khoảng 5 triệu
+      - cho mình tour ngân sách khoảng 8 triệu
+      - cho mình tour ngân sách khoảng 10 triệu
+      - cho mình tour ngân sách khoảng 15 triệu
+      - cho mình tour ngân sách khoảng 20 triệu
+      - cho tôi tour ngân sách khoảng 3 triệu
+      - cho tôi tour ngân sách khoảng 5 triệu
+      - cho tôi tour ngân sách khoảng 8 triệu
+      - cho tôi tour ngân sách khoảng 10 triệu
+      - tư vấn tour ngân sách khoảng 3 triệu
+      - tư vấn tour ngân sách khoảng 5 triệu
+      - tư vấn tour ngân sách khoảng 8 triệu
+      - tư vấn tour ngân sách khoảng 10 triệu
+      - mình muốn tour ngân sách khoảng 3 triệu
+      - mình muốn tour ngân sách khoảng 5 triệu
+      - mình muốn tour ngân sách khoảng 8 triệu
+      - mình muốn tour ngân sách khoảng 10 triệu
+      - gợi ý tour ngân sách khoảng 3 triệu
+      - gợi ý tour ngân sách khoảng 5 triệu
+      - gợi ý tour ngân sách khoảng 8 triệu
+      - gợi ý tour ngân sách khoảng 10 triệu
+      - bạn có tour ngân sách khoảng 3 triệu không
+      - bạn có tour ngân sách khoảng 5 triệu không
+      - bạn có tour ngân sách khoảng 8 triệu không
+      - bạn có tour ngân sách khoảng 10 triệu không
+      - muốn đi tour ngân sách khoảng 3 triệu
+      - muốn đi tour ngân sách khoảng 5 triệu
+      - muốn đi tour ngân sách khoảng 8 triệu
+      - muốn đi tour ngân sách khoảng 10 triệu
+      - tour ngân sách khoảng 3 triệu
+      - tour ngân sách khoảng 5 triệu
+      - tour ngân sách khoảng 8 triệu
+      - tour ngân sách khoảng 10 triệu
+      - tour ngân sách khoảng 15 triệu
+      - tour ngân sách khoảng 20 triệu
+      - tour ngân sách tầm 3 triệu
+      - tour ngân sách tầm 5 triệu
+      - tour ngân sách tầm 8 triệu
+      - tour ngân sách tầm 10 triệu
+      - tour ngân sách tầm 15 triệu
+      - tour ngân sách tầm 20 triệu
+      - có tour nào giá khoảng 3 triệu không
+      - có tour nào giá khoảng 5 triệu không
+      - có tour nào giá khoảng 8 triệu không
+      - có tour nào giá khoảng 10 triệu không
+      - có tour nào giá tầm 3 triệu không
+      - có tour nào giá tầm 5 triệu không
+      - có tour nào giá tầm 8 triệu không
+      - có tour nào giá tầm 10 triệu không
+      - tour giá khoảng 3 triệu
+      - tour giá khoảng 5 triệu
+      - tour giá khoảng 8 triệu
+      - tour giá khoảng 10 triệu
+      - tour giá tầm 3 triệu
+      - tour giá tầm 5 triệu
+      - tour giá tầm 8 triệu
+      - tour giá tầm 10 triệu
+      - có tour nào trong khoảng 3-5 triệu không
+      - có tour nào trong khoảng 5-10 triệu không
+      - có tour nào trong khoảng 10-15 triệu không
+      - có tour nào trong khoảng 15-20 triệu không
+      - có tour nào từ 3 đến 5 triệu không
+      - có tour nào từ 5 đến 10 triệu không
+      - có tour nào từ 10 đến 15 triệu không
+      - có tour nào từ 15 đến 20 triệu không
+      - tour trong khoảng 3-5 triệu
+      - tour trong khoảng 5-10 triệu
+      - tour trong khoảng 10-15 triệu
+      - tour trong khoảng 15-20 triệu
+      - tour từ 3 đến 5 triệu
+      - tour từ 5 đến 10 triệu
+      - tour từ 10 đến 15 triệu
+      - tour từ 15 đến 20 triệu
+      - mình có ngân sách khoảng 3 triệu
+      - mình có ngân sách khoảng 5 triệu
+      - mình có ngân sách khoảng 8 triệu
+      - mình có ngân sách khoảng 10 triệu
+      - ngân sách của mình khoảng 3 triệu
+      - ngân sách của mình khoảng 5 triệu
+      - ngân sách của mình khoảng 8 triệu
+      - ngân sách của mình khoảng 10 triệu
+      - ngân sách tầm 3 triệu
+      - ngân sách tầm 5 triệu
+      - ngân sách tầm 8 triệu
+      - ngân sách tầm 10 triệu
+      - ngân sách tầm 15 triệu
+      - ngân sách tầm 20 triệu
+
+  - intent: ask_agency_info
+    examples: |
+      - traveltour là đơn vị nào vậy
+      - bên bạn có văn phòng ở đâu
+      - tổng đài hỗ trợ hoạt động giờ nào
+      - chatbot của công ty nào thế
+      - bạn có phải nhân viên hãng du lịch không
+
+  - intent: ask_promotion
+    examples: |
+      - gần đây có khuyến mãi gì không
+      - đặt tour sớm được giảm bao nhiêu
+      - đang có ưu đãi cho tour biển không
+      - có mã giảm giá nào dùng được không
+      - bên bạn tặng combo gì khi đặt online
+
+  - intent: provide_destination
+    examples: |
+      - mình muốn đi [Đà Lạt](province)
+      - mình muốn đi [Đà Lạt](province) ngay hôm nay
+      - mình muốn đi [Đà Lạt](province) ngay hôm sau
+      - mình muốn đi [Đà Lạt](province) vào tháng 12
+      - mình muốn đi [Đà Lạt](province) vào tháng 1
+      - mình muốn đi [Đà Lạt](province) vào tháng 2
+      - mình muốn đi [Đà Lạt](province) vào tháng 3
+      - mình muốn đi [Đà Lạt](province) vào tháng 4
+      - mình muốn đi [Đà Lạt](province) vào tháng 5
+      - mình muốn đi [Đà Lạt](province) vào tháng 6
+      - mình muốn đi [Đà Lạt](province) vào tháng 7
+      - mình muốn đi [Đà Lạt](province) vào tháng 8
+      - mình muốn đi [Đà Lạt](province) vào tháng 9
+      - mình muốn đi [Đà Lạt](province) vào tháng 10
+      - mình muốn đi [Đà Lạt](province) vào tháng 11
+      - mình muốn đi [Đà Lạt](province) vào tháng 12
+      - tôi muốn đi [Đà Lạt](province) ngay hôm nay
+      - tôi muốn đi [Đà Lạt](province) ngay hôm sau
+      - tôi muốn đi [Đà Lạt](province) vào tháng 12
+      - tôi muốn đi [Đà Lạt](province) vào tháng 1
+      - tôi muốn đi [Đà Lạt](province) vào tháng 2
+      - tôi muốn đi [Đà Lạt](province) vào tháng 3
+      - tôi muốn đi [Đà Lạt](province) vào tháng 4
+      - tôi muốn đi [Đà Lạt](province) vào tháng 5
+      - tôi muốn đi [Đà Lạt](province) vào tháng 6
+      - tôi muốn đi [Đà Lạt](province) vào tháng 7
+      - tôi muốn đi [Đà Lạt](province) vào tháng 8
+      - tôi muốn đi [Đà Lạt](province) vào tháng 9
+      - tôi muốn đi [Đà Lạt](province) vào tháng 10
+      - tôi muốn đi [Đà Lạt](province) vào tháng 11
+      - tôi muốn đi [Đà Lạt](province) vào tháng 12
+      - tôi muốn đi [Đà Lạt](province)
+      - quan tâm tour [Phú Quốc](province)
+      - quan tâm tour [Hội An](province)
+      - quan tâm tour [Thanh Hóa](province)
+      - quan tâm tour [Nghệ An](province)
+      - quan tâm tour [Huế](province)
+      - quan tâm tour [Đà Lạt](province)
+      - quan tâm tour [Đà Nẵng](province)
+      - quan tâm tour [Hà Nội](province)
+      - quan tâm tour [Hải Phòng](province)
+      - quan tâm tour [Lào Cai](province)
+      - quan tâm tour [Lạng Sơn](province)
+      - quan tâm tour [Bắc Giang](province)
+      - quan tâm tour [Hải Dương](province)
+      - quan tâm tour [Hưng Yên](province)
+      - quan tâm tour [Hà Nam](province)
+      - quan tâm tour [Nam Định](province)
+      - quan tâm tour [Thái Bình](province)
+      - quan tâm tour [Vĩnh Phúc](province)
+      - quan tâm tour [Phú Thọ](province)
+      - quan tâm tour [Yên Bái](province)
+      - quan tâm tour [Tuyên Quang](province)
+      - quan tâm tour [Bắc Kạn](province)
+      - quan tâm tour [Lai Châu](province)
+      - quan tâm tour [Điện Biên](province)
+      - quan tâm tour [Sơn La](province)
+      - quan tâm tour [Hòa Bình](province)
+      - quan tâm tour [Quảng Ngãi](province)
+      - quan tâm tour [Bình Thuận](province)
+      - quan tâm tour [Phan Thiết](province)
+      - quan tâm tour [Ninh Thuận](province)
+      - quan tâm tour [Đắk Nông](province)
+      - quan tâm tour [Gia Lai](province)
+      - quan tâm tour [Kon Tum](province)
+      - quan tâm tour [Đồng Nai](province)
+      - quan tâm tour [Bình Dương](province)
+      - quan tâm tour [Bình Phước](province)
+      - quan tâm tour [Tây Ninh](province)
+      - quan tâm tour [Bà Rịa - Vũng Tàu](province)
+      - quan tâm tour [Vũng Tàu](province)
+      - quan tâm tour [Long An](province)
+      - quan tâm tour [Tiền Giang](province)
+      - quan tâm tour [Bến Tre](province)
+      - quan tâm tour [Trà Vinh](province)
+      - quan tâm tour [Vĩnh Long](province)
+      - quan tâm tour [Đồng Tháp](province)
+      - quan tâm tour [Hậu Giang](province)
+      - quan tâm tour [Sóc Trăng](province)
+      - quan tâm tour [Bạc Liêu](province)
+      - quan tâm tour [Cà Mau](province)
+      - quan tâm tour [Phú Quốc](province)
+      - muốn khám phá [Hà Giang](province) đầu năm
+      - tour [Nha Trang](province) còn chỗ không
+      - có tour nào tới [Huế](province) không
+      - mình thích đi [Sapa](province)
+      - tư vấn tour [Quy Nhơn](province) giúp mình
+      - tư vấn tour [Thanh Hóa](province) giúp mình
+      - tư vấn tour [Nghệ An](province) giúp mình
+      - tư vấn tour [Huế](province) giúp mình
+      - tư vấn tour [Hội An](province) giúp mình
+      - tư vấn tour [Hà Nội](province) giúp mình
+      - tư vấn tour [Hải Phòng](province) giúp mình
+      - tư vấn tour [Lào Cai](province) giúp mình
+      - tư vấn tour [Lạng Sơn](province) giúp mình
+      - tư vấn tour [Bắc Giang](province) giúp mình
+      - tư vấn tour [Hải Dương](province) giúp mình
+      - tư vấn tour [Hưng Yên](province) giúp mình
+      - tư vấn tour [Hà Nam](province) giúp mình
+      - tư vấn tour [Nam Định](province) giúp mình
+      - tư vấn tour [Thái Bình](province) giúp mình
+      - tư vấn tour [Vĩnh Phúc](province) giúp mình
+      - tư vấn tour [Phú Thọ](province) giúp mình
+      - tư vấn tour [Yên Bái](province) giúp mình
+      - tư vấn tour [Tuyên Quang](province) giúp mình
+      - tư vấn tour [Bắc Kạn](province) giúp mình
+      - tư vấn tour [Lai Châu](province) giúp mình
+      - tư vấn tour [Điện Biên](province) giúp mình
+      - tư vấn tour [Sơn La](province) giúp mình
+      - tư vấn tour [Hòa Bình](province) giúp mình
+      - tư vấn tour [Quảng Ngãi](province) giúp mình
+      - tư vấn tour [Bình Thuận](province) giúp mình
+      - tư vấn tour [Phan Thiết](province) giúp mình
+      - tư vấn tour [Ninh Thuận](province) giúp mình
+      - tư vấn tour [Đắk Nông](province) giúp mình
+      - tư vấn tour [Gia Lai](province) giúp mình
+      - tư vấn tour [Kon Tum](province) giúp mình
+      - tư vấn tour [Đồng Nai](province) giúp mình
+      - tư vấn tour [Bình Dương](province) giúp mình
+      - tư vấn tour [Bình Phước](province) giúp mình
+      - tư vấn tour [Tây Ninh](province) giúp mình
+      - tư vấn tour [Bà Rịa - Vũng Tàu](province) giúp mình
+      - tư vấn tour [Vũng Tàu](province) giúp mình
+      - tư vấn tour [Long An](province) giúp mình
+      - tư vấn tour [Tiền Giang](province) giúp mình
+      - tư vấn tour [Bến Tre](province) giúp mình
+      - tư vấn tour [Trà Vinh](province) giúp mình
+      - tư vấn tour [Vĩnh Long](province) giúp mình
+      - tư vấn tour [Đồng Tháp](province) giúp mình
+      - tư vấn tour [Hậu Giang](province) giúp mình
+      - tư vấn tour [Sóc Trăng](province) giúp mình
+      - tư vấn tour [Bạc Liêu](province) giúp mình
+      - tư vấn tour [Cà Mau](province) giúp mình
+      - tư vấn tour [Phú Quốc](province) giúp mình
+      - tư vấn tour [Nha Trang](province) gi
+      - đoàn mình muốn đi [Côn Đảo](province)
+      - có tour [Đà Nẵng - Hội An](province) nào 4 ngày không
+      - đang tìm tour [Mù Cang Chải](province) mùa lúa chín
+
+  - intent: provide_budget
+    examples: |
+      - ngân sách khoảng 3 triệu
+      - tầm 5tr một người
+      - chỉ có 2 triệu rưỡi thôi
+      - muốn tour khoảng 10 triệu cho 2 người
+      - tối đa 8 triệu
+      - chắc chỉ chi 4tr thôi
+      - mình cần tour dưới 6 triệu
+      - khoảng 15 triệu cả đoàn
+      - muốn tour tầm 25 triệu
+      - có tour nào ~7tr không
+
+  - intent: provide_travel_time
+    examples: |
+      - cuối tháng 1 mình rảnh
+      - đầu tháng 3 đi được
+      - dự kiến tháng 5 sẽ đi
+      - muốn đi dịp 30/4
+      - khoảng tết âm lịch
+      - tuần sau mình off
+      - giữa tháng 2 nhé
+      - tháng 10 muốn đi xem lá đỏ
+
+  - intent: provide_contact_info
+    examples: |
+      - mình là [Lan](traveler_name) số [0988111222](phone_number)
+      - [Minh](traveler_name) đi [4](group_size) người, gọi [0912345678](phone_number) giúp mình
+      - tư vấn cho [Nam](traveler_name) qua số [0909090909](phone_number)
+      - nhóm [6](group_size) người, liên hệ [0933445566](phone_number)
+      - [Trang](traveler_name) số [0977666888](phone_number) muốn đặt tour
+      - [Hùng](traveler_name) đi [2](group_size) khách, gọi [0888333222](phone_number)
+      - số mình là [0911002200](phone_number), tên [Hạnh](traveler_name)
+      - [3](group_size) người lớn, liên hệ [0977000111](phone_number)
+      - [Vy](traveler_name) số [0905123456](phone_number) cần giữ chỗ
+      - bạn gọi cho [Khoa](traveler_name) qua [0966667777](phone_number) nhé
+      - sdt của mình là [0912345678](phone_number)
+      - số đt [0987654321](phone_number) tên [Trung](traveler_name)
+      - [Hà](traveler_name) sdt [0909090909](phone_number)
+      - liên hệ qua sđt [0911222333](phone_number) giúp mình
+
+  - intent: provide_group_size
+    examples: |
+      - đoàn [6](group_size) người
+      - đoàn khoảng [6](group_size) người
+      - khoảng [6](group_size) người
+      - tầm [5](group_size) người
+      - đi khoảng [4](group_size) người
+      - tổng cộng [3](group_size) khách
+      - nhóm mình [8](group_size) người
+      - bên mình có [10](group_size) người
+      - mình đi với [2](group_size) người bạn
+      - gia đình mình [5](group_size) người
+      - có tour nào cho [4](group_size) người không
+
+# --- Hỏi thông tin địa điểm ---
+  - intent: ask_place_address
+    examples: |
+      - [Hồ Hoàn Kiếm](destination) nằm ở đâu vậy?
+      - Cho mình biết địa chỉ [Đền Ngọc Sơn](destination) nhé
+      - [Nhà thờ Đức Bà](destination) thuộc tỉnh nào?
+      - [Chợ nổi Cái Răng](destination) ở đâu bạn?
+      - [Bà Nà Hills](destination) thuộc khu vực nào?
+      - Địa chỉ chính xác của [Hang Múa](destination) là gì?
+      - [Cau Hien Luong](destination) o tinh nao?
+      - Dia chi [Ho Dau Tieng](destination) nam o dau?
+      - Kinh Thành Huế ở đâu?
+      - Lăng Tự Đức ở đâu?
+      - Chùa Thiên Mụ ở đâu?
+      - Vịnh Hạ Long ở đâu?
+      - Phố cổ Hội An ở đâu?
+      - Bà Nà Hills ở đâu?
+      - Ngũ Hành Sơn ở đâu?
+      - Tràng An ở đâu?
+      - Tam Cốc ở đâu?
+      - Chùa Dâu ở đâu?
+      - Đền Hùng ở đâu?
+      - Thác Bản Giốc ở đâu?
+      - Fansipan ở đâu?
+      - Sa Pa ở đâu?
+      - Đà Lạt ở đâu?
+      - Nha Trang ở đâu?
+      - Phú Quốc ở đâu?
+      - Cần Thơ ở đâu?
+      - Hội An ở đâu?
+      - Mũi Né ở đâu?
+      - Đà Nẵng ở đâu?
+      - Hà Nội ở đâu?
+      - TP. HCM ở đâu?
+      - Kinh thành Huế nằm ở đâu?
+      - Lăng Tự Đức nằm ở đâu?
+      - Chùa Thiên Mụ nằm ở đâu?
+      - Vịnh Hạ Long nằm ở đâu?
+      - Phố cổ Hội An nằm ở đâu?
+      - Bà Nà Hills nằm ở đâu?
+      - Ngũ Hành Sơn nằm ở đâu?
+      - Tràng An nằm ở đâu?
+      - Tam Cốc nằm ở đâu?
+      - Chùa Dâu nằm ở đâu?
+      - Đền Hùng nằm ở đâu?
+      - Thác Bản Giốc nằm ở đâu?
+      - Fansipan nằm ở đâu?
+      - Sa Pa nằm ở đâu?
+      - Đà Lạt nằm ở đâu?
+      - Nha Trang nằm ở đâu?
+      - Phú Quốc nằm ở đâu?
+      - Cần Thơ nằm ở đâu?
+      - Hội An nằm ở đâu?
+      - Mũi Né nằm ở đâu?
+      - Đà Nẵng nằm ở đâu?
+      - Hà Nội nằm ở đâu?
+      - TP. HCM nằm ở đâu?
+      - Kinh thành Huế tại đâu?
+      - Lăng Tự Đức tại đâu?
+      - Chùa Thiên Mụ tại đâu?
+      - Vịnh Hạ Long tại đâu?
+      - Phố cổ Hội An tại đâu?
+      - Bà Nà Hills tại đâu?
+      - Ngũ Hành Sơn tại đâu?
+      - Tràng An tại đâu?
+      - Tam Cốc tại đâu?
+      - Chùa Dâu tại đâu?
+      - Đền Hùng tại đâu?
+      - Thác Bản Giốc tại đâu?
+      - Fansipan tại đâu?
+      - Sa Pa tại đâu?
+      - Đà Lạt tại đâu?
+      - Nha Trang tại đâu?
+      - Phú Quốc tại đâu?
+      - Cần Thơ tại đâu?
+      - Hội An tại đâu?
+      - Mũi Né tại đâu?
+      - Đà Nẵng tại đâu?
+      - Hà Nội tại đâu?
+      - TP. HCM tại đâu?
+
+  - intent: ask_top_places_city
+    examples: |
+      - Cho mình vài địa điểm nổi bật ở [Hà Nội](province)
+      - [Đà Lạt](province) có những địa điểm du lịch nào vậy?
+      - Gợi ý giúp mình những điểm đẹp ở [Phú Yên](province) với
+      - Mình muốn biết top địa danh tại [Huế](province)
+      - [Kiên Giang](province) có nơi nào đáng khám phá không?
+      - Top địa điểm check-in ở [Nha Trang](province) là gì?
+      - Đi [Quảng Ninh](province) thì nên ghé đâu?
+      - [Lào Cai](province) có điểm nào hot không?
+      - Bạn biết địa điểm nào đẹp ở [Cần Thơ](province) không?
+      - Mình muốn tham quan [Ninh Bình](province), gợi ý giúp mình nhé
+      - Ở [Khánh Hòa](province) có chỗ nào đáng đi không?
+      - Đi [Hải Phòng](province) thì nên tham quan đâu?
+      - [Bình Định](province) có địa điểm nào nổi tiếng?
+      - Ở [Quảng Trị](province) nên đi những đâu?
+      - [Hà Tĩnh](province) có điểm nào nổi bật?
+      - Gợi ý giúp mình chỗ đẹp ở [Hưng Yên](province)
+      - [Hà Nam](province) có gì tham quan?
+      - Đến [Thái Bình](province) thì ghé đâu?
+      - [Tuyên Quang](province) có nơi nào đáng đi?
+      - [Bắc Kạn](province) nên đi chỗ nào?
+      - Gợi ý điểm đẹp ở [Lai Châu](province)
+      - [Sơn La](province) có gì nổi bật?
+      - [Hòa Bình](province) nên đi đâu?
+      - Top điểm du lịch [Gia Lai](province)
+      - [Kon Tum](province) có gì chơi?
+      - [Đắk Nông](province) nên ghé đâu?
+      - [Bình Phước](province) có gì tham quan?
+      - [Long An](province) có điểm nào hot?
+      - [Bến Tre](province) có chỗ nào đẹp?
+      - [Trà Vinh](province) nên đi đâu?
+      - [Vĩnh Long](province) có gì thú vị?
+      - [Hậu Giang](province) có gì xem?
+      - [Bạc Liêu](province) có điểm tham quan nào?
+      - [Cà Mau](province) có nơi nào nổi bật?
+      - O [Ha Tinh](province) co cho nao dep de di cuoi tuan?
+      - Cho xin top 3 diem nen di o [Quang Tri](province)
+      - List giup minh dia diem checkin [Gia Lai](province)
+      - O [Dak Nong](province) nen di dau co nui/rung?
+      - Muon biet noi hot o [Bac Kan](province)
+      - Goi y dia danh noi bat [Bac Lieu](province) di
+      - Tim cho di choi o [Ha Nam](province) trong ngay
+      - [Long An](province) co diem nao thu vi khong
+      - [Tra Vinh](province) co cho nao dep
+      - [Son La](province) co gi choi khac biet khong
+      - [Hoa Binh](province) co diem nao dang di
+      - [Hà Nội](province) thì sao?
+      - Còn [Đà Nẵng](province)?
+      - Còn [Hà Nội](province)?
+      - [Đà Nẵng](province) nữa?
+      - [Hải Phòng](province) thì sao?
+      - goi y giup minh o [Hung Yen](province) nen di dau
+      - [Ha Nam](province) co gi tham quan
+      - di choi [Thai Binh](province) thi di dau
+      - [Tuyen Quang](province) nen di cho nao
+      - [Bac Kan](province) co gi dep
+      - [Lai Chau](province) co gi de tham quan
+      - [Son La](province) co cho nao dep
+      - [Hoa Binh](province) di dau
+      - [Kon Tum](province) co gi thu vi
+      - [Dak Nong](province) di dau cho dep
+      - [Binh Phuoc](province) co diem nao noi bat
+      - [Ben Tre](province) co cho nao dep
+      - [Tra Vinh](province) co gi de xem
+      - [Vinh Long](province) nen di dau
+      - [Hau Giang](province) co gi choi
+      - [Bac Lieu](province) co gi xem
+      - [Ca Mau](province) di dau thi hop
+      - goi y giup minh cho dep o [Quang Tri](province)
+      - [Ha Tinh](province) nen di dau?
+      - [Gia Lai](province) co gi choi?
+      - Ở [Hà Nội](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Hà Nội](province)
+      - Top địa danh đẹp tại [Hà Nội](province) là gì?
+      - Ở [Thành phố Hồ Chí Minh](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Thành phố Hồ Chí Minh](province)
+      - Top địa danh đẹp tại [Thành phố Hồ Chí Minh](province) là gì?
+      - Ở [Đà Nẵng](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Đà Nẵng](province)
+      - Top địa danh đẹp tại [Đà Nẵng](province) là gì?
+      - Ở [Huế](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Huế](province)
+      - Top địa danh đẹp tại [Huế](province) là gì?
+      - Ở [Hải Phòng](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Hải Phòng](province)
+      - Top địa danh đẹp tại [Hải Phòng](province) là gì?
+      - Ở [Quảng Ninh](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Quảng Ninh](province)
+      - Top địa danh đẹp tại [Quảng Ninh](province) là gì?
+      - Ở [Lào Cai](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Lào Cai](province)
+      - Top địa danh đẹp tại [Lào Cai](province) là gì?
+      - Ở [Hà Giang](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Hà Giang](province)
+      - Top địa danh đẹp tại [Hà Giang](province) là gì?
+      - Ở [Cao Bằng](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Cao Bằng](province)
+      - Top địa danh đẹp tại [Cao Bằng](province) là gì?
+      - Ở [Lạng Sơn](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Lạng Sơn](province)
+      - Top địa danh đẹp tại [Lạng Sơn](province) là gì?
+      - Ở [Bắc Kạn](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bắc Kạn](province)
+      - Top địa danh đẹp tại [Bắc Kạn](province) là gì?
+      - Ở [Tuyên Quang](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Tuyên Quang](province)
+      - Top địa danh đẹp tại [Tuyên Quang](province) là gì?
+      - Ở [Thái Nguyên](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Thái Nguyên](province)
+      - Top địa danh đẹp tại [Thái Nguyên](province) là gì?
+      - Ở [Phú Thọ](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Phú Thọ](province)
+      - Top địa danh đẹp tại [Phú Thọ](province) là gì?
+      - Ở [Vĩnh Phúc](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Vĩnh Phúc](province)
+      - Top địa danh đẹp tại [Vĩnh Phúc](province) là gì?
+      - Ở [Bắc Giang](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bắc Giang](province)
+      - Top địa danh đẹp tại [Bắc Giang](province) là gì?
+      - Ở [Bắc Ninh](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bắc Ninh](province)
+      - Top địa danh đẹp tại [Bắc Ninh](province) là gì?
+      - Ở [Hải Dương](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Hải Dương](province)
+      - Top địa danh đẹp tại [Hải Dương](province) là gì?
+      - Ở [Hưng Yên](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Hưng Yên](province)
+      - Top địa danh đẹp tại [Hưng Yên](province) là gì?
+      - Ở [Hà Nam](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Hà Nam](province)
+      - Top địa danh đẹp tại [Hà Nam](province) là gì?
+      - Ở [Nam Định](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Nam Định](province)
+      - Top địa danh đẹp tại [Nam Định](province) là gì?
+      - Ở [Thái Bình](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Thái Bình](province)
+      - Top địa danh đẹp tại [Thái Bình](province) là gì?
+      - Ở [Ninh Bình](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Ninh Bình](province)
+      - Top địa danh đẹp tại [Ninh Bình](province) là gì?
+      - Ở [Thanh Hóa](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Thanh Hóa](province)
+      - Top địa danh đẹp tại [Thanh Hóa](province) là gì?
+      - Ở [Nghệ An](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Nghệ An](province)
+      - Top địa danh đẹp tại [Nghệ An](province) là gì?
+      - Ở [Hà Tĩnh](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Hà Tĩnh](province)
+      - Top địa danh đẹp tại [Hà Tĩnh](province) là gì?
+      - Ở [Quảng Bình](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Quảng Bình](province)
+      - Top địa danh đẹp tại [Quảng Bình](province) là gì?
+      - Ở [Quảng Trị](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Quảng Trị](province)
+      - Top địa danh đẹp tại [Quảng Trị](province) là gì?
+      - Ở [Quảng Nam](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Quảng Nam](province)
+      - Top địa danh đẹp tại [Quảng Nam](province) là gì?
+      - Ở [Quảng Ngãi](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Quảng Ngãi](province)
+      - Top địa danh đẹp tại [Quảng Ngãi](province) là gì?
+      - Ở [Bình Định](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bình Định](province)
+      - Top địa danh đẹp tại [Bình Định](province) là gì?
+      - Ở [Phú Yên](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Phú Yên](province)
+      - Top địa danh đẹp tại [Phú Yên](province) là gì?
+      - Ở [Khánh Hòa](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Khánh Hòa](province)
+      - Top địa danh đẹp tại [Khánh Hòa](province) là gì?
+      - Ở [Ninh Thuận](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Ninh Thuận](province)
+      - Top địa danh đẹp tại [Ninh Thuận](province) là gì?
+      - Ở [Bình Thuận](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bình Thuận](province)
+      - Top địa danh đẹp tại [Bình Thuận](province) là gì?
+      - Ở [Kon Tum](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Kon Tum](province)
+      - Top địa danh đẹp tại [Kon Tum](province) là gì?
+      - Ở [Gia Lai](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Gia Lai](province)
+      - Top địa danh đẹp tại [Gia Lai](province) là gì?
+      - Ở [Đắk Lắk](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Đắk Lắk](province)
+      - Top địa danh đẹp tại [Đắk Lắk](province) là gì?
+      - Ở [Đắk Nông](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Đắk Nông](province)
+      - Top địa danh đẹp tại [Đắk Nông](province) là gì?
+      - Ở [Lâm Đồng](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Lâm Đồng](province)
+      - Top địa danh đẹp tại [Lâm Đồng](province) là gì?
+      - Ở [Bình Phước](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bình Phước](province)
+      - Top địa danh đẹp tại [Bình Phước](province) là gì?
+      - Ở [Bình Dương](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bình Dương](province)
+      - Top địa danh đẹp tại [Bình Dương](province) là gì?
+      - Ở [Đồng Nai](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Đồng Nai](province)
+      - Top địa danh đẹp tại [Đồng Nai](province) là gì?
+      - Ở [Tây Ninh](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Tây Ninh](province)
+      - Top địa danh đẹp tại [Tây Ninh](province) là gì?
+      - Ở [Bà Rịa - Vũng Tàu](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bà Rịa - Vũng Tàu](province)
+      - Top địa danh đẹp tại [Bà Rịa - Vũng Tàu](province) là gì?
+      - Ở [Long An](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Long An](province)
+      - Top địa danh đẹp tại [Long An](province) là gì?
+      - Ở [Tiền Giang](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Tiền Giang](province)
+      - Top địa danh đẹp tại [Tiền Giang](province) là gì?
+      - Ở [Bến Tre](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bến Tre](province)
+      - Top địa danh đẹp tại [Bến Tre](province) là gì?
+      - Ở [Trà Vinh](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Trà Vinh](province)
+      - Top địa danh đẹp tại [Trà Vinh](province) là gì?
+      - Ở [Vĩnh Long](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Vĩnh Long](province)
+      - Top địa danh đẹp tại [Vĩnh Long](province) là gì?
+      - Ở [Đồng Tháp](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Đồng Tháp](province)
+      - Top địa danh đẹp tại [Đồng Tháp](province) là gì?
+      - Ở [An Giang](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [An Giang](province)
+      - Top địa danh đẹp tại [An Giang](province) là gì?
+      - Ở [Kiên Giang](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Kiên Giang](province)
+      - Top địa danh đẹp tại [Kiên Giang](province) là gì?
+      - Ở [Cần Thơ](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Cần Thơ](province)
+      - Top địa danh đẹp tại [Cần Thơ](province) là gì?
+      - Ở [Hậu Giang](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Hậu Giang](province)
+      - Top địa danh đẹp tại [Hậu Giang](province) là gì?
+      - Ở [Sóc Trăng](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Sóc Trăng](province)
+      - Top địa danh đẹp tại [Sóc Trăng](province) là gì?
+      - Ở [Bạc Liêu](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Bạc Liêu](province)
+      - Top địa danh đẹp tại [Bạc Liêu](province) là gì?
+      - Ở [Cà Mau](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Cà Mau](province)
+      - Top địa danh đẹp tại [Cà Mau](province) là gì?
+      - Ở [Sơn La](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Sơn La](province)
+      - Top địa danh đẹp tại [Sơn La](province) là gì?
+      - Ở [Điện Biên](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Điện Biên](province)
+      - Top địa danh đẹp tại [Điện Biên](province) là gì?
+      - Ở [Lai Châu](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Lai Châu](province)
+      - Top địa danh đẹp tại [Lai Châu](province) là gì?
+      - Ở [Yên Bái](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Yên Bái](province)
+      - Top địa danh đẹp tại [Yên Bái](province) là gì?
+      - Ở [Phú Quốc](province) nên đi đâu?
+      - Gợi ý giúp mình địa điểm nổi bật ở [Phú Quốc](province)
+      - Top địa danh đẹp tại [Phú Quốc](province) là gì?
+
+  - intent: ask_tour_for_place
+    examples: |
+      - Có tour nào đi [Bà Nà Hills](destination) không?
+      - Mình muốn đặt tour tham quan [Chợ nổi Cái Răng](destination)
+      - TravelTour có tour nào ghé [Làng lụa Vạn Phúc](destination) không?
+      - Gợi ý tour đi [Vịnh Hạ Long](destination) giúp mình nhé
+      - Tour nào phù hợp nếu mình muốn đến [Thung lũng Tình Yêu](destination)?
+      - Co tour nao ghe [Nghia trang Truong Son](destination) khong?
+      - Co tour tham quan [Phong Nha - Ke Bang](destination) 3 ngay khong?
+      - Tour bien gia re khoi hanh tu HCM cuoi tuan nay
+      - Tour nghi duong 2N1D o [Mui Ne](destination) duoi 3 trieu co khong?
+
+  - intent: ask_place_by_theme
+    examples: |
+      - Ở [Ninh Bình](province) có [chùa](travel_theme) nào đẹp không?
+      - Mình muốn tham quan [làng nghề](travel_theme) tại [Hà Nội](province)
+      - Gợi ý vài điểm [thiên nhiên](travel_theme) mát mẻ ở miền Trung
+      - Có địa điểm [biển](travel_theme) nào gần [Khánh Hòa](province) không?
+      - Muốn đi nơi đậm chất [lịch sử](travel_theme) thì nên ghé đâu?
+      - O [Quang Tri](province) co [chua](travel_theme) nao dep khong?
+      - Minh muon [leo nui](travel_theme) o [Gia Lai](province)
+      - Can dia diem [cam trai](travel_theme) gan [Dak Nong](province)
+      - Cho xin cho [san may](travel_theme) tai [Son La](province)
+      - Tim [suoi khoang](travel_theme) o [Hoa Binh](province)
+      - Dia diem [pho co](travel_theme) nao gan [Quang Nam](province)?
+      - mình muốn đi [biển](travel_theme)
+      - tôi muốn đi [biển](travel_theme)
+      - gợi ý điểm [biển](travel_theme) nhé
+      - tìm giúp chỗ [biển](travel_theme) đẹp
+      - cần địa điểm [biển](travel_theme) gần Hà Nội
+      - [biển](travel_theme) gần Nghệ An có gì?
+
+  - lookup: destination
+    examples: |
+      - Hồ Hoàn Kiếm
+      - Đền Ngọc Sơn
+      - Văn Miếu
+      - Hoàng thành Thăng Long
+      - Chùa Một Cột
+      - Lăng Chủ tịch Hồ Chí Minh
+      - Cầu Long Biên
+      - Nhà thờ Đức Bà
+      - Dinh Độc Lập
+      - Bưu điện Bến Thành
+      - Phố đi bộ Nguyễn Huệ
+      - Bà Nà Hills
+      - Cầu Rồng
+      - Ngũ Hành Sơn
+      - Chùa Linh Ứng
+      - Biển Mỹ Khê
+      - Kinh thành Huế
+      - Lăng Tự Đức
+      - Chùa Thiên Mụ
+      - Sa Pa
+      - Fansipan
+      - Vịnh Hạ Long
+      - Yên Tử
+      - Tháp Bà Ponagar
+      - Bãi Dài Cam Ranh
+      - Tràng An
+      - Tam Cốc - Bích Động
+      - Hang Múa
+      - Đền Đô
+      - Làng gốm Bát Tràng
+      - Đảo Cát Bà
+      - Biển Sầm Sơn
+      - Pù Luông
+      - Biển Cửa Lò
+      - Gành Đá Đĩa
+      - Eo Gió
+      - Thác Dray Nur
+      - Thung lũng Tình Yêu
+      - Chợ nổi Cái Răng
+      - Rừng Tràm Trà Sư
+      - Phú Quốc
+      - Thác Bản Ba
+      - Khu du lịch Thủy Châu
+      - Hồ Dầu Tiếng
+      - Làng sơn mài Tương Bình Hiệp
+      - Đèo Mẻ Pia
+      - Hồ Thác Bà
+      - Bảo tàng Hải Phòng
+      - Nhà hát Lớn Hải Phòng
+      - Phố đi bộ Tam Bạc
+      - Thac Ban Ba
+      - Khu du lich Thuy Chau
+      - Ho Dau Tieng
+      - Lang son mai Tuong Binh Hiep
+      - Deo Me Pia
+      - Ho Thac Ba
+      - Bao tang Hai Phong
+      - Nha hat Lon Hai Phong
+      - Pho di bo Tam Bac
+      - Thác Bản Ba
+      - Khu du lịch Thủy Châu
+      - Hồ Dầu Tiếng
+      - Làng sơn mài Tương Bình Hiệp
+      - Nghĩa trang Trường Sơn
+      - Thành cổ Quảng Trị
+      - Cầu Hiền Lương
+      - Biển Cửa Tùng
+      - Đảo Cồn Cỏ
+      - Ngã ba Đồng Lộc
+      - Biển Thiên Cầm
+      - Chùa Hương Tích
+      - Hồ Kẻ Gỗ
+      - Phố Hiến
+      - Đền Mẫu Hưng Yên
+      - Chùa Chuông Hưng Yên
+      - Làng Nôm
+      - Chùa Tam Chúc
+      - Kẽm Trống
+      - Ngũ Động Sơn
+      - Đền Trúc
+      - Biển Đồng Châu
+      - Chùa Keo
+      - Đền Trần Thái Bình
+      - Làng vườn Bách Thuận
+      - Na Hang
+      - Suối khoáng Mỹ Lâm
+      - Thành nhà Mạc
+      - Hồ Ba Bể
+      - Động Puông
+      - Thác Đầu Đẳng
+      - ATK Chợ Đồn
+      - Đỉnh Putaleng
+      - Đèo Ô Quy Hồ
+      - Động Tiên Sơn
+      - Mường Tè
+      - Đồi chè Mộc Châu
+      - Đỉnh Pha Luông
+      - Tà Xùa
+      - Ngọc Chiến
+      - Thung Nai
+      - Bản Lác Mai Châu
+      - Hồ Hòa Bình
+      - Suối khoáng Kim Bôi
+      - Biển Hồ T’Nưng
+      - Thác Phú Cường
+      - Núi lửa Chư Đăng Ya
+      - Phố núi Pleiku
+      - Nhà thờ Gỗ Kon Tum
+      - Măng Đen
+      - Cầu treo Kon Klor
+      - Ngã ba Đông Dương
+      - Hồ Tà Đùng
+      - Thác Dray Sap
+      - Hang động núi lửa Krông Nô
+      - Vườn quốc gia Bù Gia Mập
+      - Sóc Bom Bo
+      - Làng nổi Tân Lập
+      - Nhà cổ Trăm Cột
+      - Biển Tân Tập
+      - Chùa Tôn Thạnh
+      - Cồn Phụng
+      - Cồn Quy
+      - Biển Thạnh Phú
+      - Ao Bà Om
+      - Chùa Hang
+      - Chùa Âng
+      - Biển Ba Động
+      - Chợ nổi Trà Ôn
+      - Cù lao An Bình
+      - Văn Thánh Miếu Vĩnh Long
+      - Khu du lịch Lung Ngọc Hoàng
+      - Chợ nổi Ngã Bảy
+      - Nhà công tử Bạc Liêu
+      - Cánh đồng điện gió Bạc Liêu
+      - Nhà thờ Tắc Sậy
+      - Mũi Cà Mau
+      - Rừng U Minh Hạ
+      - Đầm Thị Tường
+      - Hòn Đá Bạc
+
+  - lookup: province
+    examples: |
+      - Hà Nội
+      - Thành phố Hồ Chí Minh
+      - TP HCM
+      - Sài Gòn
+      - Đà Nẵng
+      - Huế
+      - Thừa Thiên Huế
+      - Lào Cai
+      - Quảng Ninh
+      - Khánh Hòa
+      - Nha Trang
+      - Ninh Bình
+      - Bắc Ninh
+      - Hải Phòng
+      - Thanh Hóa
+      - Nghệ An
+      - Phú Yên
+      - Bình Định
+      - Quy Nhơn
+      - Đắk Lắk
+      - Buôn Ma Thuột
+      - Lâm Đồng
+      - Đà Lạt
+      - Cần Thơ
+      - An Giang
+      - Kiên Giang
+      - Quảng Nam
+      - Hội An
+      - Quảng Bình
+      - Quảng Trị
+      - Thái Nguyên
+      - Hà Giang
+      - Cao Bằng
+      - Lạng Sơn
+      - Bắc Giang
+      - Hải Dương
+      - Hưng Yên
+      - Hà Nam
+      - Nam Định
+      - Thái Bình
+      - Vĩnh Phúc
+      - Phú Thọ
+      - Yên Bái
+      - Tuyên Quang
+      - Bắc Kạn
+      - Lai Châu
+      - Điện Biên
+      - Sơn La
+      - Hòa Bình
+      - Quảng Ngãi
+      - Bình Thuận
+      - Phan Thiết
+      - Ninh Thuận
+      - Đắk Nông
+      - Gia Lai
+      - Kon Tum
+      - Đồng Nai
+      - Bình Dương
+      - Bình Phước
+      - Tây Ninh
+      - Bà Rịa - Vũng Tàu
+      - Vũng Tàu
+      - Long An
+      - Tiền Giang
+      - Bến Tre
+      - Trà Vinh
+      - Vĩnh Long
+      - Đồng Tháp
+      - Hậu Giang
+      - Sóc Trăng
+      - Bạc Liêu
+      - Cà Mau
+      - Phú Quốc
+      - Ha Noi
+      - Thanh pho Ho Chi Minh
+      - TP HCM (khong dau)
+      - Sai Gon
+      - Da Nang
+      - Hue
+      - Lao Cai
+      - Quang Ninh
+      - Khanh Hoa
+      - Nha Trang (khong dau)
+      - Ninh Binh
+      - Bac Ninh
+      - Hai Phong
+      - Thanh Hoa
+      - Nghe An
+      - Phu Yen
+      - Binh Dinh
+      - Quy Nhon
+      - Dak Lak
+      - Buon Ma Thuot
+      - Lam Dong
+      - Da Lat
+      - Can Tho
+      - An Giang (khong dau)
+      - Kien Giang
+      - Quang Nam
+      - Hoi An
+      - Quang Binh
+      - Quang Tri
+      - Thai Nguyen
+      - Ha Giang
+      - Cao Bang
+      - Lang Son
+      - Bac Giang
+      - Hai Duong
+      - Hung Yen
+      - Ha Nam
+      - Nam Dinh
+      - Thai Binh
+      - Vinh Phuc
+      - Phu Tho
+      - Yen Bai
+      - Tuyen Quang
+      - Bac Kan
+      - Lai Chau
+      - Dien Bien
+      - Son La
+      - Hoa Binh
+      - Quang Ngai
+      - Binh Thuan
+      - Phan Thiet
+      - Ninh Thuan
+      - Dak Nong
+      - Gia Lai
+      - Kon Tum
+      - Dong Nai
+      - Binh Duong
+      - Binh Phuoc
+      - Tay Ninh
+      - Ba Ria - Vung Tau
+      - Vung Tau
+      - Long An
+      - Tien Giang
+      - Ben Tre
+      - Tra Vinh
+      - Vinh Long
+      - Dong Thap
+      - Hau Giang
+      - Soc Trang
+      - Bac Lieu
+      - Ca Mau
+      - Phu Quoc
+
+  - lookup: travel_theme
+    examples: |
+      - biển
+      - bãi biển
+      - đảo
+      - chùa
+      - đền
+      - lễ hội
+      - lịch sử
+      - bảo tàng
+      - làng nghề
+      - thiên nhiên
+      - thác nước
+      - núi
+      - bien
+      - bai bien
+      - dao
+      - chua
+      - den
+      - le hoi
+      - lich su
+      - bao tang
+      - lang nghe
+      - thien nhien
+      - thac nuoc
+      - nui
+      - hang động
+      - hang dong
+      - khám phá hang động
+      - kham pha hang dong
+      - trekking
+      - leo núi
+      - leo nui
+      - camping
+      - cắm trại
+      - cam trai
+      - săn mây
+      - san may
+      - suối khoáng
+      - suoi khoang
+      - du lịch tâm linh
+      - du lich tam linh
+      - sinh thái
+      - sinh thai
+      - mạo hiểm
+      - mao hiem
+      - nghỉ dưỡng
+      - nghi duong
+      - check-in
+      - chụp ảnh
+      - chup anh
+      - vườn quốc gia
+      - vuon quoc gia
+      - phố cổ
+      - pho co
+      - làng quê
+      - lang que
+
+  - intent: ask_more_food_specialty
+    examples: |
+      - còn đặc sản nào nữa không
+      - còn món nào khác không
+      - có đặc sản nào khác không
+      - thêm đặc sản đi
+      - còn tiếp không
+      - còn nữa không
+      - xem thêm đặc sản
+      - món nào khác
+      - còn loại đặc sản nào
+      - gợi ý thêm đặc sản
+      - đặc sản khác nữa đi
+
+  - intent: ask_food_specialty_of_current_tour
+    examples: |
+      - đặc sản của tour này
+      - đặc sản của tour hiện tại
+      - món ăn đặc trưng của tour
+      - đặc sản tour này có gì
+      - món ngon của tour này
+      - đặc sản địa phương
+      - đặc sản vùng này
+      - món ăn nổi tiếng ở đây
+      - đặc sản liên quan đến tour
+      - đặc sản liên quan
+      - món ăn liên quan
+      - đặc sản nào phù hợp
+      - đặc sản tại đây là
+      - đặc sản tại đây có gì
+      - đặc sản ở đây
+      - món ăn tại đây
+  - intent: ask_food_specialty
+    examples: |
+      - Ở [Hà Nội](province) có đặc sản gì?
+      - Đi [Thành phố Hồ Chí Minh](province) thì nên ăn món nào?
+      - Gợi ý giúp mình món ăn nổi tiếng ở [Đà Nẵng](province)
+      - Bạn cho biết vài món đặc sản của [Huế](province) đi
+      - Đề xuất cho tôi vài đặc sản tại [Hà Nội](province)
+      - Nên thử món gì ở [Thành phố Hồ Chí Minh](province)?
+      - Gợi ý đặc sản ở [Đà Nẵng](province)
+      - Cho tôi biết món ăn đặc trưng của [Huế](province)
+      - Đặc sản nổi tiếng tại [Lào Cai](province)
+      - Món ngon ở [Quảng Ninh](province)
+      - Ăn gì ngon ở [Khánh Hòa](province)?
+      - Đặc sản [Ninh Bình](province) có gì?
+      - Món đặc trưng [Bắc Ninh](province)
+      - Đặc sản của [Hải Phòng](province) là gì?
+      - Món ăn nổi tiếng của [Thanh Hóa](province)
+      - Ở [Nghệ An](province) nên ăn gì?
+      - Đi [Phú Yên](province) thì thử món nào?
+      - Đặc sản [Bình Định](province) có gì đặc biệt?
+      - Món ngon ở [Đắk Lắk](province)
+      - Ăn gì ở [Lâm Đồng](province)?
+      - Đặc sản nổi tiếng tại [Cần Thơ](province)
+      - Món đặc trưng của [An Giang](province)
+      - Ở [Kiên Giang](province) có món gì ngon?
+      - Đi [Quảng Ngãi](province) nên thử món nào?
+      - Đặc sản [Bình Thuận](province) là gì?
+      - Món ăn của [Ninh Thuận](province)
+      - Đặc sản nổi tiếng ở [Đồng Nai](province)
+      - Ở [Sóc Trăng](province) nên ăn gì?
+      - Món ngon tại [Quảng Nam](province)
+      - Đặc sản [Tiền Giang](province) có gì?
+      - Ăn gì ở [Đồng Tháp](province)?
+      - Món đặc trưng của [Bến Tre](province)
+      - Đặc sản nổi tiếng tại [Long An](province)
+      - Ở [Tây Ninh](province) có món gì ngon?
+      - Đi [Bình Dương](province) nên thử món nào?
+      - Đặc sản [Trà Vinh](province) là gì?
+      - Món ăn của [Bà Rịa - Vũng Tàu](province)
+      - Đặc sản nổi tiếng ở [Quảng Bình](province)
+      - Ở [Hà Giang](province) nên ăn gì?
+      - Món ngon tại [Cao Bằng](province)
+      - Đặc sản [Điện Biên](province) có gì?
+      - Ăn gì ở [Thái Nguyên](province)?
+      - Món đặc trưng của [Lạng Sơn](province)
+      - Đặc sản nổi tiếng tại [Bắc Giang](province)
+      - Ở [Hải Dương](province) có món gì ngon?
+      - Đi [Nam Định](province) nên thử món nào?
+      - Đặc sản [Vĩnh Phúc](province) là gì?
+      - Món ăn của [Phú Thọ](province)
+      - Đặc sản nổi tiếng ở [Yên Bái](province)
+      - Ở [Quảng Trị](province) nên ăn gì?
+      - Món ngon tại [Hà Tĩnh](province)
+      - Đặc sản [Hưng Yên](province) có gì?
+      - Ăn gì ở [Hà Nam](province)?
+      - Món đặc trưng của [Thái Bình](province)
+      - Đặc sản nổi tiếng tại [Tuyên Quang](province)
+      - Ở [Bắc Kạn](province) có món gì ngon?
+      - Đi [Lai Châu](province) nên thử món nào?
+      - Đặc sản [Sơn La](province) là gì?
+      - Món ăn của [Hòa Bình](province)
+      - Đặc sản nổi tiếng ở [Gia Lai](province)
+      - Ở [Kon Tum](province) nên ăn gì?
+      - Món ngon tại [Đắk Nông](province)
+      - Đặc sản [Bình Phước](province) có gì?
+      - Ăn gì ở [Vĩnh Long](province)?
+      - Món đặc trưng của [Hậu Giang](province)
+      - Đặc sản nổi tiếng tại [Bạc Liêu](province)
+      - Ở [Cà Mau](province) có món gì ngon?
+      - Đi [Hà Nội](province) thì nên ăn món nào?
+      - Gợi ý món ăn đặc trưng của [Thành phố Hồ Chí Minh](province)
+      - Bạn biết đặc sản nổi tiếng tại [Đà Nẵng](province) không?
+      - Cho hỏi món ngon ở [Huế](province)
+      - Đặc sản [Lào Cai](province) có gì đặc biệt?
+      - Ở [Quảng Ninh](province) ăn gì ngon?
+      - Món đặc trưng [Khánh Hòa](province) là gì?
+      - Đặc sản nổi tiếng của [Ninh Bình](province)
+      - Ăn gì ở [Bắc Ninh](province)?
+      - Món ngon tại [Hải Phòng](province)
+      - Đặc sản [Thanh Hóa](province) có gì?
+      - Ở [Nghệ An](province) nên thử món nào?
+      - Đi [Phú Yên](province) có món gì đặc biệt?
+      - Đặc sản nổi tiếng ở [Bình Định](province)
+      - Món ăn của [Đắk Lắk](province)
+      - Đặc sản [Lâm Đồng](province) là gì?
+      - Ở [Cần Thơ](province) ăn gì ngon?
+      - Món đặc trưng tại [An Giang](province)
+      - Đặc sản nổi tiếng của [Kiên Giang](province)
+      - Ăn gì ở [Quảng Ngãi](province)?
+      - Món ngon của [Bình Thuận](province)
+      - Đặc sản [Ninh Thuận](province) có gì đặc biệt?
+      - Ở [Đồng Nai](province) nên ăn món nào?
+      - Đi [Sóc Trăng](province) có món gì ngon?
+      - Đặc sản nổi tiếng tại [Quảng Nam](province)
+      - Món ăn của [Tiền Giang](province)
+      - Đặc sản [Đồng Tháp](province) là gì?
+      - Ở [Bến Tre](province) ăn gì ngon?
+      - Món đặc trưng của [Long An](province)
+      - Đặc sản nổi tiếng ở [Tây Ninh](province)
+      - Ăn gì tại [Bình Dương](province)?
+      - Món ngon của [Trà Vinh](province)
+      - Đặc sản [Bà Rịa - Vũng Tàu](province) có gì?
+      - Ở [Quảng Bình](province) nên thử món nào?
+      - Đi [Hà Giang](province) có món gì đặc biệt?
+      - Đặc sản nổi tiếng của [Cao Bằng](province)
+      - Món ăn tại [Điện Biên](province)
+      - Đặc sản [Thái Nguyên](province) là gì?
+      - Ở [Lạng Sơn](province) ăn gì ngon?
+      - Món đặc trưng của [Bắc Giang](province)
+      - Đặc sản nổi tiếng tại [Hải Dương](province)
+      - Ăn gì ở [Nam Định](province)?
+      - Món ngon của [Vĩnh Phúc](province)
+      - Đặc sản [Phú Thọ](province) có gì đặc biệt?
+      - Ở [Yên Bái](province) nên ăn món nào?
+      - Đi [Quảng Trị](province) có món gì ngon?
+      - Đặc sản nổi tiếng của [Hà Tĩnh](province)
+      - Món ăn tại [Hưng Yên](province)
+      - Đặc sản [Hà Nam](province) là gì?
+      - Ở [Thái Bình](province) ăn gì ngon?
+      - Món đặc trưng của [Tuyên Quang](province)
+      - Đặc sản nổi tiếng tại [Bắc Kạn](province)
+      - Ăn gì ở [Lai Châu](province)?
+      - Món ngon của [Sơn La](province)
+      - Đặc sản [Hòa Bình](province) có gì đặc biệt?
+      - Ở [Gia Lai](province) nên thử món nào?
+      - Đi [Kon Tum](province) có món gì ngon?
+      - Đặc sản nổi tiếng của [Đắk Nông](province)
+      - Món ăn tại [Bình Phước](province)
+      - Đặc sản [Vĩnh Long](province) là gì?
+      - Ở [Hậu Giang](province) ăn gì ngon?
+      - Món đặc trưng của [Bạc Liêu](province)
+      - Đặc sản nổi tiếng tại [Cà Mau](province)
+      - Đề xuất cho tôi vài đặc sản tại [Hà Nội](province)
+      - Gợi ý đặc sản ở [Thành phố Hồ Chí Minh](province)
+      - Cho tôi biết món ăn đặc trưng của [Đà Nẵng](province)
+      - Đặc sản nổi tiếng tại [Huế](province)
+      - Món ngon ở [Lào Cai](province)
+      - Ăn gì ngon ở [Quảng Ninh](province)?
+      - Đặc sản [Khánh Hòa](province) có gì?
+      - Món đặc trưng [Ninh Bình](province)
+      - Nên thử món gì ở [Bắc Ninh](province)?
+      - Món ăn nổi tiếng của [Hải Phòng](province)
+      - Ở [Thanh Hóa](province) có đặc sản gì?
+      - Đi [Nghệ An](province) thì nên ăn món nào?
+      - Gợi ý giúp mình món ăn nổi tiếng ở [Phú Yên](province)
+      - Bạn cho biết vài món đặc sản của [Bình Định](province) đi
+      - Đặc sản của [Đắk Lắk](province) là gì?
+      - Món ngon tại [Lâm Đồng](province)
+      - Đặc sản [Cần Thơ](province) có gì đặc biệt?
+      - Ở [An Giang](province) ăn gì ngon?
+      - Món đặc trưng của [Kiên Giang](province)
+      - Đặc sản nổi tiếng tại [Quảng Ngãi](province)
+      - Ăn gì ở [Bình Thuận](province)?
+      - Món ngon của [Ninh Thuận](province)
+      - Đặc sản [Đồng Nai](province) là gì?
+      - Ở [Sóc Trăng](province) nên thử món nào?
+      - Đi [Quảng Nam](province) có món gì đặc biệt?
+      - Đặc sản nổi tiếng của [Tiền Giang](province)
+      - Món ăn tại [Đồng Tháp](province)
+      - Đặc sản [Bến Tre](province) có gì?
+      - Ở [Long An](province) ăn gì ngon?
+      - Món đặc trưng của [Tây Ninh](province)
+      - Đặc sản nổi tiếng tại [Bình Dương](province)
+      - Ăn gì ở [Trà Vinh](province)?
+      - Món ngon của [Bà Rịa - Vũng Tàu](province)
+      - Đặc sản [Quảng Bình](province) là gì?
+      - Ở [Hà Giang](province) nên ăn món nào?
+      - Đi [Cao Bằng](province) có món gì ngon?
+      - Đặc sản nổi tiếng của [Điện Biên](province)
+      - Món ăn tại [Thái Nguyên](province)
+      - Đặc sản [Lạng Sơn](province) có gì đặc biệt?
+      - Ở [Bắc Giang](province) ăn gì ngon?
+      - Món đặc trưng của [Hải Dương](province)
+      - Đặc sản nổi tiếng tại [Nam Định](province)
+      - Ăn gì ở [Vĩnh Phúc](province)?
+      - Món ngon của [Phú Thọ](province)
+      - Đặc sản [Yên Bái](province) là gì?
+      - Ở [Quảng Trị](province) nên thử món nào?
+      - Đi [Hà Tĩnh](province) có món gì đặc biệt?
+      - Đặc sản nổi tiếng của [Hưng Yên](province)
+      - Món ăn tại [Hà Nam](province)
+      - Đặc sản [Thái Bình](province) có gì?
+      - Ở [Tuyên Quang](province) ăn gì ngon?
+      - Món đặc trưng của [Bắc Kạn](province)
+      - Đặc sản nổi tiếng tại [Lai Châu](province)
+      - Ăn gì ở [Sơn La](province)?
+      - Món ngon của [Hòa Bình](province)
+      - Đặc sản [Gia Lai](province) là gì?
+      - Ở [Kon Tum](province) nên ăn món nào?
+      - Đi [Đắk Nông](province) có món gì ngon?
+      - Đặc sản nổi tiếng của [Bình Phước](province)
+      - Món ăn tại [Vĩnh Long](province)
+      - Đặc sản [Hậu Giang](province) có gì đặc biệt?
+      - Ở [Bạc Liêu](province) ăn gì ngon?
+      - Món đặc trưng của [Cà Mau](province)
+      - Tour về miền Tây có món nào đặc trưng không?
+      - [Cần Thơ](province) có món nào nhất định phải thử?
+      - [Quảng Trị](province) có đặc sản gì?
+      - Đến [Hà Tĩnh](province) nên ăn gì?
+      - Món nổi tiếng ở [Hưng Yên](province) là gì?
+      - [Hà Nam](province) có món nào đặc trưng?
+      - [Thái Bình](province) có đặc sản gì?
+      - đặc sản tại [Hà Nội](province)
+      - đặc sản ở [Hà Nội](province)
+      - [Hà Nội](province) có những đặc sản nào
+      - [Hà Nội](province) có đặc sản gì
+      - đặc sản của [Hà Nội](province) là gì
+      - món ăn đặc sản tại [Hà Nội](province)
+      - món ăn đặc sản ở [Hà Nội](province)
+      - [Hà Nội](province) có món ăn đặc sản nào
+      - đặc sản [Hà Nội](province) có gì
+      - [Hà Nội](province) nổi tiếng với món gì
+      - món ngon tại [Hà Nội](province)
+      - món ngon ở [Hà Nội](province)
+      - [Hà Nội](province) có món ngon nào
+      - đặc sản [Hà Nội](province)
+      - đặc sản ở [Hà Nội](province) là gì
+      - đặc sản tại [Hà Nội](province) là gì
+      - đặc sản tại [Thành phố Hồ Chí Minh](province)
+      - đặc sản ở [Thành phố Hồ Chí Minh](province)
+      - [Thành phố Hồ Chí Minh](province) có những đặc sản nào
+      - [Thành phố Hồ Chí Minh](province) có đặc sản gì
+      - đặc sản của [Thành phố Hồ Chí Minh](province) là gì
+      - món ăn đặc sản tại [Thành phố Hồ Chí Minh](province)
+      - món ăn đặc sản ở [Thành phố Hồ Chí Minh](province)
+      - [Thành phố Hồ Chí Minh](province) có món ăn đặc sản nào
+      - đặc sản [Thành phố Hồ Chí Minh](province) có gì
+      - [Thành phố Hồ Chí Minh](province) nổi tiếng với món gì
+      - món ngon tại [Thành phố Hồ Chí Minh](province)
+      - món ngon ở [Thành phố Hồ Chí Minh](province)
+      - [Thành phố Hồ Chí Minh](province) có món ngon nào
+      - đặc sản [Thành phố Hồ Chí Minh](province)
+      - đặc sản ở [Thành phố Hồ Chí Minh](province) là gì
+      - đặc sản tại [Thành phố Hồ Chí Minh](province) là gì
+      - đặc sản tại [Đà Nẵng](province)
+      - đặc sản ở [Đà Nẵng](province)
+      - [Đà Nẵng](province) có những đặc sản nào
+      - [Đà Nẵng](province) có đặc sản gì
+      - đặc sản của [Đà Nẵng](province) là gì
+      - món ăn đặc sản tại [Đà Nẵng](province)
+      - món ăn đặc sản ở [Đà Nẵng](province)
+      - [Đà Nẵng](province) có món ăn đặc sản nào
+      - đặc sản [Đà Nẵng](province) có gì
+      - [Đà Nẵng](province) nổi tiếng với món gì
+      - món ngon tại [Đà Nẵng](province)
+      - món ngon ở [Đà Nẵng](province)
+      - [Đà Nẵng](province) có món ngon nào
+      - đặc sản [Đà Nẵng](province)
+      - đặc sản ở [Đà Nẵng](province) là gì
+      - đặc sản tại [Đà Nẵng](province) là gì
+      - đặc sản tại [Huế](province)
+      - đặc sản ở [Huế](province)
+      - [Huế](province) có những đặc sản nào
+      - [Huế](province) có đặc sản gì
+      - đặc sản của [Huế](province) là gì
+      - món ăn đặc sản tại [Huế](province)
+      - món ăn đặc sản ở [Huế](province)
+      - [Huế](province) có món ăn đặc sản nào
+      - đặc sản [Huế](province) có gì
+      - [Huế](province) nổi tiếng với món gì
+      - món ngon tại [Huế](province)
+      - món ngon ở [Huế](province)
+      - [Huế](province) có món ngon nào
+      - đặc sản [Huế](province)
+      - đặc sản ở [Huế](province) là gì
+      - đặc sản tại [Huế](province) là gì
+      - đặc sản tại [Lào Cai](province)
+      - đặc sản ở [Lào Cai](province)
+      - [Lào Cai](province) có những đặc sản nào
+      - [Lào Cai](province) có đặc sản gì
+      - đặc sản của [Lào Cai](province) là gì
+      - món ăn đặc sản tại [Lào Cai](province)
+      - món ăn đặc sản ở [Lào Cai](province)
+      - [Lào Cai](province) có món ăn đặc sản nào
+      - đặc sản [Lào Cai](province) có gì
+      - [Lào Cai](province) nổi tiếng với món gì
+      - món ngon tại [Lào Cai](province)
+      - [Lào Cai](province) có món ngon nào
+      - đặc sản [Lào Cai](province)
+      - đặc sản ở [Lào Cai](province) là gì
+      - đặc sản tại [Lào Cai](province) là gì
+      - đặc sản tại [Quảng Ninh](province)
+      - đặc sản ở [Quảng Ninh](province)
+      - [Quảng Ninh](province) có những đặc sản nào
+      - [Quảng Ninh](province) có đặc sản gì
+      - đặc sản của [Quảng Ninh](province) là gì
+      - món ăn đặc sản tại [Quảng Ninh](province)
+      - món ăn đặc sản ở [Quảng Ninh](province)
+      - [Quảng Ninh](province) có món ăn đặc sản nào
+      - đặc sản [Quảng Ninh](province) có gì
+      - [Quảng Ninh](province) nổi tiếng với món gì
+      - món ngon tại [Quảng Ninh](province)
+      - [Quảng Ninh](province) có món ngon nào
+      - đặc sản [Quảng Ninh](province)
+      - đặc sản ở [Quảng Ninh](province) là gì
+      - đặc sản tại [Quảng Ninh](province) là gì
+      - đặc sản tại [Khánh Hòa](province)
+      - đặc sản ở [Khánh Hòa](province)
+      - [Khánh Hòa](province) có những đặc sản nào
+      - [Khánh Hòa](province) có đặc sản gì
+      - đặc sản của [Khánh Hòa](province) là gì
+      - món ăn đặc sản tại [Khánh Hòa](province)
+      - món ăn đặc sản ở [Khánh Hòa](province)
+      - [Khánh Hòa](province) có món ăn đặc sản nào
+      - đặc sản [Khánh Hòa](province) có gì
+      - [Khánh Hòa](province) nổi tiếng với món gì
+      - món ngon tại [Khánh Hòa](province)
+      - món ngon ở [Khánh Hòa](province)
+      - [Khánh Hòa](province) có món ngon nào
+      - đặc sản [Khánh Hòa](province)
+      - đặc sản ở [Khánh Hòa](province) là gì
+      - đặc sản tại [Khánh Hòa](province) là gì
+      - đặc sản tại [Ninh Bình](province)
+      - đặc sản ở [Ninh Bình](province)
+      - [Ninh Bình](province) có những đặc sản nào
+      - [Ninh Bình](province) có đặc sản gì
+      - đặc sản của [Ninh Bình](province) là gì
+      - món ăn đặc sản tại [Ninh Bình](province)
+      - món ăn đặc sản ở [Ninh Bình](province)
+      - [Ninh Bình](province) có món ăn đặc sản nào
+      - đặc sản [Ninh Bình](province) có gì
+      - [Ninh Bình](province) nổi tiếng với món gì
+      - món ngon tại [Ninh Bình](province)
+      - món ngon ở [Ninh Bình](province)
+      - [Ninh Bình](province) có món ngon nào
+      - đặc sản [Ninh Bình](province)
+      - đặc sản ở [Ninh Bình](province) là gì
+      - đặc sản tại [Ninh Bình](province) là gì
+      - đặc sản tại [Bắc Ninh](province)
+      - đặc sản ở [Bắc Ninh](province)
+      - [Bắc Ninh](province) có những đặc sản nào
+      - [Bắc Ninh](province) có đặc sản gì
+      - đặc sản của [Bắc Ninh](province) là gì
+      - món ăn đặc sản tại [Bắc Ninh](province)
+      - món ăn đặc sản ở [Bắc Ninh](province)
+      - [Bắc Ninh](province) có món ăn đặc sản nào
+      - đặc sản [Bắc Ninh](province) có gì
+      - [Bắc Ninh](province) nổi tiếng với món gì
+      - món ngon tại [Bắc Ninh](province)
+      - món ngon ở [Bắc Ninh](province)
+      - [Bắc Ninh](province) có món ngon nào
+      - đặc sản [Bắc Ninh](province)
+      - đặc sản ở [Bắc Ninh](province) là gì
+      - đặc sản tại [Bắc Ninh](province) là gì
+      - đặc sản tại [Hải Phòng](province)
+      - đặc sản ở [Hải Phòng](province)
+      - [Hải Phòng](province) có những đặc sản nào
+      - [Hải Phòng](province) có đặc sản gì
+      - đặc sản của [Hải Phòng](province) là gì
+      - món ăn đặc sản tại [Hải Phòng](province)
+      - món ăn đặc sản ở [Hải Phòng](province)
+      - [Hải Phòng](province) có món ăn đặc sản nào
+      - đặc sản [Hải Phòng](province) có gì
+      - [Hải Phòng](province) nổi tiếng với món gì
+      - [Hải Phòng](province) có món ngon nào
+      - đặc sản [Hải Phòng](province)
+      - đặc sản ở [Hải Phòng](province) là gì
+      - đặc sản tại [Hải Phòng](province) là gì
+      - đặc sản tại [Thanh Hóa](province)
+      - đặc sản ở [Thanh Hóa](province)
+      - [Thanh Hóa](province) có những đặc sản nào
+      - [Thanh Hóa](province) có đặc sản gì
+      - đặc sản của [Thanh Hóa](province) là gì
+      - món ăn đặc sản tại [Thanh Hóa](province)
+      - món ăn đặc sản ở [Thanh Hóa](province)
+      - [Thanh Hóa](province) có món ăn đặc sản nào
+      - đặc sản [Thanh Hóa](province) có gì
+      - [Thanh Hóa](province) nổi tiếng với món gì
+      - món ngon tại [Thanh Hóa](province)
+      - món ngon ở [Thanh Hóa](province)
+      - [Thanh Hóa](province) có món ngon nào
+      - đặc sản [Thanh Hóa](province)
+      - đặc sản ở [Thanh Hóa](province) là gì
+      - đặc sản tại [Thanh Hóa](province) là gì
+      - đặc sản tại [Nghệ An](province)
+      - đặc sản ở [Nghệ An](province)
+      - [Nghệ An](province) có những đặc sản nào
+      - [Nghệ An](province) có đặc sản gì
+      - đặc sản của [Nghệ An](province) là gì
+      - món ăn đặc sản tại [Nghệ An](province)
+      - món ăn đặc sản ở [Nghệ An](province)
+      - [Nghệ An](province) có món ăn đặc sản nào
+      - đặc sản [Nghệ An](province) có gì
+      - [Nghệ An](province) nổi tiếng với món gì
+      - món ngon tại [Nghệ An](province)
+      - món ngon ở [Nghệ An](province)
+      - [Nghệ An](province) có món ngon nào
+      - đặc sản [Nghệ An](province)
+      - đặc sản ở [Nghệ An](province) là gì
+      - đặc sản tại [Nghệ An](province) là gì
+      - Đặc sản nào ngon ở [Tuyên Quang](province)?
+      - [Bắc Kạn](province) nên thử món gì?
+      - [Lai Châu](province) có món nào đặc biệt?
+      - Đi [Sơn La](province) nên ăn gì?
+      - [Hòa Bình](province) có món nào nổi bật?
+      - [Gia Lai](province) có đặc sản gì?
+      - Đến [Kon Tum](province) nên ăn món gì?
+      - [Đắk Nông](province) có đặc sản gì ngon?
+      - [Bình Phước](province) có món nào lạ?
+      - [Long An](province) có món gì đặc trưng?
+      - [Bến Tre](province) nên thử món nào?
+      - [Trà Vinh](province) có món gì nổi tiếng?
+      - [Vĩnh Long](province) có đặc sản nào?
+      - [Hậu Giang](province) nên ăn gì?
+      - [Bạc Liêu](province) có món nào nhất định phải thử?
+      - [Cà Mau](province) có đặc sản gì?
+      - Di [Hung Yen](province) thi an mon gi ngon?
+      - dac san nao ngon o [Ha Nam](province)?
+      - Mon nen thu khi toi [Thai Binh](province)
+      - Gioi thieu dac san [Tuyen Quang](province) voi
+      - Ở [Kon Tum](province) có món gì đặc biệt?
+      - an gi o [Ca Mau](province) cho dung dieu
+      - [Ben Tre](province) nen thu mon nao dac biet
+      - [Tra Vinh](province) co mon gi noi tieng
+      - [Gia Lai](province) co dac san nao nen thu
+      - [Dak Nong](province) co mon nao la
+      - [Hung Yen](province) co dac san gi
+      - an gi o [Ha Nam](province) thi ngon
+      - [Thai Binh](province) co mon nao ngon
+      - [Tuyen Quang](province) co dac san nao
+      - [Bac Kan](province) co mon gi dac biet
+      - [Lai Chau](province) co mon gi
+      - an gi o [Son La](province)
+      - [Hoa Binh](province) co mon gi ngon
+      - [Kon Tum](province) co dac san nao
+      - [Binh Phuoc](province) co mon nao la
+      - [Ben Tre](province) nen thu mon nao
+      - [Tra Vinh](province) co mon gi dac trung
+      - [Vinh Long](province) an gi
+      - [Hau Giang](province) co mon gi
+      - [Bac Lieu](province) co mon gi
+      - [Ca Mau](province) co mon nao nen thu
+      - [Quang Tri](province) co dac san gi?
+      - mon ngon nao o [Ha Tinh](province)?
+      - [Dak Nong](province) nen an gi?
+      - [Ha Noi](province) co dac san gi?
+      - dac san nao ngon o [Hai Phong](province)?
+      - an gi o [Ha Giang](province) cho dung vi
+      - [Lao Cai](province) co mon nao noi tieng?
+      - dac san nao nen thu o [Ninh Binh](province)?
+      - [Quang Ninh](province) co mon gi dac biet?
+      - dac san nao ngon o [Da Nang](province)?
+      - [Quang Binh](province) nen an gi?
+      - [Quang Tri](province) co mon nao dac biet?
+      - dac san nao o [Thua Thien Hue](province)?
+      - [Quang Nam](province) co mon nao noi tieng?
+      - an gi o [Quang Ngai](province) thi dung dia phuong
+      - [Binh Dinh](province) co dac san gi?
+      - dac san nao o [Phu Yen](province)?
+      - [Khanh Hoa](province) co mon nao nen thu?
+      - dac san nao ngon o [Binh Thuan](province)?
+      - [Ninh Thuan](province) co mon gi dac biet?
+      - dac san nao nen thu o [Lam Dong](province)?
+      - [Dong Nai](province) co mon gi?
+      - dac san nao o [Binh Duong](province)?
+      - an gi o [TP Ho Chi Minh](province) la dung chuan?
+      - dac san nao ngon o [Can Tho](province)?
+      - [An Giang](province) co mon gi dac biet?
+      - dac san nao nen thu o [Dong Thap](province)?
+      - [Tien Giang](province) co mon nao noi tieng?
+      - dac san nao ngon o [Soc Trang](province)?
+      - [Kinh thành Huế](destination) có những đặc sản nào?
+      - [Lăng Tự Đức](destination) có đặc sản gì?
+      - [Chùa Thiên Mụ](destination) có món ăn nào?
+      - Đặc sản tại [Kinh thành Huế](destination) là gì?
+      - [Bà Nà Hills](destination) có những đặc sản nào?
+      - [Vịnh Hạ Long](destination) có món ăn gì?
+      - [Phố cổ Hội An](destination) có đặc sản gì?
+      - [Chợ Bến Thành](destination) có những món ăn nào?
+      - Tại [Hồ Hoàn Kiếm](destination) có đặc sản gì?
+      - [Lăng Minh Mạng](destination) có những đặc sản nào?
+      - [Chùa Linh Ứng](destination) có món ăn nào?
+      - [Đền Bà Chúa Kho](destination) có đặc sản gì?
+      - [Hồ Ba Bể](destination) có những đặc sản nào?
+      - [Động Puông](destination) có món ăn gì?
+      - [Cánh đồng điện gió](destination) có đặc sản gì?
+      - [Nhà công tử Bạc Liêu](destination) có những món ăn nào?
+      - [Chùa Vĩnh Nghiêm](destination) có đặc sản gì?
+      - [Đền Bà Chúa Kho](destination) có món ăn nào?
+  - intent: ask_food_address
+    examples: |
+      - [Bún bò Huế](specialty) ăn ở đâu?
+      - Địa chỉ bán [Chả cá Lã Vọng](specialty) ở Hà Nội nằm chỗ nào?
+      - [Nem chua Thanh Hóa](specialty) mua ở khu nào cho ngon?
+      - Cho mình địa chỉ [Bánh mì Sài Gòn](specialty) chuẩn vị
+      - [Cơm cháy Ninh Bình](specialty) bán ở đâu?
+      - [Mỳ Quảng](specialty) chuẩn nhất là chỗ nào?
+      - [Keo cu do](specialty) mua o dau o [Ha Tinh](province)?
+      - Mua [nhan long Hung Yen](specialty) o khu nao?
+      - [Pho Ha Noi](specialty) an o dau la ngon?
+      - Dia chi [bun cha Ha Noi](specialty) uy tin o dau?
+      - [banh da cua Hai Phong](specialty) an o quan nao?
+      - [bun bo Hue](specialty) chuan vi an o dau?
+      - Dia chi [banh mi Sai Gon](specialty) ngon nhat o dau?
+      - [com tam Sai Gon](specialty) gan trung tam o dau?
+      - [cha muc Ha Long](specialty) mua o cho nao?
+      - [sasiung Ha Long](specialty) thi nen an o quan nao?
+      - [nem Ninh Hoa](specialty) an o dau thi dung vi?
+      - [ga den Sa Pa](specialty) an o quan nao?
+      - [thang co Sa Pa](specialty) an o dau?
+      - [de nui Ninh Binh](specialty) an o quan nao?
+      - [banh xeo mien Nam](specialty) an o dau?
+      - [banh trang cuon thit heo](specialty) chuan vi an o dau?
+      - [Bún cá](specialty) là đặc sản ở đâu?
+      - [Phở](specialty) là đặc sản của tỉnh nào?
+      - [Bánh mì](specialty) là đặc sản ở đâu vậy?
+      - [Bún bò](specialty) là đặc sản của vùng nào?
+      - [Nem chua](specialty) là đặc sản ở tỉnh nào?
+      - [Cơm cháy](specialty) là đặc sản của đâu?
+      - [Bánh Cuốn](specialty) là đặc sản tại đâu?
+      - [Bánh bao](specialty) là đặc sản ở đâu?
+      - [Bánh bao xá xíu](specialty) là đặc sản tại đâu?
+      - [Bánh bèo](specialty) là đặc sản ở đâu?
+      - [Bánh bèo Huế](specialty) là đặc sản tại đâu?
+      - [Bánh bèo Hà Tĩnh](specialty) là đặc sản ở đâu?
+      - [Bánh bèo Hải Phòng](specialty) là đặc sản tại đâu?
+      - [Bánh bèo Phú Yên](specialty) là đặc sản ở đâu?
+      - [Bánh bèo tôm chấy](specialty) là đặc sản tại đâu?
+      - [Bánh bột lọc](specialty) là đặc sản ở đâu?
+      - [Bánh bột lọc Quảng Bình](specialty) là đặc sản tại đâu?
+      - [Bánh bột lọc Quảng Trị](specialty) là đặc sản ở đâu?
+      - [Bánh canh Hòa Vinh](specialty) là đặc sản tại đâu?
+      - [Bánh canh Nam Vang](specialty) là đặc sản ở đâu?
+      - [Bánh canh chả cá](specialty) là đặc sản tại đâu?
+      - [Bánh canh chả cá Nha Trang](specialty) là đặc sản ở đâu?
+      - [Bánh canh cua](specialty) là đặc sản tại đâu?
+      - [Bánh canh giò heo](specialty) là đặc sản ở đâu?
+      - [Bánh canh tôm](specialty) là đặc sản tại đâu?
+      - [Bánh chưng](specialty) là đặc sản ở đâu?
+      - [Bánh chưng Phú Thọ](specialty) là đặc sản tại đâu?
+      - [Bánh chưng Thanh Hóa](specialty) là đặc sản ở đâu?
+      - [Bánh chưng Thái Nguyên](specialty) là đặc sản tại đâu?
+      - [Bánh chưng Vĩnh Phúc](specialty) là đặc sản ở đâu?
+      - [Bánh chưng đen](specialty) là đặc sản tại đâu?
+      - [Bánh cuốn Bắc Giang](specialty) là đặc sản ở đâu?
+      - [Bánh cuốn Cao Bằng](specialty) là đặc sản tại đâu?
+      - [Bánh cuốn Hà Giang](specialty) là đặc sản ở đâu?
+      - [Bánh cuốn Hải Dương](specialty) là đặc sản tại đâu?
+      - [Bánh cuốn Hải Phòng](specialty) là đặc sản ở đâu?
+      - [Bánh cuốn Kinh Bắc](specialty) là đặc sản tại đâu?
+      - [Bánh cuốn Lạng Sơn](specialty) là đặc sản ở đâu?
+      - [Bánh cuốn Nam Định](specialty) là đặc sản tại đâu?
+      - [Bánh cuốn Phú Thọ](specialty) là đặc sản ở đâu?
+      - [Bánh cuốn Thanh Hóa](specialty) là đặc sản tại đâu?
+      - [Bánh cuốn Thanh Trì](specialty) là đặc sản ở đâu?
+      - [Bánh cuốn Thái Nguyên](specialty) là đặc sản tại đâu?
+      - [Bánh cuốn Vĩnh Phúc](specialty) là đặc sản ở đâu?
+      - [Bánh cuốn chả Phủ Lý](specialty) là đặc sản tại đâu?
+      - [Bánh cuốn Đắk Lắk](specialty) là đặc sản ở đâu?
+      - [Bánh cáy](specialty) là đặc sản tại đâu?
+      - [Bánh căn Nha Trang](specialty) là đặc sản ở đâu?
+      - [Bánh căn Phan Rang](specialty) là đặc sản tại đâu?
+      - [Bánh căn Đà Lạt](specialty) là đặc sản ở đâu?
+      - [Bánh cốm](specialty) là đặc sản tại đâu?
+      - [Bánh cống](specialty) là đặc sản ở đâu?
+      - [Bánh củ cải](specialty) là đặc sản tại đâu?
+      - [Bánh dày Cao Bằng](specialty) là đặc sản ở đâu?
+      - [Bánh dày Hà Giang](specialty) là đặc sản tại đâu?
+      - [Bánh dày Lạng Sơn](specialty) là đặc sản ở đâu?
+      - [Bánh dày Phú Thọ](specialty) là đặc sản tại đâu?
+      - [Bánh dày Thái Nguyên](specialty) là đặc sản ở đâu?
+      - [Bánh dày Vĩnh Phúc](specialty) là đặc sản tại đâu?
+      - [Bánh dày Yên Bái](specialty) là đặc sản ở đâu?
+      - [Bánh dày Điện Biên](specialty) là đặc sản tại đâu?
+      - [Bánh gai](specialty) là đặc sản ở đâu?
+      - [Bánh gai Chiêm Hóa](specialty) là đặc sản tại đâu?
+      - [Bánh gai Hải Dương](specialty) là đặc sản ở đâu?
+      - [Bánh gai Nam Định](specialty) là đặc sản tại đâu?
+      - [Bánh gai Nghệ An](specialty) là đặc sản ở đâu?
+      - [Bánh gai Tứ Trụ](specialty) là đặc sản tại đâu?
+      - [Bánh gio](specialty) là đặc sản ở đâu?
+      - [Bánh gio Bắc Giang](specialty) là đặc sản tại đâu?
+      - [Bánh gio Hải Dương](specialty) là đặc sản ở đâu?
+      - [Bánh gio Nam Định](specialty) là đặc sản tại đâu?
+      - [Bánh gio Phú Thọ](specialty) là đặc sản ở đâu?
+      - [Bánh gio Thái Nguyên](specialty) là đặc sản tại đâu?
+      - [Bánh gio Vĩnh Phúc](specialty) là đặc sản ở đâu?
+      - [Bánh giầy](specialty) là đặc sản tại đâu?
+      - [Bánh gật gù](specialty) là đặc sản ở đâu?
+      - [Bánh gật gù Hải Phòng](specialty) là đặc sản tại đâu?
+      - [Bánh hỏi An Giang](specialty) là đặc sản ở đâu?
+      - [Bánh hỏi lòng heo](specialty) là đặc sản tại đâu?
+      - [Bánh hỏi lòng heo Tuy Hòa](specialty) là đặc sản ở đâu?
+      - [Bánh khoái](specialty) là đặc sản tại đâu?
+      - [Bánh khoái Huế](specialty) là đặc sản ở đâu?
+      - [Bánh khoái Quảng Bình](specialty) là đặc sản tại đâu?
+      - [Bánh khoái Quảng Trị](specialty) là đặc sản ở đâu?
+      - [Bánh khảo](specialty) là đặc sản tại đâu?
+      - [Bánh khảo Cao Bằng](specialty) là đặc sản ở đâu?
+      - [Bánh khảo Lạng Sơn](specialty) là đặc sản tại đâu?
+      - [Bánh khọt Tây Nguyên](specialty) là đặc sản ở đâu?
+      - [Bánh lọc](specialty) là đặc sản tại đâu?
+      - [Bánh mì Bà Rịa - Vũng Tàu](specialty) là đặc sản ở đâu?
+      - [Bánh mì Bình Dương](specialty) là đặc sản tại đâu?
+      - [Bánh mì Bắc Giang](specialty) là đặc sản ở đâu?
+      - [Bánh mì Bến Tre](specialty) là đặc sản tại đâu?
+      - [Bánh mì Cao Bằng](specialty) là đặc sản ở đâu?
+      - [Bánh mì Côn Đảo](specialty) là đặc sản tại đâu?
+      - [Bánh mì Cần Thơ](specialty) là đặc sản ở đâu?
+      - [Bánh mì Huế](specialty) là đặc sản tại đâu?
+      - [Bánh mì Hà Nội](specialty) là đặc sản ở đâu?
+      - [Bánh mì Hải Dương](specialty) là đặc sản tại đâu?
+      - [Bánh mì Hội An](specialty) là đặc sản ở đâu?
+      - [Bánh mì Long An](specialty) là đặc sản tại đâu?
+      - [Bánh mì Lào Cai](specialty) là đặc sản ở đâu?
+      - [Bánh mì Lạng Sơn](specialty) là đặc sản tại đâu?
+      - [Bánh mì Nam Định](specialty) là đặc sản ở đâu?
+      - [Bánh mì Nha Trang](specialty) là đặc sản tại đâu?
+      - [Bánh mì Ninh Thuận](specialty) là đặc sản ở đâu?
+      - [Bánh mì Phan Thiết](specialty) là đặc sản tại đâu?
+      - [Bánh mì Phú Quốc](specialty) là đặc sản ở đâu?
+      - [Bánh mì Phú Thọ](specialty) là đặc sản tại đâu?
+      - [Bánh mì Quảng Bình](specialty) là đặc sản ở đâu?
+      - [Bánh mì Quảng Ngãi](specialty) là đặc sản tại đâu?
+      - [Bánh mì Quảng Ninh](specialty) là đặc sản ở đâu?
+      - [Bánh mì Sài Gòn](specialty) là đặc sản tại đâu?
+      - [Bánh mì Sóc Trăng](specialty) là đặc sản ở đâu?
+      - [Bánh mì Thái Nguyên](specialty) là đặc sản tại đâu?
+      - [Bánh mì Tiền Giang](specialty) là đặc sản ở đâu?
+      - [Bánh mì Trà Vinh](specialty) là đặc sản tại đâu?
+      - [Bánh mì Tây Ninh](specialty) là đặc sản ở đâu?
+      - [Bánh mì Vĩnh Phúc](specialty) là đặc sản tại đâu?
+      - [Bánh mì Vũng Tàu](specialty) là đặc sản ở đâu?
+      - [Bánh mì Yên Bái](specialty) là đặc sản tại đâu?
+      - [Bánh mì bì](specialty) là đặc sản ở đâu?
+      - [Bánh mì bò kho](specialty) là đặc sản tại đâu?
+      - [Bánh mì cay Hải Phòng](specialty) là đặc sản ở đâu?
+      - [Bánh mì chả lụa](specialty) là đặc sản tại đâu?
+      - [Bánh mì chảo](specialty) là đặc sản ở đâu?
+      - [Bánh mì cá mòi](specialty) là đặc sản tại đâu?
+      - [Bánh mì heo quay](specialty) là đặc sản ở đâu?
+      - [Bánh mì pate](specialty) là đặc sản tại đâu?
+      - [Bánh mì thịt nướng](specialty) là đặc sản ở đâu?
+      - [Bánh mì trứng](specialty) là đặc sản tại đâu?
+      - [Bánh mì xíu mại](specialty) là đặc sản ở đâu?
+      - [Bánh mì xíu mại Đà Lạt](specialty) là đặc sản tại đâu?
+      - [Bánh mì Điện Biên](specialty) là đặc sản ở đâu?
+      - [Bánh mì Đà Lạt](specialty) là đặc sản tại đâu?
+      - [Bánh mì Đà Nẵng](specialty) là đặc sản ở đâu?
+      - [Bánh mì Đồng Nai](specialty) là đặc sản tại đâu?
+      - [Bánh mì Đồng Tháp](specialty) là đặc sản ở đâu?
+      - [Bánh mì ốp la](specialty) là đặc sản tại đâu?
+      - [Bánh mướt Nghệ An](specialty) là đặc sản ở đâu?
+      - [Bánh ngô Hà Giang](specialty) là đặc sản tại đâu?
+      - [Bánh ngô Yên Bái](specialty) là đặc sản ở đâu?
+      - [Bánh ngô Điện Biên](specialty) là đặc sản tại đâu?
+      - [Bánh nhãn Nam Định](specialty) là đặc sản ở đâu?
+      - [Bánh nướng cổ truyền](specialty) là đặc sản tại đâu?
+      - [Bánh nậm](specialty) là đặc sản ở đâu?
+      - [Bánh phu thê](specialty) là đặc sản tại đâu?
+      - [Bánh pía Sóc Trăng](specialty) là đặc sản ở đâu?
+      - [Bánh ram ít](specialty) là đặc sản tại đâu?
+      - [Bánh rán](specialty) là đặc sản ở đâu?
+      - [Bánh rán Bắc Giang](specialty) là đặc sản tại đâu?
+      - [Bánh rán Hải Dương](specialty) là đặc sản ở đâu?
+      - [Bánh rán Nam Định](specialty) là đặc sản tại đâu?
+      - [Bánh rán Phú Thọ](specialty) là đặc sản ở đâu?
+      - [Bánh rán Thái Nguyên](specialty) là đặc sản tại đâu?
+      - [Bánh rán Vĩnh Phúc](specialty) là đặc sản ở đâu?
+      - [Bánh răng bừa](specialty) là đặc sản tại đâu?
+      - [Bánh răng bừa Hưng Yên](specialty) là đặc sản ở đâu?
+      - [Bánh tráng cuốn thịt](specialty) là đặc sản tại đâu?
+      - [Bánh tráng cuốn thịt heo](specialty) là đặc sản ở đâu?
+      - [Bánh tráng cuốn thịt heo Đà Nẵng](specialty) là đặc sản tại đâu?
+      - [Bánh tráng nước dừa](specialty) là đặc sản ở đâu?
+      - [Bánh tráng nướng](specialty) là đặc sản tại đâu?
+      - [Bánh tráng nướng Đà Lạt](specialty) là đặc sản ở đâu?
+      - [Bánh tráng phơi sương](specialty) là đặc sản tại đâu?
+      - [Bánh tráng phơi sương Long Khánh](specialty) là đặc sản ở đâu?
+      - [Bánh tráng trộn](specialty) là đặc sản tại đâu?
+      - [Bánh trứng kiến Cao Bằng](specialty) là đặc sản ở đâu?
+      - [Bánh trứng kiến Lạng Sơn](specialty) là đặc sản tại đâu?
+      - [Bánh tét Cần Thơ](specialty) là đặc sản ở đâu?
+      - [Bánh tét Trà Cuôn](specialty) là đặc sản tại đâu?
+      - [Bánh tét lá cẩm](specialty) là đặc sản ở đâu?
+      - [Bánh tôm Hồ Tây](specialty) là đặc sản tại đâu?
+      - [Bánh tằm bì](specialty) là đặc sản ở đâu?
+      - [Bánh tẻ](specialty) là đặc sản tại đâu?
+      - [Bánh xèo Cần Thơ](specialty) là đặc sản ở đâu?
+      - [Bánh xèo Quảng Bình](specialty) là đặc sản tại đâu?
+      - [Bánh xèo củ hủ dừa](specialty) là đặc sản ở đâu?
+      - [Bánh xèo hải sản](specialty) là đặc sản tại đâu?
+      - [Bánh xèo miền Nam](specialty) là đặc sản ở đâu?
+      - [Bánh xèo miền Tây](specialty) là đặc sản tại đâu?
+      - [Bánh xèo tôm nhảy](specialty) là đặc sản ở đâu?
+      - [Bánh xèo Đà Nẵng](specialty) là đặc sản tại đâu?
+      - [Bánh xèo ốc gạo](specialty) là đặc sản ở đâu?
+      - [Bánh ít lá gai](specialty) là đặc sản tại đâu?
+      - [Bánh ít trần](specialty) là đặc sản ở đâu?
+      - [Bánh đa Kế](specialty) là đặc sản tại đâu?
+      - [Bánh đa Kế Bắc Giang](specialty) là đặc sản ở đâu?
+      - [Bánh đa Nghệ An](specialty) là đặc sản tại đâu?
+      - [Bánh đa cua](specialty) là đặc sản ở đâu?
+      - [Bánh đa cua Hải Dương](specialty) là đặc sản tại đâu?
+      - [Bánh đa cua Hải Phòng](specialty) là đặc sản ở đâu?
+      - [Bánh đa nem](specialty) là đặc sản tại đâu?
+      - [Bánh đa nem Bắc Giang](specialty) là đặc sản ở đâu?
+      - [Bánh đúc](specialty) là đặc sản tại đâu?
+      - [Bánh đúc Bắc Giang](specialty) là đặc sản ở đâu?
+      - [Bánh đúc Hải Dương](specialty) là đặc sản tại đâu?
+      - [Bánh đúc Nam Định](specialty) là đặc sản ở đâu?
+      - [Bánh đúc Phú Thọ](specialty) là đặc sản tại đâu?
+      - [Bánh đúc Thái Nguyên](specialty) là đặc sản ở đâu?
+      - [Bánh đúc Vĩnh Phúc](specialty) là đặc sản tại đâu?
+      - [Bánh đập Hội An](specialty) là đặc sản ở đâu?
+      - [Bánh đậu xanh Hải Dương](specialty) là đặc sản tại đâu?
+      - [Bánh ướt lòng gà](specialty) là đặc sản ở đâu?
+      - [Bánh ướt lòng gà Quảng Ngãi](specialty) là đặc sản tại đâu?
+      - [Bãi Sau](specialty) là đặc sản ở đâu?
+      - [Bãi biển Mũi Né](specialty) là đặc sản tại đâu?
+      - [Bãi biển Ninh Chữ](specialty) là đặc sản ở đâu?
+      - [Bãi biển Vũng Tàu](specialty) là đặc sản tại đâu?
+      - [Bò một nắng muối kiến vàng](specialty) là đặc sản ở đâu?
+      - [Bún Chả](specialty) là đặc sản tại đâu?
+      - [Bún bò Huế](specialty) là đặc sản ở đâu?
+      - [Bún bò Huế (Quảng Bình)](specialty) là đặc sản tại đâu?
+      - [Bún bò cay](specialty) là đặc sản ở đâu?
+      - [Bún bò cay Đà Nẵng](specialty) là đặc sản tại đâu?
+      - [Bún chả cá](specialty) là đặc sản ở đâu?
+      - [Bún chả cá Nha Trang](specialty) là đặc sản tại đâu?
+      - [Bún chả cá Quy Nhơn](specialty) là đặc sản ở đâu?
+      - [Bún cua (bún mắm cua)](specialty) là đặc sản tại đâu?
+      - [Bún cá Châu Đốc](specialty) là đặc sản ở đâu?
+      - [Bún cá rô đồng](specialty) là đặc sản tại đâu?
+      - [Bún hến Mai Xá](specialty) là đặc sản ở đâu?
+      - [Bún kèn Rạch Giá](specialty) là đặc sản tại đâu?
+      - [Bún mắm](specialty) là đặc sản ở đâu?
+      - [Bún mọc](specialty) là đặc sản tại đâu?
+      - [Bún mọc Ninh Bình](specialty) là đặc sản ở đâu?
+      - [Bún nước lèo](specialty) là đặc sản tại đâu?
+      - [Bún nước lèo Sóc Trăng](specialty) là đặc sản ở đâu?
+      - [Bún nước lèo Trà Vinh](specialty) là đặc sản tại đâu?
+      - [Bún quậy Kiên Giang](specialty) là đặc sản ở đâu?
+      - [Bún riêu](specialty) là đặc sản tại đâu?
+      - [Bún riêu Cần Thơ](specialty) là đặc sản ở đâu?
+      - [Bún riêu Quảng Bình](specialty) là đặc sản tại đâu?
+      - [Bún sứa](specialty) là đặc sản ở đâu?
+      - [Bún sứa Nha Trang](specialty) là đặc sản tại đâu?
+      - [Bún sứa Phan Thiết](specialty) là đặc sản ở đâu?
+      - [Bún sứa Quảng Ngãi](specialty) là đặc sản tại đâu?
+      - [Bún thang](specialty) là đặc sản ở đâu?
+      - [Bún tôm Hải Phòng](specialty) là đặc sản tại đâu?
+      - [Bún đậu mắm tôm](specialty) là đặc sản ở đâu?
+      - [Bún ốc](specialty) là đặc sản tại đâu?
+      - [Bưởi Năm Roi](specialty) là đặc sản ở đâu?
+      - [Bưởi Phúc Trạch](specialty) là đặc sản tại đâu?
+      - [Bưởi đỏ Tân Lạc](specialty) là đặc sản ở đâu?
+      - [Bản Lác - Mai Châu](specialty) là đặc sản tại đâu?
+      - [Bến Ninh Kiều](specialty) là đặc sản ở đâu?
+      - [Cam Cao Phong](specialty) là đặc sản tại đâu?
+      - [Cam Khe Mây](specialty) là đặc sản ở đâu?
+      - [Cam sành Hàm Yên](specialty) là đặc sản tại đâu?
+      - [Canh chua cá chốt](specialty) là đặc sản ở đâu?
+      - [Canh chua cá rô](specialty) là đặc sản tại đâu?
+      - [Canh cá Quỳnh Côi](specialty) là đặc sản ở đâu?
+      - [Canh cá rô đồng](specialty) là đặc sản tại đâu?
+      - [Cao lầu Hội An](specialty) là đặc sản ở đâu?
+      - [Cao nguyên đá Đồng Văn](specialty) là đặc sản tại đâu?
+      - [Chuối Ngự Đại Hoàng](specialty) là đặc sản ở đâu?
+      - [Chuối đập nướng](specialty) là đặc sản tại đâu?
+      - [Cháo canh Quảng Bình](specialty) là đặc sản ở đâu?
+      - [Cháo cá lóc Quảng Trị](specialty) là đặc sản tại đâu?
+      - [Cháo hàu](specialty) là đặc sản ở đâu?
+      - [Cháo lươn Nghệ An](specialty) là đặc sản tại đâu?
+      - [Cháo lươn Thanh Hóa](specialty) là đặc sản ở đâu?
+      - [Cháo tôm](specialty) là đặc sản tại đâu?
+      - [Cháo ám](specialty) là đặc sản ở đâu?
+      - [Chè Bắc Giang](specialty) là đặc sản tại đâu?
+      - [Chè Huế](specialty) là đặc sản ở đâu?
+      - [Chè Hải Dương](specialty) là đặc sản tại đâu?
+      - [Chè Liên](specialty) là đặc sản ở đâu?
+      - [Chè Mộc Châu](specialty) là đặc sản tại đâu?
+      - [Chè Mỹ Khánh](specialty) là đặc sản ở đâu?
+      - [Chè Nam Định](specialty) là đặc sản tại đâu?
+      - [Chè Nha Trang](specialty) là đặc sản ở đâu?
+      - [Chè Phú Thọ](specialty) là đặc sản tại đâu?
+      - [Chè Shan tuyết Hà Giang](specialty) là đặc sản ở đâu?
+      - [Chè Shan tuyết Na Hang](specialty) là đặc sản tại đâu?
+      - [Chè Shan tuyết Yên Bái](specialty) là đặc sản ở đâu?
+      - [Chè Shan tuyết Điện Biên](specialty) là đặc sản tại đâu?
+      - [Chè Thái Nguyên](specialty) là đặc sản ở đâu?
+      - [Chè Tân Cương Thái Nguyên](specialty) là đặc sản tại đâu?
+      - [Chè Vĩnh Phúc](specialty) là đặc sản ở đâu?
+      - [Chè bưởi](specialty) là đặc sản tại đâu?
+      - [Chè lam](specialty) là đặc sản ở đâu?
+      - [Chè shan tuyết](specialty) là đặc sản tại đâu?
+      - [Chè sầu riêng](specialty) là đặc sản ở đâu?
+      - [Chè Đà Lạt](specialty) là đặc sản tại đâu?
+      - [Chả Cá Lã Vọng](specialty) là đặc sản ở đâu?
+      - [Chả cá Hải Phòng](specialty) là đặc sản tại đâu?
+      - [Chả cá Phú Quốc](specialty) là đặc sản ở đâu?
+      - [Chả gà Tiểu Quan](specialty) là đặc sản tại đâu?
+      - [Chả mực Hạ Long](specialty) là đặc sản ở đâu?
+      - [Chả mực Tràng An](specialty) là đặc sản tại đâu?
+      - [Chả ram tôm đất](specialty) là đặc sản ở đâu?
+      - [Chả tôm](specialty) là đặc sản tại đâu?
+      - [Chẩm chéo](specialty) là đặc sản ở đâu?
+      - [Cua Cà Mau](specialty) là đặc sản tại đâu?
+      - [Cua gạch Bạc Liêu](specialty) là đặc sản ở đâu?
+      - [Cà phê Buôn Ma Thuột](specialty) là đặc sản tại đâu?
+      - [Cà phê Gia Lai](specialty) là đặc sản ở đâu?
+      - [Cà phê Kon Tum](specialty) là đặc sản tại đâu?
+      - [Cà phê Đắk Nông](specialty) là đặc sản ở đâu?
+      - [Cá gỏi kiến vàng](specialty) là đặc sản tại đâu?
+      - [Cá hấp](specialty) là đặc sản ở đâu?
+      - [Cá hồi cá tầm](specialty) là đặc sản tại đâu?
+      - [Cá hồi cá tầm Lai Châu](specialty) là đặc sản ở đâu?
+      - [Cá kho Nhân Hậu](specialty) là đặc sản tại đâu?
+      - [Cá kho Quảng Bình](specialty) là đặc sản ở đâu?
+      - [Cá kèo nướng](specialty) là đặc sản tại đâu?
+      - [Cá lóc nướng trui](specialty) là đặc sản ở đâu?
+      - [Cá nướng Pác Ngòi](specialty) là đặc sản tại đâu?
+      - [Cá nướng trui](specialty) là đặc sản ở đâu?
+      - [Cá suối nướng](specialty) là đặc sản tại đâu?
+      - [Cá sòng nướng](specialty) là đặc sản ở đâu?
+      - [Cá sông Đà](specialty) là đặc sản tại đâu?
+      - [Cá tai tượng chiên xù](specialty) là đặc sản ở đâu?
+      - [Cá thác lác rút xương](specialty) là đặc sản tại đâu?
+      - [Cá thòi lòi nướng](specialty) là đặc sản ở đâu?
+      - [Cơm cháy Ninh Bình](specialty) là đặc sản tại đâu?
+      - [Cơm hến](specialty) là đặc sản ở đâu?
+      - [Cơm lam](specialty) là đặc sản tại đâu?
+      - [Cơm lam Bình Phước](specialty) là đặc sản ở đâu?
+      - [Cơm lam Hà Giang](specialty) là đặc sản tại đâu?
+      - [Cơm lam Hòa Bình](specialty) là đặc sản ở đâu?
+      - [Cơm lam Kon Tum](specialty) là đặc sản tại đâu?
+      - [Cơm lam Yên Bái](specialty) là đặc sản ở đâu?
+      - [Cơm lam Điện Biên](specialty) là đặc sản tại đâu?
+      - [Cơm tấm Sài Gòn](specialty) là đặc sản ở đâu?
+      - [Cầu Rồng](specialty) là đặc sản tại đâu?
+      - [Cốm làng Vòng](specialty) là đặc sản ở đâu?
+      - [Dâu tây Đà Lạt](specialty) là đặc sản tại đâu?
+      - [Dê núi Ninh Bình](specialty) là đặc sản ở đâu?
+      - [Dưa lưới Đức Hòa](specialty) là đặc sản tại đâu?
+      - [Dừa sáp](specialty) là đặc sản ở đâu?
+      - [Eo Gió](specialty) là đặc sản tại đâu?
+      - [Gà nướng mật ong](specialty) là đặc sản tại đâu?
+      - [Gà ta nướng lu](specialty) là đặc sản ở đâu?
+      - [Gà thả vườn](specialty) là đặc sản tại đâu?
+      - [Gà Đông Tảo](specialty) là đặc sản ở đâu?
+      - [Gà đen Sa Pa](specialty) là đặc sản tại đâu?
+      - [Gạo nàng thơm Chợ Đào](specialty) là đặc sản ở đâu?
+      - [Gỏi cuốn](specialty) là đặc sản tại đâu?
+      - [Gỏi cá Kiên Giang](specialty) là đặc sản ở đâu?
+      - [Gỏi cá Nam Ô](specialty) là đặc sản tại đâu?
+      - [Gỏi cá mai](specialty) là đặc sản ở đâu?
+      - [Gỏi cá nhệch](specialty) là đặc sản tại đâu?
+      - [Gỏi cá rô đồng](specialty) là đặc sản ở đâu?
+      - [Gỏi lá](specialty) là đặc sản tại đâu?
+      - [Gỏi nhệch](specialty) là đặc sản ở đâu?
+      - [Hang Câu](specialty) là đặc sản tại đâu?
+      - [Heo Măng Đen](specialty) là đặc sản ở đâu?
+      - [Hạt mắc ca](specialty) là đặc sản tại đâu?
+      - [Hạt điều Bình Phước](specialty) là đặc sản ở đâu?
+      - [Hải sâm](specialty) là đặc sản tại đâu?
+      - [Hải sản Cát Bà](specialty) là đặc sản ở đâu?
+      - [Hải sản Phú Quốc](specialty) là đặc sản tại đâu?
+      - [Hải sản Quy Nhơn](specialty) là đặc sản ở đâu?
+      - [Hải sản Quảng Bình](specialty) là đặc sản tại đâu?
+      - [Hải sản tươi sống](specialty) là đặc sản ở đâu?
+      - [Hồ tiêu Gia Lai](specialty) là đặc sản tại đâu?
+      - [Hồng không hạt](specialty) là đặc sản ở đâu?
+      - [Hủ tiếu](specialty) là đặc sản ở đâu?
+      - [Hủ tiếu An Giang](specialty) là đặc sản tại đâu?
+      - [Hủ tiếu Mỹ Tho](specialty) là đặc sản ở đâu?
+      - [Hủ tiếu Nam Vang](specialty) là đặc sản tại đâu?
+      - [Hủ tiếu Sa Đéc](specialty) là đặc sản ở đâu?
+      - [Hủ tiếu gạo Vĩnh Long](specialty) là đặc sản tại đâu?
+      - [Khoai lang Bình Tân](specialty) là đặc sản ở đâu?
+      - [Khâu nhục Bắc Kạn](specialty) là đặc sản tại đâu?
+      - [Kẹo cu đơ](specialty) là đặc sản ở đâu?
+      - [Kẹo dừa](specialty) là đặc sản tại đâu?
+      - [Kẽm Trống](specialty) là đặc sản ở đâu?
+      - [Lòng sả Quảng Trị](specialty) là đặc sản ở đâu?
+      - [Lăng Tự Đức](specialty) là đặc sản tại đâu?
+      - [Lạp xưởng hun khói](specialty) là đặc sản ở đâu?
+      - [Lẩu cua đồng](specialty) là đặc sản tại đâu?
+      - [Lẩu gà lá é](specialty) là đặc sản ở đâu?
+      - [Lẩu mắm](specialty) là đặc sản tại đâu?
+      - [Lẩu mắm An Giang](specialty) là đặc sản ở đâu?
+      - [Lẩu mắm Bạc Liêu](specialty) là đặc sản tại đâu?
+      - [Lẩu mắm Cần Thơ](specialty) là đặc sản ở đâu?
+      - [Lẩu mắm Hậu Giang](specialty) là đặc sản tại đâu?
+      - [Lẩu mắm U Minh](specialty) là đặc sản ở đâu?
+      - [Lợn Mường](specialty) là đặc sản tại đâu?
+      - [Lợn cắp nách](specialty) là đặc sản ở đâu?
+      - [Lợn đen Tuyên Quang](specialty) là đặc sản tại đâu?
+      - [Miến dong Na Rì](specialty) là đặc sản ở đâu?
+      - [Muối ba khía](specialty) là đặc sản tại đâu?
+      - [Mèn mén Hà Giang](specialty) là đặc sản ở đâu?
+      - [Mèn mén Yên Bái](specialty) là đặc sản tại đâu?
+      - [Mèn mén Điện Biên](specialty) là đặc sản ở đâu?
+      - [Măng chua Cao Bằng](specialty) là đặc sản tại đâu?
+      - [Măng chua Lạng Sơn](specialty) là đặc sản ở đâu?
+      - [Măng khô](specialty) là đặc sản tại đâu?
+      - [Măng lay](specialty) là đặc sản ở đâu?
+      - [Măng rừng Tuyên Quang](specialty) là đặc sản tại đâu?
+      - [Măng rừng xào](specialty) là đặc sản ở đâu?
+      - [Măng Đen](specialty) là đặc sản tại đâu?
+      - [Măng đắng](specialty) là đặc sản ở đâu?
+      - [Măng đắng xào](specialty) là đặc sản tại đâu?
+      - [Mũi Cà Mau](specialty) là đặc sản ở đâu?
+      - [Mũi Né](specialty) là đặc sản tại đâu?
+      - [Mận hậu](specialty) là đặc sản ở đâu?
+      - [Mật ong Cao Bằng](specialty) là đặc sản tại đâu?
+      - [Mật ong Hà Giang](specialty) là đặc sản ở đâu?
+      - [Mật ong Lạng Sơn](specialty) là đặc sản tại đâu?
+      - [Mật ong Yên Bái](specialty) là đặc sản ở đâu?
+      - [Mật ong rừng](specialty) là đặc sản tại đâu?
+      - [Mật ong rừng tràm](specialty) là đặc sản ở đâu?
+      - [Mật ong Điện Biên](specialty) là đặc sản tại đâu?
+      - [Mắc khén](specialty) là đặc sản ở đâu?
+      - [Mắm bò hóc](specialty) là đặc sản tại đâu?
+      - [Mắm cáy Bình Lục](specialty) là đặc sản ở đâu?
+      - [Mắm nêm Phú Yên](specialty) là đặc sản tại đâu?
+      - [Mắm ruốc Cần Đước](specialty) là đặc sản ở đâu?
+      - [Mắm tép](specialty) là đặc sản tại đâu?
+      - [Mắm tép Cầu Quan](specialty) là đặc sản ở đâu?
+      - [Mắm tép Nghệ An](specialty) là đặc sản tại đâu?
+      - [Mắm tôm chua Huế](specialty) là đặc sản ở đâu?
+      - [Mứt Đà Lạt](specialty) là đặc sản tại đâu?
+      - [Mực nhảy Thiên Cầm](specialty) là đặc sản ở đâu?
+      - [Mỳ Quảng](specialty) là đặc sản tại đâu?
+      - [Nem Bùi](specialty) là đặc sản tại đâu?
+      - [Nem Ninh Hòa](specialty) là đặc sản ở đâu?
+      - [Nem chua Quảng Bình](specialty) là đặc sản tại đâu?
+      - [Nem chua Thanh Hóa](specialty) là đặc sản ở đâu?
+      - [Nem chua Yên Mô](specialty) là đặc sản tại đâu?
+      - [Nem cua bể](specialty) là đặc sản ở đâu?
+      - [Nem lụi](specialty) là đặc sản tại đâu?
+      - [Nem lụi Huế](specialty) là đặc sản ở đâu?
+      - [Nem nướng](specialty) là đặc sản tại đâu?
+      - [Nem nướng Bình Định](specialty) là đặc sản ở đâu?
+      - [Nem nướng Bắc Giang](specialty) là đặc sản tại đâu?
+      - [Nem nướng Cái Răng](specialty) là đặc sản ở đâu?
+      - [Nem nướng Hải Dương](specialty) là đặc sản tại đâu?
+      - [Nem nướng Nam Định](specialty) là đặc sản ở đâu?
+      - [Nem nướng Nha Trang](specialty) là đặc sản tại đâu?
+      - [Nem nướng Phú Thọ](specialty) là đặc sản ở đâu?
+      - [Nem nướng Phú Yên](specialty) là đặc sản tại đâu?
+      - [Nem nướng Thái Nguyên](specialty) là đặc sản ở đâu?
+      - [Nem nướng Vĩnh Phúc](specialty) là đặc sản tại đâu?
+      - [Nem nướng Đà Lạt](specialty) là đặc sản ở đâu?
+      - [Nem rán (Chả giò)](specialty) là đặc sản tại đâu?
+      - [Nghêu xào Nghệ An](specialty) là đặc sản ở đâu?
+      - [Ngán biển](specialty) là đặc sản ở đâu?
+      - [Nhum nướng mỡ hành](specialty) là đặc sản tại đâu?
+      - [Nhãn lồng Hưng Yên](specialty) là đặc sản ở đâu?
+      - [Nậm pịa](specialty) là đặc sản ở đâu?
+      - [Nộm sứa Thái Thụy](specialty) là đặc sản tại đâu?
+      - [Phở Hà Nội](specialty) là đặc sản ở đâu?
+      - [Phở Nam Định](specialty) là đặc sản tại đâu?
+      - [Phở chua Cao Bằng](specialty) là đặc sản ở đâu?
+      - [Phở chua Lạng Sơn](specialty) là đặc sản tại đâu?
+      - [Phở cuốn](specialty) là đặc sản ở đâu?
+      - [Phở khô hai tô](specialty) là đặc sản tại đâu?
+      - [Phở xào](specialty) là đặc sản ở đâu?
+      - [Phủ Dầy](specialty) là đặc sản tại đâu?
+      - [Ram bánh mướt](specialty) là đặc sản ở đâu?
+      - [Rau bò khai](specialty) là đặc sản tại đâu?
+      - [Rau củ quả Đà Lạt](specialty) là đặc sản ở đâu?
+      - [Ruộng bậc thang Mù Cang Chải](specialty) là đặc sản tại đâu?
+      - [Rượu Kim Sơn](specialty) là đặc sản ở đâu?
+      - [Rượu cần](specialty) là đặc sản tại đâu?
+      - [Rượu cần Hòa Bình](specialty) là đặc sản ở đâu?
+      - [Rượu cần Kon Tum](specialty) là đặc sản tại đâu?
+      - [Rượu cần S'tiêng](specialty) là đặc sản ở đâu?
+      - [Rượu dừa](specialty) là đặc sản tại đâu?
+      - [Rượu làng Vân](specialty) là đặc sản ở đâu?
+      - [Rượu ngô Cao Bằng](specialty) là đặc sản tại đâu?
+      - [Rượu ngô Hà Giang](specialty) là đặc sản ở đâu?
+      - [Rượu ngô Lạng Sơn](specialty) là đặc sản tại đâu?
+      - [Rượu ngô Sìn Hồ](specialty) là đặc sản ở đâu?
+      - [Rượu nếp Phú Thọ](specialty) là đặc sản tại đâu?
+      - [Rượu nếp Vĩnh Phúc](specialty) là đặc sản ở đâu?
+      - [Rượu nếp Yên Bái](specialty) là đặc sản tại đâu?
+      - [Rượu nếp Điện Biên](specialty) là đặc sản ở đâu?
+      - [Rượu sim](specialty) là đặc sản tại đâu?
+      - [Rượu sim Phú Quốc](specialty) là đặc sản ở đâu?
+      - [Rượu táo mèo](specialty) là đặc sản tại đâu?
+      - [Rượu táo mèo Sa Pa](specialty) là đặc sản ở đâu?
+      - [Rượu đế Gò Đen](specialty) là đặc sản tại đâu?
+      - [Sam biển](specialty) là đặc sản ở đâu?
+      - [Sam biển Hải Phòng](specialty) là đặc sản tại đâu?
+      - [Sen Nễ Châu](specialty) là đặc sản ở đâu?
+      - [Suối khoáng Mỹ Lâm](specialty) là đặc sản tại đâu?
+      - [Sá sùng](specialty) là đặc sản ở đâu?
+      - [Sá sùng Hạ Long](specialty) là đặc sản tại đâu?
+      - [Sò huyết Cô Tô](specialty) là đặc sản ở đâu?
+      - [Sò huyết Vân Phong](specialty) là đặc sản tại đâu?
+      - [Sóc Bom Bo](specialty) là đặc sản ở đâu?
+      - [Súp lươn Đà Lạt](specialty) là đặc sản tại đâu?
+      - [Thịt lợn cắp nách Sa Pa](specialty) là đặc sản tại đâu?
+      - [Thịt nai nướng](specialty) là đặc sản ở đâu?
+      - [Thịt trâu gác bếp](specialty) là đặc sản tại đâu?
+      - [Thịt trâu gác bếp Điện Biên](specialty) là đặc sản ở đâu?
+      - [Tiêu Cùa](specialty) là đặc sản tại đâu?
+      - [Tiêu Đắk Nông](specialty) là đặc sản ở đâu?
+      - [Trà Shan tuyết Tả Lèng](specialty) là đặc sản tại đâu?
+      - [Tràng An](specialty) là đặc sản ở đâu?
+      - [Tré Huế](specialty) là đặc sản tại đâu?
+      - [Tôm càng xanh](specialty) là đặc sản ở đâu?
+      - [Tôm khô Bạc Liêu](specialty) là đặc sản tại đâu?
+      - [Tôm sú Cà Mau](specialty) là đặc sản ở đâu?
+      - [Tương Bần](specialty) là đặc sản tại đâu?
+      - [Ve sầu sữa chiên](specialty) là đặc sản ở đâu?
+      - [Vải thiều Bắc Giang](specialty) là đặc sản ở đâu?
+      - [Vịt bầu Minh Hương](specialty) là đặc sản ở đâu?
+      - [Vịt quay Cao Bằng](specialty) là đặc sản tại đâu?
+      - [Vịt quay Lạng Sơn](specialty) là đặc sản ở đâu?
+      - [Xôi bảy màu](specialty) là đặc sản tại đâu?
+      - [Xôi ngũ sắc](specialty) là đặc sản ở đâu?
+      - [Xôi nhung](specialty) là đặc sản tại đâu?
+      - [Xôi nếp nương Yên Bái](specialty) là đặc sản ở đâu?
+      - [Xôi xéo](specialty) là đặc sản tại đâu?
+      - [Đuông dừa](specialty) là đặc sản tại đâu?
+      - [Đọt mây xào](specialty) là đặc sản tại đâu?
+      - [Ốc](specialty) là đặc sản ở đâu?
+      - [Ốc núi Tam Cốc](specialty) là đặc sản tại đâu?
+      - [Ốc nướng tiêu](specialty) là đặc sản ở đâu?
+      - [Ổi Bo](specialty) là đặc sản tại đâu?
+
+  - lookup: specialty
+    examples: |
+      - Phở Hà Nội
+      - Bún chả
+      - Bánh cuốn
+      - Chả cá Lã Vọng
+      - Bánh tôm Hồ Tây
+      - Nhã giòn Hồ Tây
+      - Bánh mì Sài Gòn
+      - Cơm tấm Sài Gòn
+      - Bánh xèo miền Nam
+      - Mỳ Quảng
+      - Bánh tráng cuốn thịt heo
+      - Bún bò Huế
+      - Nem lụi Huế
+      - Bánh bèo Huế
+      - Bánh khoái Huế
+      - Chè Huế
+      - Thắng cố
+      - Gà đen Sa Pa
+      - Thịt lợn cắp nách Sa Pa
+      - Rượu táo mèo Sa Pa
+      - Chả mực Hạ Long
+      - Sá sùng Hạ Long
+      - Nem Ninh Hòa
+      - Cơm cháy Ninh Bình
+      - Dê núi Ninh Bình
+      - Bánh cuốn Kinh Bắc
+      - Bánh đa cua Hải Phòng
+      - Nem chua Thanh Hóa
+      - Cháo lươn Nghệ An
+      - Bánh hỏi lòng heo Tuy Hòa
+      - Bún chả cá Quy Nhơn
+      - Cà phê Buôn Ma Thuột
+      - Lẩu gà lá é
+      - Chợ nổi Cái Răng đặc sản
+      - Bún cá Châu Đốc
+      - Bún kèn Rạch Giá
+      - Bánh tét Cần Thơ
+      - Bánh xèo Cần Thơ
+      - Bún nước lèo Sóc Trăng
+      - Bánh pía Sóc Trăng
+      - Bún bò cay Đà Nẵng
+      - Bánh tráng cuốn thịt heo Đà Nẵng
+      - Bánh căn Đà Lạt
+      - Bánh mì xíu mại Đà Lạt
+      - Dâu tây Đà Lạt
+      - Atiso Đà Lạt
+      - Bánh tráng nướng Đà Lạt
+      - Bánh ướt lòng gà Quảng Ngãi
+      - Bún sứa Quảng Ngãi
+      - Bánh ít lá gai Bình Định
+      - Bún sứa Phan Thiết
+      - Bánh canh chả cá Nha Trang
+      - Nem nướng Nha Trang
+      - Bún sứa Nha Trang
+      - Bánh căn Phan Rang
+      - Bánh tráng phơi sương Long Khánh
+      - Bánh tráng trộn
+      - Bánh tráng nướng
+      - Bánh canh cá lóc
+      - Bánh hỏi
+      - Bánh bèo
+      - Bánh bột lọc
+      - Bánh nậm
+      - Bánh ram ít
+      - Chè bắp
+      - Chè đậu xanh
+      - Chè thái
+      - Bánh cuốn Thanh Trì
+      - Phở cuốn
+      - Phở xào
+      - Bún đậu mắm tôm
+      - Bún riêu
+      - Bún ốc
+      - Bún thang
+      - Bún mắm
+      - Bún mọc
+      - Bánh đúc
+      - Bánh gio
+      - Bánh gai
+      - Bánh chưng
+      - Bánh giầy
+      - Bánh rán
+      - Bánh đa nem
+      - Bánh canh giò heo
+      - Bánh canh cua
+      - Bánh canh tôm
+      - Bánh canh Nam Vang
+      - Hủ tiếu
+      - Hủ tiếu Nam Vang
+      - Hủ tiếu Sa Đéc
+      - Hủ tiếu Mỹ Tho
+      - Cao lầu Hội An
+      - Bánh đập Hội An
+      - Bánh bao
+      - Bánh bao xá xíu
+      - Bánh mì thịt nướng
+      - Bánh mì chảo
+      - Bánh mì ốp la
+      - Bánh mì pate
+      - Bánh mì bì
+      - Bánh mì chả lụa
+      - Bánh mì heo quay
+      - Bánh mì bò kho
+      - Bánh mì cá mòi
+      - Bánh mì trứng
+      - Bánh mì Sài Gòn
+      - Bánh mì Hà Nội
+      - Bánh mì Đà Lạt
+      - Bánh mì Phan Thiết
+      - Bánh mì Nha Trang
+      - Bánh mì Huế
+      - Bánh mì Đà Nẵng
+      - Bánh mì Hội An
+      - Bánh mì Quy Nhơn
+      - Bánh mì Cần Thơ
+      - Bánh mì Phú Quốc
+      - Bánh mì Vũng Tàu
+      - Bánh mì An Giang
+      - Bánh mì Kiên Giang
+      - Bánh mì Bạc Liêu
+      - Bánh mì Cà Mau
+      - Bánh mì Sóc Trăng
+      - Bánh mì Bến Tre
+      - Bánh mì Tiền Giang
+      - Bánh mì Long An
+      - Bánh mì Tây Ninh
+      - Bánh mì Đồng Nai
+      - Bánh mì Bình Dương
+      - Bánh mì Trà Vinh
+      - Bánh mì Hải Phòng
+      - Bánh mì Quảng Ninh
+      - Bánh mì Lào Cai
+      - Bánh mì Hà Giang
+      - Bánh mì Yên Bái
+      - Bánh mì Sơn La
+      - Bánh mì Điện Biên
+      - Bánh mì Lai Châu
+      - Bánh mì Cao Bằng
+      - Bánh mì Lạng Sơn
+      - Bánh mì Bắc Giang
+      - Bánh mì Thái Nguyên
+      - Bánh mì Tuyên Quang
+      - Bánh mì Phú Thọ
+      - Bánh mì Vĩnh Phúc
+      - Bánh mì Bắc Ninh
+      - Bánh mì Hải Dương
+      - Bánh mì Hưng Yên
+      - Bánh mì Hà Nam
+      - Bánh mì Nam Định
+      - Bánh mì Thái Bình
+      - Bánh mì Ninh Bình
+      - Bánh mì Thanh Hóa
+      - Bánh mì Nghệ An
+      - Bánh mì Hà Tĩnh
+      - Bánh mì Quảng Bình
+      - Bánh mì Quảng Trị
+      - Bánh mì Thừa Thiên Huế
+      - Bánh mì Quảng Nam
+      - Bánh mì Quảng Ngãi
+      - Bánh mì Bình Định
+      - Bánh mì Phú Yên
+      - Bánh mì Khánh Hòa
+      - Bánh mì Ninh Thuận
+      - Bánh mì Bình Thuận
+      - Bánh mì Kon Tum
+      - Bánh mì Gia Lai
+      - Bánh mì Đắk Lắk
+      - Bánh mì Đắk Nông
+      - Bánh mì Lâm Đồng
+      - Bánh mì Bình Phước
+      - Bánh mì Bà Rịa - Vũng Tàu
+      - Bánh mì Đồng Tháp
+      - Bánh mì Hậu Giang
+      - Bánh mì Vĩnh Long
+      - Bánh mì Côn Đảo
+      - keo cu do
+      - nhan long Hung Yen
+      - tuong Ban
+      - ca kho Nhan Hau
+      - banh cay Thai Binh
+      - mien dong Na Ri
+      - tra Shan Tuyen Quang
+      - nam pia Son La
+      - ca phe Gia Lai
+      - goi la Kon Tum
+      - tieu Dak Nong
+      - hat dieu Binh Phuoc
+      - khoai lang Binh Tan
+      - khom Cau Duc
+      - banh cu cai Bac Lieu
+      - cua Ca Mau
+      - Kẹo cu đơ
+      - Nhãn lồng Hưng Yên
+      - Tương Bần
+      - Cá kho Nhân Hậu
+      - Bánh cáy
+      - Bánh gai Chiêm Hóa
+      - Miến dong Na Rì
+      - Trà Shan tuyết Tả Lèng
+      - Nậm pịa
+      - Cơm lam Hòa Bình
+      - Cà phê Gia Lai
+      - Gỏi lá Kon Tum
+      - Tiêu Đắk Nông
+      - Hạt điều Bình Phước
+      - Khoai lang Bình Tân
+      - Khóm Cầu Đúc
+      - Bánh củ cải Bạc Liêu
+      - Cua Cà Mau

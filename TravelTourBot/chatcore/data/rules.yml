@@ -1,0 +1,196 @@
+version: "3.1"
+
+rules:
+  # nlu_fallback là intent đặc biệt được tự động tạo bởi FallbackClassifier trong config.yml
+  # khi NLU không nhận diện được intent với confidence đủ cao
+  - rule: handle nlu fallback
+    steps:
+      - intent: nlu_fallback
+      - action: action_log_unknown_question
+
+  - rule: handle change mind
+    steps:
+      - intent: change_mind
+      - action: action_reset_context
+
+
+  - rule: list tours
+    steps:
+      - intent: ask_list_tours
+      - action: action_recommend_personalized_tour
+
+  - rule: ask top places by city
+    steps:
+      - intent: ask_top_places_city
+      - action: action_recommend_places_by_province
+
+  # Ngắt form
+  - rule: interrupt booking form for top places
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_top_places_city
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_places_by_province
+
+  - rule: interrupt booking form for place by theme
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_place_by_theme
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_suggest_places_by_theme
+
+  - rule: ask place address
+    steps:
+      - intent: ask_place_address
+      - action: action_get_place_address
+
+  - rule: interrupt booking form for place address
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_place_address
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_get_place_address
+
+  - rule: interrupt booking form for tour by place
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_tour_for_place
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_suggest_tour_for_place
+
+  - rule: interrupt booking form for general tour
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_tour_general
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_general_tour
+
+  - rule: interrupt booking form for personalized tour
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_personalized_tour
+
+  - rule: ask tour by budget
+    steps:
+      - intent: ask_tour_by_budget
+      - action: action_recommend_tour_by_budget
+
+  - rule: interrupt booking form for tour by budget
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_tour_by_budget
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_tour_by_budget
+
+  - rule: interrupt booking form for list tours
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_list_tours
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_personalized_tour
+
+  - rule: ask food specialty
+    steps:
+      - intent: ask_food_specialty
+      - action: action_recommend_specialties_by_province
+
+  - rule: interrupt booking form for food specialty
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_food_specialty
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_specialties_by_province
+
+  - rule: ask more tours
+    steps:
+      - intent: ask_more_tours
+      - action: action_recommend_personalized_tour
+
+  - rule: ask more food specialty
+    steps:
+      - intent: ask_more_food_specialty
+      - action: action_recommend_specialties_for_tour
+
+  - rule: ask food specialty of current tour
+    steps:
+      - intent: ask_food_specialty_of_current_tour
+      - action: action_recommend_specialties_for_tour
+
+  - rule: interrupt booking form for more tours
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_more_tours
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_personalized_tour
+
+  - rule: interrupt booking form for more food specialty
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_more_food_specialty
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_specialties_for_tour
+
+  - rule: interrupt booking form for food specialty of current tour
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_food_specialty_of_current_tour
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_recommend_specialties_for_tour
+
+  - rule: ask food address
+    steps:
+      - intent: ask_food_address
+      - action: action_get_specialty_address
+
+  - rule: interrupt booking form for food address
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_food_address
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: action_get_specialty_address
+
+  - rule: interrupt booking form for agency info
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_agency_info
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: utter_agency_info
+
+  - rule: interrupt booking form for promotion
+    condition:
+      - active_loop: booking_info_form
+    steps:
+      - intent: ask_promotion
+      - action: action_deactivate_loop
+      - active_loop: null
+      - action: utter_promotion

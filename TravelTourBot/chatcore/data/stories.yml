@@ -1,0 +1,763 @@
+version: "3.1"
+
+stories:
+  # Giữ 1 số stories tiêu biểu cho các intent đã có rule để tăng đa dạng training
+  - story: đề xuất tour chung
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+
+  - story: hỏi địa chỉ địa danh
+    steps:
+      - intent: ask_place_address
+      - action: action_get_place_address
+
+  - story: hỏi tour cho địa danh cụ thể
+    steps:
+      - intent: ask_tour_for_place
+      - action: action_suggest_tour_for_place
+
+  - story: hỏi đặc sản theo tỉnh
+    steps:
+      - intent: ask_food_specialty
+      - action: action_recommend_specialties_by_province
+
+  - story: đề xuất tour cá nhân hóa
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: cung cấp thông tin đại lý
+    steps:
+      - intent: ask_agency_info
+      - action: utter_agency_info
+
+  - story: hỏi khuyến mãi
+    steps:
+      - intent: ask_promotion
+      - action: utter_promotion
+
+  - story: chào và lưu tên rồi hỏi điểm đến
+    steps:
+      - intent: greet
+      - action: action_save_traveler_name
+      - action: utter_greet
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+
+  - story: điểm đến kèm ngân sách
+    steps:
+      - intent: provide_destination
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+
+  - story: điểm đến theo tháng đẹp
+    steps:
+      - intent: provide_travel_time
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+
+  - story: ngân sách trước rồi hỏi tour
+    steps:
+      - intent: provide_budget
+      - intent: ask_tour_general
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour rồi cung cấp ngân sách
+    steps:
+      - intent: ask_tour_general
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour theo tháng và ngân sách
+    steps:
+      - intent: ask_tour_personalized
+      - intent: provide_travel_time
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour rồi hỏi khuyến mãi
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: hỏi tour rồi từ chối gợi ý
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: deny
+      - action: utter_default
+
+  - story: đổi ý và reset ngữ cảnh
+    steps:
+      - intent: change_mind
+      - action: action_reset_context
+
+  - story: hỏi tour rồi xin thông tin đại lý
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: ask_agency_info
+      - action: utter_agency_info
+
+  - story: hỏi tour và tạm biệt
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: điểm đến rồi hỏi khuyến mãi
+    steps:
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+
+  - story: ngân sách rồi hỏi khuyến mãi
+    steps:
+      - intent: provide_budget
+      - intent: ask_promotion
+      - action: utter_promotion
+      # Bot tự động recommend tour sau khi trả lời promotion với ngân sách đã có
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour biển xuất phát tphcm
+    steps:
+      - intent: provide_destination
+      - intent: provide_budget
+      - intent: affirm
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour rồi cung cấp thông tin liên hệ
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: điền form trực tiếp
+    steps:
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: hỏi tour rồi đưa ra tháng cụ thể
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+
+  - story: xin thông tin đại lý trước rồi hỏi tour
+    steps:
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+
+  - story: hỏi tour rồi xác nhận đặt giữ chỗ
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: khách hỏi rồi tạm biệt sau gợi ý
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: hỏi tour theo ngân sách và điểm đến cụ thể
+    steps:
+      - intent: provide_destination
+      - intent: provide_budget
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+
+  - story: chào ngân sách rồi hỏi tour
+    steps:
+      - intent: greet
+      - intent: provide_budget
+      - intent: ask_tour_general
+      - action: action_recommend_personalized_tour
+
+  - story: chào và cung cấp điểm đến
+    steps:
+      - intent: greet
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+
+  - story: chào hỏi khuyến mãi rồi hỏi tour cá nhân
+    steps:
+      - intent: greet
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+
+  - story: thời gian trước rồi hỏi tour cá nhân
+    steps:
+      - intent: provide_travel_time
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi đại lý rồi nêu điểm đến
+    steps:
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+
+  - story: ngân sách điểm đến thời gian
+    steps:
+      - intent: provide_budget
+      - intent: provide_destination
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour chung rồi tinh chỉnh điểm đến
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour chung rồi để lại liên hệ
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: hỏi tour cá nhân rồi cập nhật ngân sách
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+
+  - story: điểm đến rồi xác nhận đặt chỗ
+    steps:
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: ngân sách rồi từ chối gợi ý
+    steps:
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+      - intent: deny
+      - action: utter_default
+
+  - story: hỏi khuyến mãi rồi tạm biệt
+    steps:
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: hỏi đại lý rồi hỏi khuyến mãi
+    steps:
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: ask_promotion
+      - action: utter_promotion
+
+  - story: thời gian rồi ngân sách
+    steps:
+      - intent: provide_travel_time
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+
+  - story: chào hỏi đại lý khuyến mãi rồi tour
+    steps:
+      - intent: greet
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+
+  - story: chào rồi cung cấp liên hệ
+    steps:
+      - intent: greet
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: hỏi tour cá nhân rồi bổ sung thời gian
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour cá nhân rồi hỏi đại lý
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      # Bot tự động recommend tour lại sau khi trả lời agency info để tiếp tục flow booking
+      - action: action_recommend_personalized_tour
+
+  - story: điểm đến rồi hỏi tour chung
+    steps:
+      - intent: provide_destination
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+
+  - story: điểm đến hỏi khuyến mãi rồi nêu ngân sách
+    steps:
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+
+  # Biến thể của "đề xuất tour chung"
+  - story: hỏi tour chung trực tiếp không chào
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+
+  - story: chào hỏi tour chung rồi tạm biệt
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: chào hỏi tour chung rồi hỏi khuyến mãi
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+
+  # Biến thể của "đề xuất tour cá nhân hóa"
+  - story: hỏi tour cá nhân trực tiếp không chào
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: hỏi tour cá nhân từ chối rồi hỏi lại
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: deny
+      - action: utter_default
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour cá nhân rồi hỏi đại lý rồi xác nhận
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  # Biến thể của "cung cấp thông tin đại lý"
+  - story: hỏi đại lý rồi tạm biệt
+    steps:
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: chào hỏi đại lý
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_agency_info
+      - action: utter_agency_info
+
+  # Biến thể của "hỏi khuyến mãi"
+  - story: chào hỏi khuyến mãi
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_promotion
+      - action: utter_promotion
+
+  - story: hỏi khuyến mãi rồi hỏi tour
+    steps:
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+
+  # Biến thể của "chào và lưu tên rồi hỏi điểm đến"
+  - story: chào lưu tên điểm đến rồi xác nhận
+    steps:
+      - intent: greet
+      - action: action_save_traveler_name
+      - action: utter_greet
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: chào lưu tên điểm đến rồi từ chối
+    steps:
+      - intent: greet
+      - action: action_save_traveler_name
+      - action: utter_greet
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+      - intent: deny
+      - action: utter_default
+
+  # Biến thể của "điểm đến kèm ngân sách"
+  - story: ngân sách trước điểm đến sau
+    steps:
+      - intent: provide_budget
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+
+  - story: điểm đến ngân sách rồi xác nhận
+    steps:
+      - intent: provide_destination
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: điểm đến ngân sách rồi hỏi khuyến mãi
+    steps:
+      - intent: provide_destination
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+
+  # Biến thể của "điểm đến theo tháng đẹp"
+  - story: điểm đến trước thời gian sau
+    steps:
+      - intent: provide_destination
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+
+  - story: thời gian điểm đến rồi ngân sách
+    steps:
+      - intent: provide_travel_time
+      - intent: provide_destination
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+
+  # Biến thể của "ngân sách trước rồi hỏi tour"
+  - story: ngân sách hỏi tour rồi xác nhận
+    steps:
+      - intent: provide_budget
+      - intent: ask_tour_general
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: ngân sách hỏi tour rồi từ chối
+    steps:
+      - intent: provide_budget
+      - intent: ask_tour_general
+      - action: action_recommend_personalized_tour
+      - intent: deny
+      - action: utter_default
+
+  # Biến thể của "hỏi tour rồi cung cấp ngân sách"
+  - story: hỏi tour ngân sách rồi xác nhận
+    steps:
+      - intent: ask_tour_general
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: hỏi tour ngân sách rồi hỏi khuyến mãi
+    steps:
+      - intent: ask_tour_general
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+
+  # Biến thể của "hỏi tour theo tháng và ngân sách"
+  - story: hỏi tour ngân sách thời gian
+    steps:
+      - intent: ask_tour_personalized
+      - intent: provide_budget
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+
+  - story: hỏi tour thời gian ngân sách rồi xác nhận
+    steps:
+      - intent: ask_tour_personalized
+      - intent: provide_travel_time
+      - intent: provide_budget
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  # Biến thể của "hỏi tour rồi hỏi khuyến mãi"
+  - story: hỏi tour hỏi khuyến mãi rồi từ chối
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: deny
+      - action: utter_default
+
+  - story: hỏi tour hỏi khuyến mãi rồi tạm biệt
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: hỏi tour từ chối rồi tạm biệt
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: deny
+      - action: utter_default
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # Biến thể của "hỏi tour rồi xin thông tin đại lý"
+  - story: hỏi tour xin đại lý rồi tạm biệt
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: hỏi tour xin đại lý rồi hỏi khuyến mãi
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: ask_promotion
+      - action: utter_promotion
+
+  # Biến thể của "hỏi tour và tạm biệt"
+  - story: hỏi tour tạm biệt sau khi xác nhận
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # Biến thể của "điểm đến rồi hỏi khuyến mãi"
+  - story: điểm đến hỏi khuyến mãi rồi xác nhận
+    steps:
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: điểm đến hỏi khuyến mãi rồi tạm biệt
+    steps:
+      - intent: provide_destination
+      - action: action_recommend_personalized_tour
+      - intent: ask_promotion
+      - action: utter_promotion
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # Biến thể của "ngân sách rồi hỏi khuyến mãi"
+  - story: ngân sách hỏi khuyến mãi rồi xác nhận
+    steps:
+      - intent: provide_budget
+      - intent: ask_promotion
+      - action: utter_promotion
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  # Biến thể của "hỏi tour rồi cung cấp thông tin liên hệ"
+  - story: hỏi tour cung cấp liên hệ rồi tạm biệt
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # Biến thể của "điền form trực tiếp"
+  - story: điền form trực tiếp rồi tạm biệt
+    steps:
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # Biến thể của "hỏi tour rồi đưa ra tháng cụ thể"
+  - story: hỏi tour tháng cụ thể rồi xác nhận
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: hỏi tour tháng cụ thể rồi từ chối
+    steps:
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+      - intent: deny
+      - action: utter_default
+
+  # Biến thể của "xin thông tin đại lý trước rồi hỏi tour"
+  - story: xin đại lý hỏi tour rồi xác nhận
+    steps:
+      - intent: ask_agency_info
+      - action: utter_agency_info
+      - intent: ask_tour_general
+      - action: action_recommend_general_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  # Biến thể của "hỏi tour rồi xác nhận đặt giữ chỗ"
+  - story: hỏi tour xác nhận đặt chỗ rồi tạm biệt
+    steps:
+      - intent: ask_tour_personalized
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - intent: provide_contact_info
+      - action: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+      - intent: goodbye
+      - action: utter_goodbye
+
+  # Biến thể của "hỏi tour theo ngân sách và điểm đến cụ thể"
+  - story: điểm đến ngân sách thời gian rồi xác nhận
+    steps:
+      - intent: provide_destination
+      - intent: provide_budget
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+      - intent: affirm
+      - action: booking_info_form
+      - active_loop: booking_info_form
+      - active_loop: null
+      - action: action_confirm_booking
+
+  - story: điểm đến ngân sách thời gian rồi từ chối
+    steps:
+      - intent: provide_destination
+      - intent: provide_budget
+      - intent: provide_travel_time
+      - action: action_recommend_personalized_tour
+      - intent: deny
+      - action: utter_default
