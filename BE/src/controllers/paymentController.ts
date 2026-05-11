@@ -3,145 +3,132 @@ import { Op } from 'sequelize';
 import paymentService from '../services/paymentService';
 import tourGuideAssignmentService from '../services/tourGuideAssignmentService';
 import Order from '../models/Order';
-import TourGuide from '../models/TourGuide';
 import { sendSuccess, sendError } from '../utils/responseHandler';
 
-// Helper: Extract order ID từ MoMo orderId format (ORDER_{id}_{timestamp})
-const extractOrderId = (orderId: string | undefined): number | null => {
-  if (!orderId) return null;
-  const parts = String(orderId).split('_');
-  return parts.length > 1 ? Number(parts[1]) : null;
+// ============================================================
+// Helper: extract orderId từ txnRef format ORDER_{id}_{timestamp}
+// ============================================================
+const extractOrderId = (txnRef: string | undefined): number | null => {
+  if (!txnRef) return null;
+  const parts = String(txnRef).split('_');
+  // format: ORDER_<id>_<timestamp>
+  return parts.length >= 2 ? Number(parts[1]) : null;
 };
 
-// Helper: Update payment status nếu order chưa thanh toán
-const updatePaymentIfNotPaid = async (orderId: number, transId: string) => {
+// ============================================================
+// Helper: cập nhật status nếu chưa paid
+// ============================================================
+const updatePaymentIfNotPaid = async (orderId: number, txnRef: string) => {
   const order = await Order.findByPk(orderId);
   if (order && !order.is_paid) {
-    await paymentService.updateOrderPaymentStatus(orderId, true, transId);
+    await paymentService.updateOrderPaymentStatus(orderId, true, txnRef);
   }
 };
 
-export const handleMoMoReturn = async (req: Request, res: Response) => {
+// ============================================================
+// VNPay Return URL (GET) — người dùng được redirect về sau khi TT
+// ============================================================
+export const handleVNPayReturn = async (req: Request, res: Response) => {
   try {
-    const { resultCode, orderId, transId } = req.query;
+    const query = req.query as Record<string, string>;
 
-    // Extract order ID từ MoMo format
-    const orderCode = extractOrderId(String(orderId));
-    
-    // Xử lý cập nhật trạng thái thanh toán (nếu thành công)
-    if (resultCode === '0' && orderCode) {
-      await updatePaymentIfNotPaid(orderCode, String(transId));
+    // Xác minh chữ ký
+    const isValid = paymentService.verifySignature(query);
+    if (!isValid) {
+      console.warn('⚠️ [PaymentController] Chữ ký VNPay return không hợp lệ');
+      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+      return res.redirect(`${frontendUrl}/payment/result?status=error`);
     }
 
-    // Lấy frontend URL từ env (mặc định localhost:5173 cho Vite)
-    const frontendUrl = process.env.FRONTEND_URL;
-    
-    // Redirect về frontend với URL sạch - chỉ truyền orderId và status
-    // Không truyền các query params nhạy cảm từ MoMo
-    const status = resultCode === '0' ? 'success' : 'failed';
-    const redirectUrl = orderCode 
-      ? `${frontendUrl}/payment/result?orderId=${orderCode}&status=${status}`
+    const vnpResponseCode = query['vnp_ResponseCode'];
+    const txnRef          = query['vnp_TxnRef'];      // ORDER_{id}_{timestamp}
+
+    const orderId = extractOrderId(txnRef);
+    const isSuccess = vnpResponseCode === '00';
+
+    if (isSuccess && orderId) {
+      await updatePaymentIfNotPaid(orderId, txnRef);
+    }
+
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+    const status = isSuccess ? 'success' : 'failed';
+    const redirectUrl = orderId
+      ? `${frontendUrl}/payment/result?orderId=${orderId}&status=${status}`
       : `${frontendUrl}/payment/result?status=${status}`;
-    
+
+    console.log(`📍 [PaymentController] VNPay return - orderId: ${orderId}, responseCode: ${vnpResponseCode}, redirect: ${status}`);
     return res.redirect(redirectUrl);
   } catch (error: any) {
-    // Lỗi cũng redirect về frontend với status error
-    console.error('Lỗi xử lý thanh toán return:', error);
-    const frontendUrl = process.env.FRONTEND_URL;
+    console.error('❌ [PaymentController] Lỗi xử lý VNPay return:', error);
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
     return res.redirect(`${frontendUrl}/payment/result?status=error`);
   }
 };
 
-export const handleMoMoWebhook = async (req: Request, res: Response) => {
+// ============================================================
+// VNPay IPN (POST) — server-to-server, xử lý chính xác nhất
+// ============================================================
+export const handleVNPayIPN = async (req: Request, res: Response) => {
   try {
-    console.log('📨 [PaymentController] Nhận webhook từ MoMo:', {
-      resultCode: req.body.resultCode,
-      orderId: req.body.orderId,
-      transId: req.body.transId,
+    const query = req.query as Record<string, string>;
+
+    console.log('📨 [PaymentController] Nhận IPN từ VNPay:', {
+      vnp_ResponseCode: query['vnp_ResponseCode'],
+      vnp_TxnRef:       query['vnp_TxnRef'],
+      vnp_TransactionNo: query['vnp_TransactionNo'],
     });
 
-    if (!paymentService.verifySignature(req.body)) {
-      console.warn('⚠️ [PaymentController] Chữ ký webhook không hợp lệ');
-      return sendError(res, 'Chữ ký không hợp lệ', 400);
+    // 1. Kiểm tra chữ ký
+    if (!paymentService.verifySignature(query)) {
+      console.warn('⚠️ [PaymentController] Chữ ký IPN không hợp lệ');
+      return res.status(200).json({ RspCode: '97', Message: 'Invalid signature' });
     }
 
-    const { resultCode, orderId, transId } = req.body;
-    if (resultCode === 0 || resultCode === '0') {
-      const orderCode = extractOrderId(String(orderId));
-      console.log(`✅ [PaymentController] Thanh toán thành công, orderCode: ${orderCode}`);
-      
-      if (orderCode) {
-        // Kiểm tra xem order đã thanh toán chưa
-        const order = await Order.findByPk(orderCode);
-        if (order && !order.is_paid) {
-          // Cập nhật trạng thái thanh toán
-          await paymentService.updateOrderPaymentStatus(orderCode, true, String(transId));
-          console.log(`✅ [PaymentController] Đã cập nhật trạng thái thanh toán cho order ${orderCode}`);
+    const vnpResponseCode = query['vnp_ResponseCode'];
+    const txnRef          = query['vnp_TxnRef'];
+    const vnpAmount       = Number(query['vnp_Amount']); // Amount * 100
 
-          // Tự động phân công guide cho tour
-          try {
-            const tourId = order.tour_id;
-            if (tourId) {
-              console.log(`🔄 [PaymentController] Bắt đầu phân công guide cho tour ${tourId} (order ${orderCode})`);
-              
-              // Tự động phân công guide cho tour
-              // Một tour có thể có nhiều guides, nên luôn gọi assignGuideToTour
-              // Logic bên trong sẽ kiểm tra xem guide cụ thể đã được phân công chưa
-              console.log(`🔄 [PaymentController] Bắt đầu phân công guide cho tour ${tourId} (order ${orderCode})...`);
-              const assignmentResult = await tourGuideAssignmentService.assignGuideToTour(Number(tourId));
-              const assignedGuideId = assignmentResult.guide.id;
-              console.log(`✅ [PaymentController] Đã tự động phân công guide ${assignedGuideId} cho tour ${tourId} sau khi thanh toán thành công`);
-              
-              // Cập nhật guide_id cho order hiện tại
-              if (!order.guide_id) {
-                await order.update({ guide_id: assignedGuideId });
-                console.log(`✅ [PaymentController] Đã cập nhật guide_id ${assignedGuideId} cho order ${orderCode}`);
-              }
-              
-              // Cập nhật guide_id cho các orders khác của tour này (cùng start_date, end_date, đã thanh toán, chưa có guide_id)
-              if (order.start_date && order.end_date) {
-                const updatedOrders = await Order.update(
-                  { guide_id: assignedGuideId },
-                  {
-                    where: {
-                      tour_id: Number(tourId),
-                      start_date: order.start_date,
-                      end_date: order.end_date,
-                      is_paid: true,
-                      guide_id: { [Op.is]: null },
-                    },
-                  }
-                );
-                if (updatedOrders[0] > 0) {
-                  console.log(`✅ [PaymentController] Đã cập nhật guide_id ${assignedGuideId} cho ${updatedOrders[0]} orders khác của tour ${tourId}`);
-                }
-              }
-            } else {
-              console.warn(`⚠️ [PaymentController] Order ${orderCode} không có tour_id, không thể phân công guide`);
-            }
-          } catch (error: any) {
-            // Log lỗi nhưng không throw để không ảnh hưởng đến webhook response
-            console.error(`❌ [PaymentController] Lỗi khi tự động phân công guide sau khi thanh toán (order ${orderCode}):`, {
-              message: error.message,
-              stack: error.stack,
-            });
-          }
-        } else if (order && order.is_paid) {
-          console.log(`ℹ️ [PaymentController] Order ${orderCode} đã được thanh toán trước đó, bỏ qua cập nhật`);
-        } else {
-          console.warn(`⚠️ [PaymentController] Không tìm thấy order với ID: ${orderCode}`);
-        }
-      } else {
-        console.warn(`⚠️ [PaymentController] Không thể extract orderCode từ orderId: ${orderId}`);
-      }
+    const orderId = extractOrderId(txnRef);
+    if (!orderId) {
+      console.warn(`⚠️ [PaymentController] Không thể parse orderId từ txnRef: ${txnRef}`);
+      return res.status(200).json({ RspCode: '01', Message: 'Order not found' });
+    }
+
+    // 2. Kiểm tra order tồn tại
+    const order = await Order.findByPk(orderId);
+    if (!order) {
+      console.warn(`⚠️ [PaymentController] Không tìm thấy order ${orderId}`);
+      return res.status(200).json({ RspCode: '01', Message: 'Order not found' });
+    }
+
+    // 3. Kiểm tra số tiền khớp (VNPay gửi amount * 100)
+    const expectedAmount = Number(order.total_price) * 100;
+    if (Math.round(vnpAmount) !== Math.round(expectedAmount)) {
+      console.warn(`⚠️ [PaymentController] Số tiền không khớp: nhận ${vnpAmount}, expected ${expectedAmount}`);
+      return res.status(200).json({ RspCode: '04', Message: 'Invalid amount' });
+    }
+
+    // 4. Kiểm tra đã xử lý chưa
+    if (order.is_paid) {
+      console.log(`ℹ️ [PaymentController] Order ${orderId} đã được thanh toán trước đó`);
+      return res.status(200).json({ RspCode: '02', Message: 'Order already confirmed' });
+    }
+
+    // 5. Xử lý kết quả thanh toán
+    if (vnpResponseCode === '00') {
+      console.log(`✅ [PaymentController] Thanh toán VNPay thành công, orderId: ${orderId}`);
+      await paymentService.updateOrderPaymentStatus(orderId, true, txnRef);
+
+      // Phân công guide (đã xử lý trong updateOrderPaymentStatus, nhưng giữ log ở đây)
+      console.log(`✅ [PaymentController] Đã cập nhật trạng thái thanh toán cho order ${orderId}`);
     } else {
-      console.log(`ℹ️ [PaymentController] Thanh toán không thành công, resultCode: ${resultCode}`);
+      console.log(`ℹ️ [PaymentController] VNPay IPN - thanh toán thất bại, responseCode: ${vnpResponseCode}`);
     }
 
-    return res.status(200).json({ message: 'Success' });
+    // VNPay yêu cầu phải phản hồi RspCode 00 để xác nhận đã nhận IPN
+    return res.status(200).json({ RspCode: '00', Message: 'Confirm Success' });
   } catch (error: any) {
-    console.error('❌ [PaymentController] Lỗi xử lý webhook:', error);
-    sendError(res, error.message || 'Lỗi xử lý webhook', 500);
+    console.error('❌ [PaymentController] Lỗi xử lý VNPay IPN:', error);
+    return res.status(200).json({ RspCode: '99', Message: 'Unknown error' });
   }
 };
-

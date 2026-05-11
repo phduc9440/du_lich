@@ -343,11 +343,11 @@ class BookingService {
       const MAX_PAYMENT_AMOUNT = 50_000_000;
 
       if (totalPrice < MIN_PAYMENT_AMOUNT) {
-        throw new Error('Tổng tiền phải tối thiểu 10.000 VND để tạo thanh toán MoMo');
+        throw new Error('Tổng tiền phải tối thiểu 10.000 VND để tạo thanh toán VNPay');
       }
 
       if (totalPrice > MAX_PAYMENT_AMOUNT) {
-        throw new Error('Tổng tiền vượt quá giới hạn 50.000.000 VND của MoMo');
+        throw new Error('Tổng tiền vượt quá giới hạn thanh toán VNPay (50 triệu VND)');
       }
 
       const tourStartDate = (lockedTour as any).start_date || lockedTour.getDataValue?.('start_date');
@@ -626,7 +626,7 @@ class BookingService {
       throw new Error('Lỗi khi tạo booking');
     }
 
-    // Tự động tạo payment URL từ MoMo ngay sau khi tạo order
+    // Tự động tạo payment URL từ VNPay ngay sau khi tạo order
     // Vì đã có order_id và đầy đủ thông tin để tính toán
     const orderInfo = `Thanh toán đơn hàng ${savedBooking.order_code || savedBooking.id}`;
     const paymentInfo = await paymentService.createPayment({
@@ -635,7 +635,7 @@ class BookingService {
       orderInfo: orderInfo,
     });
 
-    // Cập nhật payment_url với URL chính xác từ MoMo
+    // Cập nhật payment_url với URL chính xác từ VNPay
     await savedBooking.update({ payment_url: paymentInfo.payUrl });
     
     // Xử lý coupon: giảm max_use và tạo record trong used_coupons

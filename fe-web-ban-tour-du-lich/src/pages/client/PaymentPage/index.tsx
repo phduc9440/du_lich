@@ -62,7 +62,7 @@ const PaymentPage: React.FC = () => {
       setIsModalVisible(true);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      message.error(error.response?.data?.message || 'Lỗi tạo đơn hàng.');
+      message.error(error.response?.data?.message || error.message || 'Lỗi tạo đơn hàng.');
     }
   };
 

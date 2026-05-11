@@ -1,8 +1,6 @@
 
 import * as crypto from 'crypto';
-import * as https from 'https';
-import * as http from 'http';
-import { URL } from 'url';
+import * as qs from 'querystring';
 import { Op } from 'sequelize';
 import Order from '../models/Order';
 import Ticket from '../models/Ticket';
@@ -10,280 +8,242 @@ import TourGuide from '../models/TourGuide';
 import { sendPaymentConfirmationEmail } from './emailService';
 import tourGuideAssignmentService from './tourGuideAssignmentService';
 
-interface MoMoConfig {
-  partnerCode: string;
-  accessKey: string;
-  secretKey: string;
-  endpoint: string;
+// ============================================================
+// VNPay Config
+// ============================================================
+interface VNPayConfig {
+  tmnCode: string;
+  hashSecret: string;
+  url: string;
   returnUrl: string;
-  notifyUrl: string;
 }
 
 interface CreatePaymentParams {
   orderId: number;
-  amount: number;
+  amount: number;       // VND, không nhân thêm
   orderInfo: string;
-  requestId?: string;
+  ipAddr?: string;
 }
 
+// ============================================================
+// Helpers
+// ============================================================
+
+/** Sắp xếp object theo key và build query string để ký (VNPay 2.1.0 yêu cầu encode value) */
+function buildSortedQueryString(params: Record<string, string>): string {
+  const sortedKeys = Object.keys(params).sort();
+  return sortedKeys
+    .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k]).replace(/%20/g, '+')}`)
+    .join('&');
+}
+
+/** HMAC-SHA512 */
+function hmacSHA512(key: string, data: string): string {
+  return crypto.createHmac('sha512', key).update(Buffer.from(data, 'utf-8')).digest('hex');
+}
+
+/** Format ngày theo VNPay: yyyyMMddHHmmss (UTC+7) */
+function formatVNPayDate(date: Date): string {
+  const tzOffset = 7 * 60; // UTC+7
+  const local = new Date(date.getTime() + tzOffset * 60 * 1000);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return (
+    local.getUTCFullYear().toString() +
+    pad(local.getUTCMonth() + 1) +
+    pad(local.getUTCDate()) +
+    pad(local.getUTCHours()) +
+    pad(local.getUTCMinutes()) +
+    pad(local.getUTCSeconds())
+  );
+}
+
+// ============================================================
+// Service
+// ============================================================
+
 class PaymentService {
-  private config: MoMoConfig;
+  private config: VNPayConfig;
 
   constructor() {
+    const backendUrl = process.env.BACKEND_URL || 'http://localhost:5000';
     this.config = {
-      partnerCode: process.env.MOMO_PARTNER_CODE || '',
-      accessKey: process.env.MOMO_ACCESS_KEY || '',
-      secretKey: process.env.MOMO_SECRET_KEY || '',
-      endpoint: process.env.MOMO_ENDPOINT || 'https://test-payment.momo.vn/v2/gateway/api/create',
-      returnUrl: process.env.MOMO_RETURN_URL || `${process.env.BACKEND_URL || 'http://localhost:5000'}/api/v1/payment/momo-return`,
-      notifyUrl: process.env.MOMO_NOTIFY_URL || `${process.env.BACKEND_URL || 'http://localhost:5000'}/api/v1/payment/momo-webhook`,
+      tmnCode:    process.env.VNPAY_TMN_CODE   || 'DEMO0001',
+      hashSecret: process.env.VNPAY_HASH_SECRET || 'DEMOSECRETKEY12345678901234567890',
+      url:        process.env.VNPAY_URL         || 'https://sandbox.vnpayment.vn/paymentv2/vpcpay.html',
+      returnUrl:  process.env.VNPAY_RETURN_URL  || `${backendUrl}/api/v1/payment/vnpay-return`,
     };
   }
 
-  private createSignature(data: string): string {
-    return crypto.createHmac('sha256', this.config.secretKey).update(data).digest('hex');
-  }
+  // ----------------------------------------------------------
+  // Tạo URL thanh toán VNPay
+  // ----------------------------------------------------------
+  async createPayment(params: CreatePaymentParams): Promise<{ payUrl: string; txnRef: string }> {
+    const { orderId, amount, orderInfo, ipAddr = '127.0.0.1' } = params;
 
-  private makeRequest(url: string, data: any): Promise<any> {
-    return new Promise((resolve, reject) => {
-      const urlObj = new URL(url);
-      const isHttps = urlObj.protocol === 'https:';
-      const client = isHttps ? https : http;
+    // VNPay yêu cầu amount * 100 (đơn vị: đồng → VNPay dùng phân)
+    const vnpAmount = Math.round(amount * 100);
 
-      const postData = JSON.stringify(data);
-      const options = {
-        hostname: urlObj.hostname,
-        port: urlObj.port || (isHttps ? 443 : 80),
-        path: urlObj.pathname + urlObj.search,
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(postData),
-        },
-      };
+    const now = new Date();
+    const createDate = formatVNPayDate(now);
 
-      const req = client.request(options, (res: any) => {
-        let responseData = '';
+    // Expire sau 15 phút
+    const expireDate = formatVNPayDate(new Date(now.getTime() + 15 * 60 * 1000));
 
-        res.on('data', (chunk: any) => {
-          responseData += chunk;
-        });
+    // txnRef = ORDER_{id}_{timestamp} để sau có thể extract ngược lại
+    const txnRef = `ORDER_${orderId}_${Date.now()}`;
 
-        res.on('end', () => {
-          try {
-            const result = JSON.parse(responseData);
-            resolve(result);
-          } catch (error) {
-            reject(new Error('Invalid JSON response'));
-          }
-        });
-      });
-
-      req.on('error', (error: any) => {
-        reject(error);
-      });
-
-      req.write(postData);
-      req.end();
-    });
-  }
-
-  async createPayment(params: CreatePaymentParams) {
-    const { orderId, amount, orderInfo, requestId } = params;
-    
-    const requestIdValue = requestId || `${Date.now()}`;
-    const orderIdValue = `ORDER_${orderId}_${Date.now()}`;
-    const extraData = '';
-
-    const rawSignature = `accessKey=${this.config.accessKey}&amount=${amount}&extraData=${extraData}&ipnUrl=${this.config.notifyUrl}&orderId=${orderIdValue}&orderInfo=${orderInfo}&partnerCode=${this.config.partnerCode}&redirectUrl=${this.config.returnUrl}&requestId=${requestIdValue}&requestType=captureWallet`;
-
-    const signature = this.createSignature(rawSignature);
-
-    const requestBody = {
-      partnerCode: this.config.partnerCode,
-      partnerName: 'Tour Booking',
-      storeId: 'MomoTestStore',
-      requestId: requestIdValue,
-      amount: amount,
-      orderId: orderIdValue,
-      orderInfo: orderInfo,
-      redirectUrl: this.config.returnUrl,
-      ipnUrl: this.config.notifyUrl,
-      lang: 'vi',
-      autoCapture: true,
-      orderExpireTime: 15,
-      extraData: extraData,
-      requestType: 'captureWallet',
-      signature: signature,
+    const vnpParams: Record<string, string> = {
+      vnp_Version:      '2.1.0',
+      vnp_Command:      'pay',
+      vnp_TmnCode:      this.config.tmnCode,
+      vnp_Locale:       'vn',
+      vnp_CurrCode:     'VND',
+      vnp_TxnRef:       txnRef,
+      vnp_OrderInfo:    orderInfo,
+      vnp_OrderType:    'other',
+      vnp_Amount:       String(vnpAmount),
+      vnp_ReturnUrl:    this.config.returnUrl,
+      vnp_IpAddr:       ipAddr,
+      vnp_CreateDate:   createDate,
     };
+
+    const signData = buildSortedQueryString(vnpParams);
+    const signature = hmacSHA512(this.config.hashSecret, signData);
+    vnpParams['vnp_SecureHash'] = signature;
+
+    const queryString = buildSortedQueryString(vnpParams);
+    const payUrl = `${this.config.url}?${queryString}`;
+
+    console.log(`✅ [PaymentService] Tạo VNPay URL thành công cho order ${orderId}, txnRef: ${txnRef}`);
+    return { payUrl, txnRef };
+  }
+
+  // ----------------------------------------------------------
+  // Xác minh chữ ký VNPay (dùng trong return & IPN)
+  // ----------------------------------------------------------
+  verifySignature(query: Record<string, string>): boolean {
+    const secureHash = query['vnp_SecureHash'];
+    if (!secureHash) return false;
+
+    // Loại bỏ các trường hash khỏi params trước khi tính lại chữ ký
+    const params: Record<string, string> = {};
+    for (const key of Object.keys(query)) {
+      if (key !== 'vnp_SecureHash' && key !== 'vnp_SecureHashType') {
+        params[key] = query[key];
+      }
+    }
+
+    const signData = buildSortedQueryString(params);
+    const calculatedHash = hmacSHA512(this.config.hashSecret, signData);
+    return calculatedHash === secureHash.toLowerCase();
+  }
+
+  // ----------------------------------------------------------
+  // Cập nhật trạng thái thanh toán của order
+  // ----------------------------------------------------------
+  async updateOrderPaymentStatus(orderId: number, isPaid: boolean, vnpayTxnRef?: string) {
+    console.log(`📝 [PaymentService] updateOrderPaymentStatus - orderId: ${orderId}, isPaid: ${isPaid}`);
 
     try {
-      const result = await this.makeRequest(this.config.endpoint, requestBody);
-
-      if (result.resultCode === 0) {
-        return {
-          payUrl: result.payUrl,
-          orderId: orderIdValue,
-          requestId: requestIdValue,
-        };
-      } else {
-        throw new Error(result.message || 'Tạo thanh toán thất bại');
+      const order = await Order.findByPk(orderId);
+      if (!order) {
+        throw new Error('Đơn hàng không tồn tại');
       }
-    } catch (error: any) {
-      throw new Error(error.message || 'Lỗi khi tạo thanh toán MoMo');
-    }
-  }
 
-  verifySignature(data: any): boolean {
-    const {
-      partnerCode,
-      orderId,
-      requestId,
-      amount,
-      orderInfo,
-      orderType,
-      transId,
-      resultCode,
-      message,
-      payType,
-      responseTime,
-      extraData,
-      signature,
-    } = data;
+      const wasPaid = order.is_paid;
+      
+      // 1. Cập nhật trạng thái thanh toán ngay lập tức
+      await order.update({
+        is_paid: isPaid,
+        status: isPaid ? 'confirmed' : order.status,
+        payment_url: vnpayTxnRef ? `VNPAY_${vnpayTxnRef}` : order.payment_url,
+      });
 
-    const rawSignature = `accessKey=${this.config.accessKey}&amount=${amount}&extraData=${extraData}&message=${message}&orderId=${orderId}&orderInfo=${orderInfo}&orderType=${orderType}&partnerCode=${partnerCode}&payType=${payType}&requestId=${requestId}&responseTime=${responseTime}&resultCode=${resultCode}&transId=${transId}`;
+      await order.reload();
 
-    const calculatedSignature = this.createSignature(rawSignature);
-    return calculatedSignature === signature;
-  }
+      // Nếu không phải thanh toán thành công thì dừng ở đây
+      if (!isPaid) return order;
 
-  async updateOrderPaymentStatus(orderId: number, isPaid: boolean, momoTransId?: string) {
-    console.log(`📝 [PaymentService] updateOrderPaymentStatus - orderId: ${orderId}, isPaid: ${isPaid}`);
-    
-    const order = await Order.findByPk(orderId);
-    if (!order) {
-      throw new Error('Đơn hàng không tồn tại');
-    }
+      // 2. Các logic xử lý sau thanh toán (Tạo vé, Gửi mail, Phân công guide)
+      // Bọc từng phần để nếu một phần lỗi không làm sập cả luồng
+      if (!wasPaid) {
+        console.log(`✅ [PaymentService] Order ${orderId} thanh toán thành công lần đầu, tạo tickets...`);
+        try {
+          await this.createTicketsForOrder(order);
+        } catch (ticketError) {
+          console.error('❌ [PaymentService] Lỗi khi tạo vé:', ticketError);
+        }
 
-    // Kiểm tra xem đơn hàng đã được thanh toán chưa (tránh tạo ticket trùng)
-    const wasPaid = order.is_paid;
-    console.log(`📝 [PaymentService] Order ${orderId} - wasPaid: ${wasPaid}, isPaid: ${isPaid}`);
-
-    await order.update({
-      is_paid: isPaid,
-      status: isPaid ? 'confirmed' : order.status,
-      payment_url: momoTransId ? `MOMO_${momoTransId}` : order.payment_url,
-    });
-
-    // Reload order để đảm bảo có dữ liệu mới nhất
-    await order.reload();
-
-    // Nếu thanh toán thành công và chưa từng thanh toán trước đó, tạo ticket
-    if (isPaid && !wasPaid) {
-      console.log(`✅ [PaymentService] Order ${orderId} thanh toán thành công lần đầu, tạo tickets...`);
-      await this.createTicketsForOrder(order);
-      try {
-        await sendPaymentConfirmationEmail(order.id);
-      } catch (error) {
-        console.error('Không thể gửi email xác nhận thanh toán:', error);
+        try {
+          await sendPaymentConfirmationEmail(order.id);
+        } catch (emailError) {
+          console.error('❌ [PaymentService] Không thể gửi email xác nhận:', emailError);
+        }
       }
-    }
 
-    // Tự động phân công guide cho tour khi thanh toán thành công
-    // Tách riêng logic này để đảm bảo luôn được thực hiện khi thanh toán thành công
-    if (isPaid) {
+      // 3. Phân công guide tự động
       console.log(`🔄 [PaymentService] Bắt đầu xử lý phân công guide cho order ${orderId}...`);
       try {
-        // Lấy tour_id từ order - sử dụng cách truy cập trực tiếp hoặc getDataValue
-        const tourId = typeof order.getDataValue === 'function' 
-          ? order.getDataValue('tour_id') 
-          : order.tour_id;
-        
-        console.log(`📝 [PaymentService] Order ${orderId} - tour_id: ${tourId}`);
-        
-        if (!tourId) {
-          console.warn(`⚠️ [PaymentService] Order ${orderId} không có tour_id, không thể phân công guide`);
-          return order;
-        }
+        const tourId = typeof order.getDataValue === 'function'
+          ? order.getDataValue('tour_id')
+          : (order as any).tour_id;
 
-        const tourIdNumber = Number(tourId);
-        if (isNaN(tourIdNumber)) {
-          console.warn(`⚠️ [PaymentService] tour_id ${tourId} không hợp lệ, không thể phân công guide`);
-          return order;
-        }
-
-        // Tự động phân công guide cho tour
-        // Một tour có thể có nhiều guides, nên luôn gọi assignGuideToTour
-        // Logic bên trong sẽ kiểm tra xem guide cụ thể đã được phân công chưa
-        console.log(`🔄 [PaymentService] Bắt đầu phân công guide cho tour ${tourIdNumber}...`);
-        const assignmentResult = await tourGuideAssignmentService.assignGuideToTour(tourIdNumber);
-        const assignedGuideId = assignmentResult.guide.id;
-        console.log(`✅ [PaymentService] Tự động phân công guide ${assignedGuideId} cho tour ${tourIdNumber} sau khi thanh toán thành công`);
-        
-        // Cập nhật guide_id cho order hiện tại
-        if (!order.guide_id) {
+        if (tourId) {
+          const assignmentResult = await tourGuideAssignmentService.assignGuideToTour(Number(tourId));
+          const assignedGuideId = assignmentResult.guide.id;
+          
           await order.update({ guide_id: assignedGuideId });
-          console.log(`✅ [PaymentService] Đã cập nhật guide_id ${assignedGuideId} cho order ${orderId}`);
-        }
-        
-        // Cập nhật guide_id cho các orders khác của tour này (cùng start_date, end_date, đã thanh toán, chưa có guide_id)
-        const orderStartDate = typeof order.getDataValue === 'function' 
-          ? order.getDataValue('start_date') 
-          : order.start_date;
-        const orderEndDate = typeof order.getDataValue === 'function' 
-          ? order.getDataValue('end_date') 
-          : order.end_date;
-        
-        if (orderStartDate && orderEndDate) {
-          const updatedOrders = await Order.update(
-            { guide_id: assignedGuideId },
-            {
-              where: {
-                tour_id: tourIdNumber,
-                start_date: orderStartDate,
-                end_date: orderEndDate,
-                is_paid: true,
-                guide_id: { [Op.is]: null },
-              },
-            }
-          );
-          if (updatedOrders[0] > 0) {
-            console.log(`✅ [PaymentService] Đã cập nhật guide_id ${assignedGuideId} cho ${updatedOrders[0]} orders khác của tour ${tourIdNumber}`);
+          console.log(`✅ [PaymentService] Đã phân công guide ${assignedGuideId} cho order ${orderId}`);
+
+          // Cập nhật các order khác cùng tour
+          const orderStartDate = order.getDataValue('start_date') || (order as any).start_date;
+          const orderEndDate = order.getDataValue('end_date') || (order as any).end_date;
+
+          if (orderStartDate && orderEndDate) {
+            await Order.update(
+              { guide_id: assignedGuideId },
+              {
+                where: {
+                  tour_id: Number(tourId),
+                  start_date: orderStartDate,
+                  end_date: orderEndDate,
+                  is_paid: true,
+                  guide_id: { [Op.is]: null },
+                },
+              }
+            );
           }
         }
-      } catch (error: any) {
-        // Log lỗi chi tiết nhưng không throw để không ảnh hưởng đến việc thanh toán
-        console.error(`❌ [PaymentService] Lỗi khi tự động phân công guide sau khi thanh toán (order ${orderId}):`, {
-          message: error.message,
-          stack: error.stack,
-          tourId: order.tour_id,
-        });
+      } catch (guideError: any) {
+        console.error(`❌ [PaymentService] Lỗi khi phân công guide:`, guideError.message);
       }
-    } else {
-      console.log(`ℹ️ [PaymentService] Order ${orderId} chưa thanh toán (isPaid: ${isPaid}), bỏ qua phân công guide`);
-    }
 
-    return order;
+      return order;
+    } catch (error: any) {
+      console.error(`❌ [PaymentService] Lỗi nghiêm trọng trong updateOrderPaymentStatus:`, error.message);
+      throw error; // Ném ra để Controller xử lý
+    }
   }
 
+  // ----------------------------------------------------------
+  // Tạo tickets cho order đã thanh toán
+  // ----------------------------------------------------------
   private async createTicketsForOrder(order: Order) {
     try {
-      // Lấy thông tin từ order
-      const userId = order.getDataValue ? order.getDataValue('user_id') : order.user_id;
-      const orderId = order.getDataValue ? order.getDataValue('id') : order.id;
-      const quantity = order.getDataValue ? order.getDataValue('quantity') : order.quantity;
+      const userId   = order.getDataValue ? order.getDataValue('user_id')   : order.user_id;
+      const orderId  = order.getDataValue ? order.getDataValue('id')         : order.id;
+      const quantity = order.getDataValue ? order.getDataValue('quantity')   : order.quantity;
       const startDate = order.getDataValue ? order.getDataValue('start_date') : order.start_date;
-      const endDate = order.getDataValue ? order.getDataValue('end_date') : order.end_date;
+      const endDate   = order.getDataValue ? order.getDataValue('end_date')   : order.end_date;
 
-      // Tạo ticket cho mỗi quantity với các trường ban đầu
       const tickets = [];
       for (let i = 0; i < quantity; i++) {
         const ticket = await Ticket.create({
-          order_id: Number(orderId),
-          user_id: Number(userId),
-          valid_from: new Date(startDate),
+          order_id:    Number(orderId),
+          user_id:     Number(userId),
+          valid_from:  new Date(startDate),
           valid_until: new Date(endDate),
-          status: 'active',
+          status:      'active',
         });
         tickets.push(ticket);
       }
@@ -296,12 +256,11 @@ class PaymentService {
     }
   }
 
+  // ----------------------------------------------------------
+  // Tìm order theo order_code
+  // ----------------------------------------------------------
   async getOrderByCode(orderCode: string) {
-    const order = await Order.findOne({
-      where: { order_code: orderCode },
-    });
-
-    return order;
+    return Order.findOne({ where: { order_code: orderCode } });
   }
 }
 

@@ -17,7 +17,7 @@ const ChangePasswordPage = () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             console.error('Đổi mật khẩu thất bại:', error);
-            message.error(error.response.data.message);
+            message.error(error.response?.data?.message || 'Đổi mật khẩu thất bại vui lòng thử lại sau.');
         }
     }
     return (

@@ -114,6 +114,29 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 GOOGLE_REFRESH_TOKEN=your_google_refresh_token
 EMAIL_FROM=your_email@gmail.com
 
+# VNPay Configuration (Sandbox)
+VNPAY_TMN_CODE=DUJUBNF7
+VNPAY_HASH_SECRET=H5730102G9YFBOKHKU75MUQ90YY26HMC
+VNPAY_URL=https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+VNPAY_RETURN_URL=http://localhost:5000/api/payment/vnpay-return
+```
+
+### 4. Thông tin thẻ Test VNPay (Sandbox)
+
+Dùng các thông tin sau để thực hiện thanh toán thử nghiệm trên cổng VNPay:
+
+- **Ngân hàng:** Chọn **NCB**
+- **Số thẻ:** `9704198526191432198`
+- **Tên chủ thẻ:** `NGUYEN VAN A`
+- **Ngày phát hành:** `07/15`
+- **Mật khẩu OTP:** `123456`
+
+> Link tài liệu thẻ test đầy đủ: [Tài liệu VNPay](https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html#danh-sach-the-test)
+
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_REFRESH_TOKEN=your_google_refresh_token
+EMAIL_FROM=your_email@gmail.com
+
 # Upload Configuration
 UPLOAD_PATH=uploads
 MAX_FILE_SIZE=5242880

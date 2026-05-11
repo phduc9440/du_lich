@@ -45,7 +45,7 @@ const ProfilePage: React.FC = () => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             console.log('lỗi update profile', error);
-            message.error(error.response.data.message)
+            message.error(error.response?.data?.message || 'Đã có lỗi xảy ra vui lòng thử lại sau.');
         }
     }
 

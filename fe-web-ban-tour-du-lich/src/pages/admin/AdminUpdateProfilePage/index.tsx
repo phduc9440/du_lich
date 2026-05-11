@@ -17,7 +17,7 @@ const AdminUpdateProfilePage = () => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             console.log('lỗi update profile', error);
-            message.error(error.response.data.message)
+            message.error(error.response?.data?.message || 'Lỗi cập nhật thông tin');
         }
     }
     if (adminGetProfileApi.isLoading) {

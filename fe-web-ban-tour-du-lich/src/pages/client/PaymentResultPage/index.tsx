@@ -16,7 +16,7 @@ const PaymentResultPage = () => {
       timestamp: Date.now(),
     };
     
-    // Gửi message qua postMessage (nếu có window.opener - thường không có sau redirect từ MoMo)
+    // Gửi message qua postMessage (nếu có window.opener - thường không có sau redirect từ VNPay)
     if (window.opener && !window.opener.closed) {
       try {
         window.opener.focus();

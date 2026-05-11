@@ -1,13 +1,15 @@
 import express from 'express';
 import {
-  handleMoMoReturn,
-  handleMoMoWebhook,
+  handleVNPayReturn,
+  handleVNPayIPN,
 } from '../controllers/paymentController';
 
 const router = express.Router();
 
-router.get('/momo-return', handleMoMoReturn);
-router.post('/momo-webhook', handleMoMoWebhook);
+// VNPay redirect user về sau khi thanh toán
+router.get('/vnpay-return', handleVNPayReturn);
+
+// VNPay gọi server-to-server để xác nhận giao dịch (IPN)
+router.get('/vnpay-ipn', handleVNPayIPN);
 
 export default router;
-
