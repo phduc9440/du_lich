@@ -3,7 +3,7 @@
 ## Server chạy custom actions
 ## Mặc định: docker / local action server listen ở 5055
 action_endpoint:
-  url: "http://localhost:5055/webhook"
+  url: "http://bot-actions:5055/webhook"
 
 ## Tracker store – lưu lịch sử hội thoại
 ## Nếu không khai báo, Rasa sẽ dùng InMemoryTrackerStore (chỉ trong RAM)

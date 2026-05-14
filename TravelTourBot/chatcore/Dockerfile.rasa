@@ -1,0 +1,18 @@
+FROM rasa/rasa:3.6.2-full
+
+WORKDIR /app
+
+COPY . .
+
+# Train the model if not already trained (optional, but good for self-contained image)
+# RUN rasa train
+
+USER root
+RUN chmod -R 777 /app
+
+USER 1001
+
+EXPOSE 5005
+
+ENTRYPOINT ["rasa"]
+CMD ["run", "--enable-api", "--cors", "*", "--debug"]

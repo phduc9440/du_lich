@@ -297,9 +297,9 @@ const DefaultLayout: React.FC = () => {
           <Col xs={24} sm={12} md={4}>
             <Typography.Title level={5} style={{ color: "#fff" }}>Thông tin liên hệ</Typography.Title>
             <Space direction="vertical" style={{ color: "#aaa" }}>
-              <Typography.Text style={{ color: "#aaa" }}>+123 456 789</Typography.Text>
-              <Typography.Text style={{ color: "#aaa" }}>abc@gmail.com</Typography.Text>
-              <Typography.Text style={{ color: "#aaa" }}>1245, Hà Nội, Việt Nam</Typography.Text>
+              <Typography.Text style={{ color: "#aaa" }}>0964 219 404</Typography.Text>
+              <Typography.Text style={{ color: "#aaa" }}>pduc942004@gmail.com</Typography.Text>
+              <Typography.Text style={{ color: "#aaa" }}>Số 122 Hoàng Quốc Việt, Cầu Giấy, Hà Nội</Typography.Text>
             </Space>
           </Col>
           <Col xs={24} sm={12} md={4}>

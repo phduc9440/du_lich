@@ -1,11 +1,12 @@
-const { OAuth2Client } = require("google-auth-library");
-const nodemailer = require("nodemailer");
+import { OAuth2Client } from "google-auth-library";
+import nodemailer from "nodemailer";
 import { Admin, User } from "../models";
 import {
   generateAccessToken,
   generateRefreshToken,
 } from "../utils/generateToken";
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 export interface GoogleLoginDTO {
   google_token: string;
 }
@@ -32,7 +33,7 @@ const sendOTPEmail = async (email: string, otp: string) => {
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-        accessToken: token,
+        accessToken: token ?? undefined,
       },
     });
 
@@ -110,7 +111,7 @@ export const loginWithGoogle = async (data: GoogleLoginDTO) => {
       username: name,
       email,
       password_hash: null,
-      avatar_url: avatar,
+      avatar_url: avatar as string | undefined,
       gender: "other",
       google_id: googleId,
       is_active: true,

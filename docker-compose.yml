@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: tour-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-123456}
+      MYSQL_DATABASE: ${DB_NAME:-webbantourdulich}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-123456}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./BE/database/database.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - tour-network
+
+  backend:
+    build:
+      context: ./BE
+      dockerfile: Dockerfile
+    container_name: tour-backend
+    restart: always
+    environment:
+      - PORT=${PORT:-5000}
+      - NODE_ENV=${NODE_ENV:-development}
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=${DB_NAME:-webbantourdulich}
+      - DB_USER=${DB_USER:-root}
+      - DB_PASSWORD=${DB_PASSWORD:-123456}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRE=${JWT_EXPIRE:-7d}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:3000}
+      - BACKEND_URL=${BACKEND_URL:-http://localhost:5000}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_REFRESH_TOKEN=${GOOGLE_REFRESH_TOKEN}
+      - EMAIL_FROM=${EMAIL_FROM}
+      - VNPAY_TMN_CODE=${VNPAY_TMN_CODE}
+      - VNPAY_HASH_SECRET=${VNPAY_HASH_SECRET}
+      - VNPAY_URL=${VNPAY_URL}
+      - VNPAY_RETURN_URL=${VNPAY_RETURN_URL}
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    command: sh -c "npm run db:migrate && npm run start"
+    networks:
+      - tour-network
+
+  frontend:
+    build:
+      context: ./fe-web-ban-tour-du-lich
+      dockerfile: Dockerfile
+      args:
+        - VITE_URL_SERVER=${VITE_URL_SERVER:-http://localhost:5000}
+        - VITE_BASE_API_URL=${VITE_BASE_API_URL:-http://localhost:5000/api}
+        - VITE_CLOUDINARY_CLOUD_NAME=${VITE_CLOUDINARY_CLOUD_NAME}
+        - VITE_CLOUDINARY_UPLOAD_PRESET=${VITE_CLOUDINARY_UPLOAD_PRESET}
+        - VITE_GOOGLE_CLIENT_ID=${VITE_GOOGLE_CLIENT_ID}
+        - VITE_RASA_URL=${VITE_RASA_URL:-http://localhost:5005}
+    container_name: tour-frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - tour-network
+
+  bot-server:
+    build:
+      context: ./TravelTourBot/chatcore
+      dockerfile: Dockerfile.rasa
+    container_name: tour-bot-server
+    restart: always
+    ports:
+      - "5005:5005"
+    depends_on:
+      - bot-actions
+    networks:
+      - tour-network
+
+  bot-actions:
+    build:
+      context: ./TravelTourBot/chatcore
+      dockerfile: Dockerfile.actions
+    container_name: tour-bot-actions
+    restart: always
+    ports:
+      - "5055:5055"
+    networks:
+      - tour-network
+
+networks:
+  tour-network:
+    driver: bridge
+
+volumes:
+  db_data:

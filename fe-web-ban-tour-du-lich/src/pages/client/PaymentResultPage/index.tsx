@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { Result, Button, Spin } from 'antd';
 
 const PaymentResultPage = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const [countdown, setCountdown] = useState(5);
   
   const orderId = searchParams.get('orderId');
   const status = searchParams.get('status'); // 'success' | 'failed' | 'error'
@@ -16,7 +18,7 @@ const PaymentResultPage = () => {
       timestamp: Date.now(),
     };
     
-    // Gửi message qua postMessage (nếu có window.opener - thường không có sau redirect từ VNPay)
+    // Gửi message qua postMessage
     if (window.opener && !window.opener.closed) {
       try {
         window.opener.focus();
@@ -26,38 +28,70 @@ const PaymentResultPage = () => {
       }
     }
     
-    // Lưu vào localStorage để Tab A có thể đọc qua polling
+    // Lưu vào localStorage
     try {
       localStorage.setItem('payment_result', JSON.stringify(paymentResult));
     } catch (e) {
       // Ignore localStorage error
     }
     
-    // Xóa flag sau khi sử dụng
-    const wasOpenedFromWindowOpen = localStorage.getItem('payment_tab_opened') === 'true';
-    if (wasOpenedFromWindowOpen) {
-      localStorage.removeItem('payment_tab_opened');
-    }
-    
-    // Thử đóng tab ngay (đủ thời gian để lưu localStorage)
-    setTimeout(() => {
-      try {
-        window.close();
-      } catch (e) {
-        // Ignore close error
-      }
-      
-      // Sau 0.3 giây, nếu tab vẫn chưa đóng thì redirect về /order
-      setTimeout(() => {
-        if (document && document.body) {
-          navigate('/order');
+    // Tự động chuyển hướng sau 5 giây
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          navigate('/my-tickets');
+          return 0;
         }
-      }, 300);
-    }, 100);
-    
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, [status, orderId, navigate]);
+
+  const renderResult = () => {
+    if (status === 'success') {
+      return (
+        <Result
+          status="success"
+          title="Thanh toán thành công!"
+          subTitle={`Đơn hàng #${orderId} của bạn đã được thanh toán thành công. Hệ thống sẽ tự động chuyển hướng sau ${countdown} giây.`}
+          extra={[
+            <Button type="primary" key="tickets" onClick={() => navigate('/my-tickets')}>
+              Xem vé của tôi
+            </Button>,
+            <Button key="home" onClick={() => navigate('/')}>
+              Về trang chủ
+            </Button>,
+          ]}
+        />
+      );
+    } else if (status === 'failed' || status === 'error') {
+      return (
+        <Result
+          status="error"
+          title="Thanh toán thất bại"
+          subTitle="Đã có lỗi xảy ra trong quá trình thanh toán hoặc giao dịch bị hủy."
+          extra={[
+            <Button type="primary" key="retry" onClick={() => navigate('/list-tour')}>
+              Thử lại
+            </Button>,
+            <Button key="home" onClick={() => navigate('/')}>
+              Về trang chủ
+            </Button>,
+          ]}
+        />
+      );
+    }
+    return <Spin size="large" tip="Đang xử lý kết quả thanh toán..." />;
+  };
   
-  return null;
+  return (
+    <div style={{ padding: '50px 0', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {renderResult()}
+    </div>
+  );
 };
 
 export default PaymentResultPage;

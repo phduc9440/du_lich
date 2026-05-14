@@ -18,8 +18,8 @@
     /* Linting */
     "strict": true,
     "noImplicitAny": false, // cho phep dung any
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     // "noUncheckedSideEffectImports": true

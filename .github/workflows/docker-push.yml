@@ -1,0 +1,93 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Backend
+        id: meta-be
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-backend
+
+      - name: Build and push Backend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./BE
+          push: true
+          tags: ${{ steps.meta-be.outputs.tags }}
+          labels: ${{ steps.meta-be.outputs.labels }}
+
+      - name: Extract metadata (tags, labels) for Frontend
+        id: meta-fe
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-frontend
+
+      - name: Build and push Frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./fe-web-ban-tour-du-lich
+          push: true
+          tags: ${{ steps.meta-fe.outputs.tags }}
+          labels: ${{ steps.meta-fe.outputs.labels }}
+          build-args: |
+            VITE_URL_SERVER=${{ secrets.VITE_URL_SERVER }}
+            VITE_BASE_API_URL=${{ secrets.VITE_BASE_API_URL }}
+            VITE_CLOUDINARY_CLOUD_NAME=${{ secrets.VITE_CLOUDINARY_CLOUD_NAME }}
+            VITE_CLOUDINARY_UPLOAD_PRESET=${{ secrets.VITE_CLOUDINARY_UPLOAD_PRESET }}
+            VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+
+      - name: Extract metadata (tags, labels) for Rasa Core
+        id: meta-rasa
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-rasa-core
+
+      - name: Build and push Rasa Core
+        uses: docker/build-push-action@v5
+        with:
+          context: ./TravelTourBot/chatcore
+          file: ./TravelTourBot/chatcore/Dockerfile.rasa
+          push: true
+          tags: ${{ steps.meta-rasa.outputs.tags }}
+          labels: ${{ steps.meta-rasa.outputs.labels }}
+
+      - name: Extract metadata (tags, labels) for Rasa Actions
+        id: meta-actions
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-rasa-actions
+
+      - name: Build and push Rasa Actions
+        uses: docker/build-push-action@v5
+        with:
+          context: ./TravelTourBot/chatcore
+          file: ./TravelTourBot/chatcore/Dockerfile.actions
+          push: true
+          tags: ${{ steps.meta-actions.outputs.tags }}
+          labels: ${{ steps.meta-actions.outputs.labels }}

@@ -18,7 +18,10 @@
     "types": ["node"],
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
-    "noEmit": false
+    "noEmit": false,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

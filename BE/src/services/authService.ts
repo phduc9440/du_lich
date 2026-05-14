@@ -335,7 +335,7 @@ class AuthService {
       // Nếu không tìm thấy, thử raw query
       if (!user) {
         try {
-          const { QueryTypes } = require('sequelize');
+          const { QueryTypes } = await import('sequelize');
           const [users]: any = await User.sequelize!.query(
             'SELECT id, username, email, phone, avatar_url, is_active, created_at, updated_at FROM users WHERE id = ? LIMIT 1',
             {

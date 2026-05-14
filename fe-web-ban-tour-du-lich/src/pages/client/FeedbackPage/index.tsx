@@ -49,12 +49,12 @@ const FeedbackPage: React.FC = () => {
   
               <Space className="px-3 py-2 border border-orange-500 rounded-md">
                 <PhoneOutlined className="text-orange-500 text-lg" />
-                <Text strong>0823 456 789</Text>
+                <Text strong>0964 219 404</Text>
               </Space>
   
               <Space>
                 <MailOutlined className="text-orange-500 text-lg" />
-                <Text>daoxuantri2003@gmail.com</Text>
+                <Text>pduc942004@gmail.com</Text>
               </Space>
             </Space>
           </Flex>

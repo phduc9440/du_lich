@@ -1,0 +1,18 @@
+FROM rasa/rasa-sdk:3.6.2
+
+WORKDIR /app
+
+# Copy actions code
+COPY actions /app/actions
+COPY requirements.txt ./
+
+# Install additional dependencies
+USER root
+RUN pip install --no-cache-dir -r requirements.txt
+
+USER 1001
+
+EXPOSE 5055
+
+ENTRYPOINT ["rasa"]
+CMD ["run", "actions"]

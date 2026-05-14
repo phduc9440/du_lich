@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: tour-db-prod
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data_prod:/var/lib/mysql
+    networks:
+      - tour-network-prod
+
+  backend:
+    image: ghcr.io/${GITHUB_REPOSITORY}-backend:main
+    container_name: tour-backend-prod
+    restart: always
+    environment:
+      - PORT=5000
+      - NODE_ENV=production
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - FRONTEND_URL=http://localhost:3000
+      - BACKEND_URL=http://localhost:5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - tour-network-prod
+
+  frontend:
+    image: ghcr.io/${GITHUB_REPOSITORY}-frontend:main
+    container_name: tour-frontend-prod
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - tour-network-prod
+
+  bot-server:
+    image: ghcr.io/${GITHUB_REPOSITORY}-rasa-core:main
+    container_name: tour-bot-server-prod
+    restart: always
+    ports:
+      - "5005:5005"
+    depends_on:
+      - bot-actions
+    networks:
+      - tour-network-prod
+
+  bot-actions:
+    image: ghcr.io/${GITHUB_REPOSITORY}-rasa-actions:main
+    container_name: tour-bot-actions-prod
+    restart: always
+    ports:
+      - "5055:5055"
+    networks:
+      - tour-network-prod
+
+networks:
+  tour-network-prod:
+    driver: bridge
+
+volumes:
+  db_data_prod:
